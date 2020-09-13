@@ -1,0 +1,82 @@
+apiVersion: mocks.microcks.io/v1alpha1
+kind: APIVersion
+metadata:
+  name: branch-locator.2.3.0
+  displayName: Open Data API - Branch Locator
+  createdAt: 2020-01-01 19:01:00
+  description: 'This specification includes all relevant artefacts for the Open Data Branch API Specification.
+
+    This endpoint can contain multiple brands owned by a particular banking group. Each brand can own multiple branches. 
+
+    A branch is made up of:-
+
+    * Identification - unique identification for the branch
+
+    * SequenceNumber - 0 indicates that this is a main branch, 1..n indicates that it''s either a sub or mobile branch.
+
+    * Name - the branch name
+
+    * Type - Physical or Mobile
+
+    * CustomerSegment - The segment of customers that the branch serves e.g. Private, Retail, Business
+
+    * Photo - you can supply a URL showing an image of the branch e.g. use Google streetview
+
+    * Sort-Code(s) associated with branch
+
+    * Service/Facility (see subsection below)
+
+    * Accessibility (see subsection below)
+
+    * Postal Address (see subsection below)
+    
+
+    ### Postal Address
+
+    This is where the Branch is located and is a mixture of a postal address and the geographic coordinates (decimal
+    Latitude & Longitude). For geolocation purposes, it is highly recommended that each branch is identified via the 
+    geographic coordinates.
+
+    ### Mobile branch addresses
+
+    Mobile branch specific attributes such as parking location and stop name can be added as a 0..7 free format 
+    `AddressLine` fields 
+
+    ### Services and Facilities/Other Services and Facilities
+
+    This allows the implementer to choose from standard services/facilities e.g. Parking and also allows the specification
+    of other services/facilties using the OtherServiceFacility code block, where these are proprietary or currently 
+    missing from the standard code list. Periodic review of OtherServiceFacility information provided by each bank will 
+    allow us to decide if any of that information should be subsequently added to the standard code list.
+
+    ### Accessibility/Other Accessibility
+
+    This allows you to specify accessibility features of the branch e.g. Wheelchair access, and also allows 
+    specification of OtherAccessibility features, where these are proprietary or currently missing from the standard 
+    code list.
+
+    ### Availability
+
+    Deals with standard and non-standard e.g. seasonal opening days and times.
+  '
+  icon:
+    - base64data: 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
+      mediatype: image/png
+spec:
+  version: '2.3.0'
+  capabilities: Incomplete Mocks
+  contract:
+    type: postman
+    url: https://github.com/lbroudoux/openbanking/raw/master/mocks/openbanking.org.uk/OpenBanking.org.uk%20Branch%20API%20v2.3.0-RC1.postman_collection.json
+  links:
+    - name: OpenBanking.org.uk mocks repository
+      url: https://github.com/lbroudoux/openbanking
+  provider:
+    name: Laurent Broudoux
+  maintainers:
+    - email: laurent.broudoux@gmail.com
+      name: Laurent Broudoux
+  keywords:
+    - openbanking
+    - branch
+    - psd2

@@ -1,0 +1,43 @@
+apiVersion: mocks.microcks.io/v1alpha1
+kind: APIVersion
+metadata:
+  name: account-and-transaction.3.1.0
+  displayName: Read/Write API - Accound and Transaction
+  createdAt: 2019-11-21 09:01:00
+  description: 'The Account and Transaction API Profile describes the flows and 
+    common functionality for the Accounts and Transaction API, which allows an 
+    Account Information Service Provider (AISP) to:
+
+    * Register an intent to retrieve account information by creating an "account 
+      access consent". This registers the data "permissions", expiration and 
+      historical period allowed for transactions / statements - that the customer 
+      (PSU) has consented to provide to the AISP; and
+
+    * Subsequently, retrieve account and transaction data.
+
+    This profile should be read in conjunction with a compatible Read/Write Data 
+    API Profile which provides a description of the elements that are common across 
+    all the Read/Write Data APIs, and compatible individual resources.
+  '
+  icon:
+    - base64data: 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
+      mediatype: image/png
+spec:
+  version: 3.1.0
+  capabilities: Incomplete Mocks
+  contract:
+    type: postman
+    url: https://github.com/lbroudoux/openbanking/raw/master/mocks/Openbanking.co.uk%20Account%20and%20Transaction%20API%20-%203.1.0.postman_collection.json
+  links:
+    - name: OpenBanking.org.uk mocks repository
+      url: https://github.com/lbroudoux/openbanking
+  provider:
+    name: Laurent Broudoux
+  maintainers:
+    - email: laurent.broudoux@gmail.com
+      name: Laurent Broudoux
+  keywords:
+    - openbanking
+    - account
+    - transaction
+    - psd2

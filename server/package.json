@@ -1,0 +1,36 @@
+{
+  "name": "hub.microcks.io",
+  "version": "0.0.1",
+  "description": "hub.microcks.io is a catalog of community mocks and tests for public API and microservices",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microcks/hub.microcks.io.git"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "express": "^4.17.1",
+    "cors": "^2.8.5",
+    "js-yaml": "^3.12.1",
+    "lodash": "^4.17.11",
+    "sharp": "^0.22.1",
+    "sqlite3": "^4.0.6"
+  },
+  "keywords": [
+    "api",
+    "mocks",
+    "testing",
+    "microservices",
+    "kubernetes"
+  ],
+  "author": "laurent@microcks.io",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/microcks/hub.microcks.io/issues"
+  },
+  "homepage": "https://github.com/microcks/hub.microcks.io#readme"
+}

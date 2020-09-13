@@ -1,0 +1,57 @@
+apiVersion: mocks.microcks.io/v1alpha1
+kind: APIVersion
+metadata:
+  name: psd2.1.4.2
+  displayName: PSD2 ASPSP services for AISP, PISP and CBPII.
+  createdAt: 2019-12-11 01:25:00
+  description: '
+    This API aims to provide a secure and easy-to-use set of services to be implemented by European
+    ASPSPs (Account Servicing Payment Service Providers) on the server side for:
+
+    * AISP (Account Information Service Providers)
+
+    * PIISP (Payment Issuer Instrument Service Providers)
+
+    * PISP (Payment Initiation Service Providers)
+
+
+    It also provides authentication, authorization, proof management and fraud detection oriented features.
+
+
+    This API has been built with the latest technology standards using `REST`, `OAuth2`, `JSON` and `HTTP-signature`.
+    It relies on ISO20022 elements for structuring the data to be exchanged between TPPs and ASPSPs.
+
+    
+    This update provides a lot of enhancements in order to:
+
+    * Comply with the opinions and clarifications that were published by the European Banking Authority
+
+    * Take into account most of the Change Requests that have been addressed to STET after the testing phase of implementation.
+
+    * Implement the common work achieved by the CNPS Working Group co-chaired by “Banque de France” and “Direction Générale du Trésor” with French actors (Banks, TPPs, Commerce representatives, GDPR experts…)
+
+
+    See [Change Log](https://www.stet.eu/assets/files/PSD2/1-4-2/changelog1-4-2.pdf).
+  '
+  icon:
+    - base64data: iVBORw0KGgoAAAANSUhEUgAAAIcAAAAoCAYAAADUrekxAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzEwRDkyNkRDRTZFMTFFNTg0QUNCQUUyQzYxN0U2RTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzEwRDkyNkVDRTZFMTFFNTg0QUNCQUUyQzYxN0U2RTMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo3MTBEOTI2QkNFNkUxMUU1ODRBQ0JBRTJDNjE3RTZFMyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3MTBEOTI2Q0NFNkUxMUU1ODRBQ0JBRTJDNjE3RTZFMyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ph57JJ0AAAiLSURBVHja7Fx5bBRV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
+      mediatype: image/png
+spec:
+  version: 1.4.2
+  capabilities: Incomplete Mocks
+  contract:
+    type: postman
+    url: https://github.com/lbroudoux/openbanking/raw/master/mocks/Openbanking.co.uk%20Account%20and%20Transaction%20API%20-%203.1.0.postman_collection.json
+  links:
+    - name: Stet.eu mocks repository
+      url: https://github.com/lbroudoux/openbanking
+  provider:
+    name: Laurent Broudoux
+  maintainers:
+    - email: laurent.broudoux@gmail.com
+      name: Laurent Broudoux
+  keywords:
+    - openbanking
+    - account
+    - transaction
+    - psd2

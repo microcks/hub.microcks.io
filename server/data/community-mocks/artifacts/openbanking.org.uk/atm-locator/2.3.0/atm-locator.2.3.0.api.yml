@@ -1,0 +1,59 @@
+apiVersion: mocks.microcks.io/v1alpha1
+kind: APIVersion
+metadata:
+  name: atm-locator.2.3.0
+  displayName: Open Data API - ATM Locator
+  createdAt: 2020-01-01 19:01:00
+  description: 'This specification includes all relevant artefacts for the Open Data ATM API Specification.
+
+    This endpoint can contain multiple brands owned by a particular banking group. Each brand can provide multiple ATMs.
+
+    An ATM consists of:
+
+    * A unique Identification
+
+    * ATMServices - a pre-defined set of standard code names defining services available from an ATM e.g. PinUnblock
+
+    * OtherATMServices - allows a bank to add it''s own non-standard/proprietary codes, code names & descriptions
+
+    * Accessibility - a pre-defined set of standard code names defining accessibility features that the ATM offers e.g. InductionLoop
+
+    * OtherAccessibility - allows a bank to add it''s own non-standard/proprietary codes, code names & descriptions 
+    
+    * Supported Languages - the [2-digit ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+
+    * Location - This is where the ATM is located and is a mix of a postal address and the geographic coordinates (decimal Latitude & Longitude).
+    Postal address information can either be:
+    ** i) Up to 7 lines of unstructured address information (AddressLine)
+    ** ii) Structured address information e.g. BuildingNumber, StreetName, Town, PostCode etc or a mixture of both. 
+    Location is very important so the API provider should ensure that either geographical coordinates (preferred) or a 
+    combination of building number & postcode are supplied so that the ATM can be accurately located on a map.
+
+    * Base currency - currently restricted to `GBP` only, but may be extended in future to cope with other currencies 
+    dispensed by ATMs at airports, for example, if the API providers are able to supply this information
+
+    * Minimum possible amount - This will inform a consumer as the minimum possible amount that they can withdraw from an ATM. 
+    Note: This is not the same as the minimum denomination. For example, an ATM may dispense £5 notes but require the consumer to 
+    withdraw a minimum possible amount of £10.
+  '
+  icon:
+    - base64data: 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
+      mediatype: image/png
+spec:
+  version: '2.3.0'
+  capabilities: Incomplete Mocks
+  contract:
+    type: postman
+    url: https://github.com/lbroudoux/openbanking/raw/master/mocks/openbanking.org.uk/Openbanking.org.uk%20ATM%20API%20v2.3.0.postman_collection.json
+  links:
+    - name: OpenBanking.org.uk mocks repository
+      url: https://github.com/lbroudoux/openbanking
+  provider:
+    name: Laurent Broudoux
+  maintainers:
+    - email: laurent.broudoux@gmail.com
+      name: Laurent Broudoux
+  keywords:
+    - openbanking
+    - atm
+    - psd2
