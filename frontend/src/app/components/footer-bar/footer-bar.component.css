@@ -1,0 +1,113 @@
+.mh-footer-bar-top {
+  border-top: 1px solid #eaeaea;
+  margin-top: 60px;
+  padding: 18px 15px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .mh-footer-bar-top {
+      z-index: 1000;
+  }
+}
+.mh-footer-bar-top>h3 {
+  margin: 0;
+  padding-right: 30px;
+  font-size: 18px;
+}
+.mh-footer-bar-top_link {
+  white-space: nowrap;
+}
+
+.mh-footer-bar-contents {
+  /*background-color: #333f52;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .mh-footer-bar-contents {
+    z-index: 1000;
+  }
+}
+
+.mh-footer-bar-contents_inner {
+  display: flex;
+  flex-direction: column;
+  padding: 60px 15px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .mh-footer-bar-contents_inner {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.mh-footer-bar-contents-left {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .mh-footer-bar-contents-left {
+    align-items: flex-start;
+  }
+}
+.mh-footer-bar-contents-left_logo {
+  height: 80px;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  margin-bottom: 30px;
+}
+.mh-footer-bar-contents-left_text {
+  color: #fff;
+  margin-bottom: 30px;
+  max-width: 380px;
+}
+.mh-footer-bar_button {
+  border: 2px solid #fff;
+  border-radius: 4px;
+  color: #fff;
+  padding: 5px 20px 8px;
+}
+
+.mh-footer-bar-contents-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+}
+@media (min-width: 768px) {
+  .mh-footer-bar-contents-right {
+    align-items: flex-start;
+    margin-top: 0;
+  }
+}
+.mh-footer-bar-contents-right_logo {
+  height: 24px;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  margin-bottom: 30px;
+}
+.mh-footer-bar-contents-right_links {
+  display: flex;
+  flex-direction: row;
+}
+.mh-footer-bar-contents-right_links_list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-right: 80px;
+}
+.mh-footer-bar-contents-right_links_list:last-of-type {
+  padding-right: 0;
+}
+.mh-footer-bar-contents-right_links_list_header {
+  color: #fff;
+}
+.mh-footer-bar-contents-right_links_lis>a {
+  white-space: nowrap;
+  margin-bottom: 5px;
+}

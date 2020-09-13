@@ -1,0 +1,107 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  color: #363636;
+  font-size: 14px;
+}
+input, button, select, optgroup, textearea {
+  font-size: 14px;
+}
+h1 {
+  font-size: 26px;
+  letter-spacing: 1.44px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.bg-lighter {
+  background-color: #fafbfd;
+}
+
+.mh-page-header {
+  padding-top: 60px;
+  background-image: url(./assets/images/header-bg.png), linear-gradient(to right, #4e5d6c, #2c95b5);
+  background-repeat: repeat-x repeat-y;
+  /*color: #ffffff;
+  align-items: center;
+  overflow-x: hidden;*/
+}
+.mh-page-header_inner {
+  position: relative;
+  padding: 0 15px;
+  /*max-width: 100%;*/
+}
+.mh-page-header, .mh-page-header_inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.mh-page-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-bottom: 1px solid #eaeaea;
+  background-color: #ffffff;
+  width: 100%;
+}
+.mh-page-toolbar_inner {
+  display: flex;
+  flex-direction: row;
+  padding: 0 15px;
+  width: 100%;
+}
+.mh-page-toolbar .breadcrumb {
+  margin: 0;
+  padding: 10px 0;
+  flex: 1;
+}
+ol.breadcrumbs {
+  padding: 10px 0;
+}
+ol.breadcrumbs {
+  display: block;
+  list-style-type: decimal;
+  list-style: none;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+ol.breadcrumbs>li {
+  display: inline;
+  text-align: -webkit-match-parent;
+}
+ol.breadcrumbs>li+li:before {
+  color: #9c9c9c;
+  content: "";
+  font-family: FontAwesome;
+  font-size: 13px;
+  padding: 0 9px 0 7px;
+}
+
+.mh-page-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  min-height: calc(100vh - 700px);
+}
+.mh-page-contents_inner {
+  background: transparent;
+  display: flex;
+  padding: 20px 15px 0 15px;
+}
+
+.mh-external-link.indicator {
+  padding-right: 15px;
+}
+.mh-external-link.block {
+  display: block;
+}
+
+@media (min-width: 1400px) {
+  .container-sm {
+    max-width: 1220px;
+  }
+}

@@ -1,0 +1,35 @@
+<div class="mh-header-bar navbar navbar-dark fixed-top" style="background: transparent;">
+  <div class="mh-header-bar-inner container-sm">
+    <a href="/">
+      <img class="mh-header-bar-inner_logo" src="/assets/images/hub-microcks.svg"/>
+    </a>
+    <span class="mh-header-bar-inner_spacer">&nbsp;<br/>&nbsp;</span>
+    <form class="mh-header-bar-inner_search search-pf hidden-xs">
+      <div class="form-group has-clear">
+        <div class="search-pf-input-group">
+          <span class="fa fa-search mh-header-bar_search-icon" aria-hidden="true"></span>
+          <label for="search-input" class="sr-only">Search Microcks Hub</label>
+          <input id="search-input" type="search" autocomplete="off" class="form-control mh-header-bar_search-input" 
+              placeholder="Search Microcks Hub..." autocorrect="off" autocapitalize="off" spellcheck="false" value=""
+              name="searchValue" [(ngModel)]="searchValue">
+          <a id="search-clear" class="fa fa-times-circle mh-header-bar_clear-icon" [ngClass]="{'disabled':searchValue === ''}"
+              (click)="clearSearchValue()">
+            <span class="sr-only">Clear Search</span>
+          </a>
+        </div>
+      </div>
+    </form>
+    
+    <div class="dropdown open btn-group">
+      <button id="header-contribute-dropdown" type="button" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          class="mh-header-bar-inner_dropdown dropdown-toggle btn btn-default">
+        Contribute <span class="caret"></span>
+      </button>
+      <ul role="menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="header-contribute-dropdown">
+        <li><a class="dropdown-item" href="#">Create API mocks using supported formats</a></li>
+        <li><a class="dropdown-item" href="#">Package your API mocks and tests</a></li>
+        <li><a class="dropdown-item" href="#">Submit your API package</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
