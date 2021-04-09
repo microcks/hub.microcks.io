@@ -6,8 +6,7 @@ if [ ! -d "community-mocks" ]; then
   
   if [ ! $1 ]; then
     echo "Using default community mocks repository"
-    #MOCKS_REPO=https://github.com/microcks/community-mocks.git
-    MOCKS_REPO=https://github.com/lbroudoux/community-mocks.git
+    MOCKS_REPO=https://github.com/microcks/community-mocks.git
   else
     MOCKS_REPO=$1
     echo "Using $MOCKS_REPO as community mocks repository"

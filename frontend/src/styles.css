@@ -19,8 +19,9 @@ h1 {
 
 .mh-page-header {
   padding-top: 60px;
-  background-image: url(./assets/images/header-bg.png), linear-gradient(to right, #4e5d6c, #2c95b5);
-  background-repeat: repeat-x repeat-y;
+  /*background-image: url(./assets/images/header-bg.png), linear-gradient(to right, #4e5d6c, #2c95b5);*/
+  /*background-repeat: repeat-x repeat-y;*/
+  background-image: linear-gradient(to right, #1a2932,#83d0f0);
   /*color: #ffffff;
   align-items: center;
   overflow-x: hidden;*/

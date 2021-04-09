@@ -2,6 +2,13 @@
   align-items: unset;
 }
 
+.mh-header-bar {
+  background: transparent;
+}
+.mh-header-bar.scrolled {
+  background-image: linear-gradient(to right, #1a2932,#83d0f0);
+}
+
 .mh-header-bar-inner {
   color: #fff;
   padding: 15px 15px 0;

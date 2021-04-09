@@ -3,7 +3,7 @@ kind: APIVersion
 metadata:
   name: atm-locator.2.3.0
   displayName: Open Data API - ATM Locator
-  createdAt: 2020-01-01 19:01:00
+  createdAt: 2021-04-09 19:01:00
   description: 'This specification includes all relevant artefacts for the Open Data ATM API Specification.
 
     This endpoint can contain multiple brands owned by a particular banking group. Each brand can provide multiple ATMs.
@@ -44,10 +44,10 @@ spec:
   capabilities: Incomplete Mocks
   contract:
     type: postman
-    url: https://github.com/lbroudoux/openbanking/raw/master/mocks/openbanking.org.uk/Openbanking.org.uk%20ATM%20API%20v2.3.0.postman_collection.json
+    url: https://github.com/microcks/microcks-quickstarters/raw/main/banking/openbanking.org.uk/Openbanking.org.uk%20ATM%20API%20v2.3.0.postman_collection.json
   links:
     - name: OpenBanking.org.uk mocks repository
-      url: https://github.com/lbroudoux/openbanking
+      url: https://github.com/microcks/microcks-quickstarters
   provider:
     name: Laurent Broudoux
   maintainers:

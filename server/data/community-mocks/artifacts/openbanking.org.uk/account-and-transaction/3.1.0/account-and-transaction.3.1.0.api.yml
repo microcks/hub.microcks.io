@@ -3,7 +3,7 @@ kind: APIVersion
 metadata:
   name: account-and-transaction.3.1.0
   displayName: Read/Write API - Accound and Transaction
-  createdAt: 2019-11-21 09:01:00
+  createdAt: 2021-04-09 09:01:00
   description: 'The Account and Transaction API Profile describes the flows and 
     common functionality for the Accounts and Transaction API, which allows an 
     Account Information Service Provider (AISP) to:
@@ -27,10 +27,10 @@ spec:
   capabilities: Incomplete Mocks
   contract:
     type: postman
-    url: https://github.com/lbroudoux/openbanking/raw/master/mocks/Openbanking.co.uk%20Account%20and%20Transaction%20API%20-%203.1.0.postman_collection.json
+    url: https://github.com/microcks/microcks-quickstarters/raw/main/banking/openbanking.org.uk/Openbanking.org.uk%20Account%20and%20Transaction%20API%20-%203.1.0.postman_collection.json
   links:
     - name: OpenBanking.org.uk mocks repository
-      url: https://github.com/lbroudoux/openbanking
+      url: https://github.com/microcks/microcks-quickstarters
   provider:
     name: Laurent Broudoux
   maintainers:

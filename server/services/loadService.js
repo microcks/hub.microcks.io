@@ -60,7 +60,8 @@ const extractAPIVersionData = (versionDirPath, fileName) => {
   let fileType = 'Unknown';
 
   try {
-    content = yaml.safeLoad(fs.readFileSync(filePath));
+    //content = yaml.safeLoad(fs.readFileSync(filePath));
+    content = yaml.load(fs.readFileSync(filePath));
     fileType = getFileType(content);
   } catch (e) {
     console.error(`ERROR: Unable to parse ${fileName}`);
@@ -131,7 +132,8 @@ const extractMockData = (packageDirPath, packageDirFileName) => {
   // packageDirFileName is not a directory but a file.
   try {
     console.log(`    Reading APIPackage file ${apiDirPath}`); // openbanking.org.uk.package.yml
-    content = yaml.safeLoad(fs.readFileSync(apiDirPath));
+    //content = yaml.safeLoad(fs.readFileSync(apiDirPath));
+    content = yaml.load(fs.readFileSync(apiDirPath));
     fileType = getFileType(content);
   } catch (e) {
     console.error(`ERROR: Unable to parse ${packageDirFileName}`);

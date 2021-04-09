@@ -16,7 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
+
+// Thanks to https://github.com/onokumus/metismenu/issues/110#issuecomment-317254128
+//import * as $ from 'jquery';
+declare let $: any;
 
 @Component({
   selector: 'header-bar',
@@ -33,5 +37,18 @@ export class HeaderBarComponent implements OnInit {
 
   clearSearchValue(): void {
     this.searchValue = '';
+  }
+
+  @HostListener('window:scroll', ['$event']) // For window scroll events.
+  onScroll(event: any) {
+    // Do some stuff here when the window is scrolled.
+    const verticalOffset = window.pageYOffset || document.documentElement.scrollTop 
+          || document.body.scrollTop || 0;
+    //console.log("Vertical Offset: " + verticalOffset);
+    if (verticalOffset > 30) {
+      (<any>$('.mh-header-bar')).addClass("scrolled");
+    } else {
+      (<any>$('.mh-header-bar')).removeClass("scrolled");
+    }
   }
 }
