@@ -1,0 +1,322 @@
+---
+openapi: 3.0.2
+info:
+  title: Microcks Hub API 1.0
+  version: 1.0.0
+  description: API offered by the Microcks Hub (hub.microcks.io)
+  contact:
+    name: Laurent Broudoux
+    url: https://github.com/lbroudoux
+    email: laurent.broudoux@gmail.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://hub.microcks.io/api
+  description: Production server
+paths:
+  /mocks:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/APIPackage'
+          description: List of found APIPackages
+      operationId: GetPackages
+      summary: Get all APIPackages
+  /mocks/{package}:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIPackageFull'
+          description: The API package full details
+      operationId: GetPackage
+      summary: Get APIPackage details
+    parameters:
+    - name: package
+      description: Name of the package operations are related to
+      schema:
+        type: string
+      in: path
+      required: true
+  /mocks/{package}/apis:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/APIVersion'
+          description: List of latest API versions making this package
+    parameters:
+    - name: package
+      description: Name of the package operations are related to
+      schema:
+        type: string
+      in: path
+      required: true
+  /mocks/{package}/apis/{apiVersion}:
+    get:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIVersion'
+          description: Get requested API version details
+      operationId: GetAPIVersion
+      summary: Get a specified API version
+    parameters:
+    - name: package
+      description: Name of the package operations are related to
+      schema:
+        type: string
+      in: path
+      required: true
+    - name: apiVersion
+      description: Name of the API version operations are related to
+      schema:
+        type: string
+      in: path
+      required: true
+components:
+  schemas:
+    APIPackage:
+      description: Represents a package/bundle of coherent API versions
+      required:
+      - name
+      - displayName
+      - description
+      - categories
+      - createdAt
+      - updatedAt
+      - thumbUrl
+      - apis
+      type: object
+      properties:
+        name:
+          description: Machine readable name of this API package
+          type: string
+        displayName:
+          description: Human readblae name of this API package
+          type: string
+        description:
+          description: Full description of this package
+          type: string
+        categories:
+          description: The classification categories of this package
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+        createdAt:
+          format: date-time
+          description: Date of package creation
+          type: string
+        updatedAt:
+          format: date-time
+          description: Date this package has been updated
+          type: string
+        thumbUrl:
+          description: A base64 encoded square image representation
+          type: string
+        apis:
+          description: The API versions bundled within this package
+          type: array
+          items:
+            $ref: '#/components/schemas/APIVersions'
+    Category:
+      description: ""
+      enum:
+      - Banking
+      - Cloud Provider
+      type: string
+    APIVersion:
+      description: "An APIVersoin if a versioned description of an API and its metadata,\
+        \ contracts, links and maintainers"
+      required:
+      - id
+      - name
+      - displayName
+      - version
+      - createdAt
+      - keywords
+      - packageName
+      - capabilityLevel
+      - contracts
+      - maintainers
+      - provider
+      - imgUrl
+      - thumbUrl
+      - description
+      type: object
+      properties:
+        id:
+          description: Short machine readable name for this API
+          type: string
+        name:
+          description: The machine readable name of this API version
+          type: string
+        displayName:
+          description: The human readable name of this API version
+          type: string
+        version:
+          description: Version of this API version
+          type: string
+        replaces:
+          description: Pointer to the previous version name this one replaces
+          type: string
+        provider:
+          description: API version provider
+          type: string
+        description:
+          description: The full description of this API version (usually in Markdown
+            format)
+          type: string
+        imgUrl:
+          description: Base64 encoded image of this API version
+          type: string
+        thumbUrl:
+          description: Base64 encoded image of this API version package
+          type: string
+        capabilityLevel:
+          $ref: '#/components/schemas/CapabilityLevel'
+          description: The level of capability and completion of attached contracts
+        contracts:
+          description: The contracts or artifacts attached to this API version
+          type: array
+          items:
+            $ref: '#/components/schemas/Contract'
+        links:
+          description: The useful links related to this API version
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+        maintainers:
+          description: The maintainers of this API version
+          type: array
+          items:
+            $ref: '#/components/schemas/Maintainer'
+        createdAt:
+          format: date-time
+          description: Date of creation of this API version
+          type: string
+        keywords:
+          description: List of keywords for this API version
+          type: array
+          items:
+            type: string
+        packageName:
+          description: The name of the package this API version is part-of
+          type: string
+    Maintainer:
+      description: An API version maintainer
+      required:
+      - name
+      - email
+      type: object
+      properties:
+        name:
+          description: Maintainer full name
+          type: string
+        email:
+          description: Email address of maintainer
+          type: string
+    Link:
+      description: A useful link
+      required:
+      - name
+      - url
+      type: object
+      properties:
+        name:
+          description: Display name for this link
+          type: string
+        url:
+          description: This link URI target
+          type: string
+    APIVersionSummary:
+      description: Summary of an API version
+      required:
+      - name
+      - version
+      type: object
+      properties:
+        name:
+          description: Name of this API Version
+          type: string
+        version:
+          description: Version of this API version
+          type: string
+    APIVersions:
+      description: A packaged API and its versions
+      required:
+      - name
+      - currentVersion
+      - versions
+      type: object
+      properties:
+        name:
+          description: Name of this packaged API
+          type: string
+        currentVersion:
+          description: Current version of this packaged API
+          type: string
+        versions:
+          description: Existing versions of this packaged API
+          type: array
+          items:
+            $ref: '#/components/schemas/APIVersionSummary'
+    CapabilityLevel:
+      description: Express a level of completion and thus capability of an API version
+        artifacts and contracts
+      enum:
+      - Incomplete Mocks
+      type: string
+    Maturity:
+      description: The maturity level of this package
+      enum:
+      - alpha
+      - beta
+      - stable
+      type: string
+    Contract:
+      description: Contraxct is an artifact that can be imported into a Microcks instance
+      required:
+      - type
+      type: object
+      properties:
+        type:
+          description: This artifact type
+          enum:
+          - postman
+          - openapi
+          - asyncapi
+          - grpc
+          - postman
+          - soapui
+          type: string
+    APIPackageFull:
+      description: Full informations on an API Package
+      required:
+      - longDescription
+      - imgUrl
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/APIPackage'
+      properties:
+        longDescription:
+          description: The long human readable description of API Package (usually
+            formated using Markdown)
+          type: string
+        imgUrl:
+          description: Base64 encoded image for this API package
+          type: string
