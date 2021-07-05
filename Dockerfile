@@ -2,7 +2,7 @@ FROM registry.access.redhat.com/ubi8/nodejs-10:latest
 
 MAINTAINER Laurent Broudoux <laurent.broudoux@gmail.com>
 
-ARG MOCKS_REPO=https://github.com/lbroudoux/community-mocks
+ARG MOCKS_REPO=https://github.com/microcks/community-mocks
 ARG MOCKS_BRANCH=master
 
 ENV APP_ROOT=/app
