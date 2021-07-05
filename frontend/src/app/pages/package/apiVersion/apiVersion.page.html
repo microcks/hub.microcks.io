@@ -86,8 +86,8 @@
             </div>
             <div class="properties-side-panel-pf-property">
               <h5 class="properties-side-panel-pf-property-label">Contracts</h5>
-              <div class="properties-side-panel-pf-property-value">
-                <a class="mh-external-link indicator" href="{{ resolvedAPIVersion.contract.url }}" target="_blank" rel="noopener noreferrer">{{ resolvedAPIVersion.contract.type }}</a>
+              <div *ngFor="let contract of resolvedAPIVersion.contracts" class="properties-side-panel-pf-property-value">
+                <a class="mh-external-link indicator" href="{{ contract.url }}" target="_blank" rel="noopener noreferrer">{{ contract.type }}</a>
               </div>
             </div>
             <div class="properties-side-panel-pf-property">
@@ -137,13 +137,13 @@
             <h6 class="mh-api-install-modal_options">2 options for installing this API Mocks into your Microcks instance:</h6>
             <ol class="mh-api-install-modal_list">
               <li class="mh-api-install-modal_list-item">
-                <p>Create a new Import Job into Microcks UI, copy/pasting this URL:</p>
-                <div class="mh-api-install-modal_install-command-container">
+                <p>Create new Import Job(s) into Microcks UI, copy/pasting these URL(s):</p>
+                <div *ngFor="let contract of resolvedAPIVersion.contracts" class="mh-api-install-modal_install-command-container">
                   <div class="mh-code">
-                    {{ resolvedAPIVersion.contract.url }}
+                    {{ contract.url }}
                   </div>
                   <div style="position: relative; display: inline-block; z-index: 98; color: rgb(85, 85, 85); cursor: pointer; top: 2px;">
-                    <a (mouseenter)="onCopyEnter($event)" (click)="copyToClipboard(resolvedAPIVersion.contract.url, $event)" 
+                    <a (mouseenter)="onCopyEnter($event)" (click)="copyToClipboard(contract, $event)" 
                         data-toggle="tooltip" data-placement="top" title="{{ guiCommandStatus }}" class="oh-install-modal_install-command-copy">
                       <span aria-hidden="true" class="fa fa-clipboard"></span>
                       <span class="sr-only">Copy to Clipboard</span>
@@ -155,10 +155,9 @@
                 <p>Use <code>microcks-cli</code> command line tool with the <code>importAPI</code> command:</p>
                 <div class="mh-api-install-modal_install-command-container">
                   <div class="mh-code">$ microcks-cli importAPI {{ resolvedPackage.name}}:{{ resolvedAPIVersion.name }} \<br/>
-                    &nbsp; &nbsp; --microcksURL=http://localhost:8080/api/ \<br/>
-                    &nbsp; &nbsp; --keycloakClientId=microcks-serviceaccount \<br/>
-                    &nbsp; &nbsp; --keycloakClientSecret=7deb71e8-8c80-4376-95ad-00a399ee3ca1 \<br/>
-                    &nbsp; &nbsp; --insecure --verbose
+                    &nbsp; &nbsp; --microcksURL=&lt;microcks-service-api&gt; \<br/>
+                    &nbsp; &nbsp; --keycloakClientId=&lt;service-account&gt; \<br/>
+                    &nbsp; &nbsp; --keycloakClientSecret=&lt;service-account-secret&gt;
                   </div>
                   <div style="position: relative; display: inline-block; z-index: 98; color: rgb(85, 85, 85); cursor: pointer; top: 2px;">
                     <a (mouseenter)="onCopyEnter($event)" (click)="copyToClipboard(getImportAPICommand(), $event)" 

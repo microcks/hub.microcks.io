@@ -65,9 +65,9 @@ metadata:
 spec:
   version: '2.3.0'
   capabilities: Incomplete Mocks
-  contract:
-    type: postman
-    url: https://github.com/microcks/microcks-quickstarters/raw/main/banking/openbanking.org.uk/OpenBanking.org.uk%20Branch%20API%20v2.3.0-RC1.postman_collection.json
+  contracts:
+    - type: postman
+      url: https://github.com/microcks/microcks-quickstarters/raw/main/banking/openbanking.org.uk/OpenBanking.org.uk%20Branch%20API%20v2.3.0-RC1.postman_collection.json
   links:
     - name: OpenBanking.org.uk mocks repository
       url: https://github.com/microcks/microcks-quickstarters

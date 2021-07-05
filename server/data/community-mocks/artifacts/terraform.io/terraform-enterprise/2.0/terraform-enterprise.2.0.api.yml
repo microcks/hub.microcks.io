@@ -57,9 +57,9 @@ metadata:
 spec:
   version: '2.0'
   capabilities: Full Mocks
-  contract:
-    type: postman
-    url: https://github.com/nehrman/terraform-enterprise/raw/master/mocks/terraform-enterprise.api.v2-RC1.postman_collection.json
+  contracts:
+    - type: postman
+      url: https://github.com/nehrman/terraform-enterprise/raw/master/mocks/terraform-enterprise.api.v2-RC1.postman_collection.json
   links:
     - name: Terraform Enterprise mocks repository
       url: https://github.com/nehrman/terraform-enterprise

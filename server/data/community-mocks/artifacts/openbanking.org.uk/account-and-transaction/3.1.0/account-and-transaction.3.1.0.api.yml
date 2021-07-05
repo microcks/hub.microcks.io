@@ -25,9 +25,9 @@ metadata:
 spec:
   version: 3.1.0
   capabilities: Incomplete Mocks
-  contract:
-    type: postman
-    url: https://github.com/microcks/microcks-quickstarters/raw/main/banking/openbanking.org.uk/Openbanking.org.uk%20Account%20and%20Transaction%20API%20-%20v3.1.0.postman_collection.json
+  contracts:
+    - type: postman
+      url: https://github.com/microcks/microcks-quickstarters/raw/main/banking/openbanking.org.uk/Openbanking.org.uk%20Account%20and%20Transaction%20API%20-%20v3.1.0.postman_collection.json
   links:
     - name: OpenBanking.org.uk mocks repository
       url: https://github.com/microcks/microcks-quickstarters

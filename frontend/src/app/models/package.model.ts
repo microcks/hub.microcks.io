@@ -55,7 +55,7 @@ export class APIVersion {
   imgUrl: string;
   thumbUrl: string;
   capabilityLevel: string;
-  contract: Contract;
+  contracts: Contract[];
   links: Link[];
   maintainers: Maintainer[];
   keywords: string;

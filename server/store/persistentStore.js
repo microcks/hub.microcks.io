@@ -35,7 +35,7 @@ const DESCRIPTION_FIELD = 'description TEXT';
 const IMG_FIELD = 'imgUrl TEXT';
 const THUMB_FIELD = 'thumbUrl TEXT';
 const CAPABILITY_LEVEL_FIELD = 'capabilityLevel BLOB';
-const CONTRACT_FIELD = 'contract BLOB';
+const CONTRACTS_FIELD = 'contracts BLOB';
 const LINKS_FIELD = 'links BLOB';
 const MAINTAINERS_FIELD = 'maintainers BLOB';
 const CREATED_FIELD = 'createdAt BLOB';
@@ -54,7 +54,7 @@ const apiVersionFields = [
   'imgUrl',
   'thumbUrl',
   'capabilityLevel',
-  'contract',
+  'contracts',
   'links',
   'maintainers',
   'createdAt',
@@ -118,7 +118,7 @@ exports.initialize = callback => {
         ${IMG_FIELD},
         ${THUMB_FIELD},
         ${CAPABILITY_LEVEL_FIELD},
-        ${CONTRACT_FIELD},
+        ${CONTRACTS_FIELD},
         ${LINKS_FIELD},
         ${MAINTAINERS_FIELD},
         ${CREATED_FIELD},
@@ -157,7 +157,7 @@ exports.close = () => {
 
 const normalizeAPIVersionRow = row => {
   row.createdAt = JSON.parse(row.createdAt);
-  row.contract = JSON.parse(row.contract);
+  row.contracts = JSON.parse(row.contracts);
   row.links = JSON.parse(row.links);
   row.maintainers = JSON.parse(row.maintainers);
   row.keywords = JSON.parse(row.keywords);
@@ -294,7 +294,7 @@ exports.setAPIVersions = (apiVersions, callback) => {
           apiVersion.imgUrl,
           apiVersion.thumbUrl,
           apiVersion.capabilityLevel || null,
-          JSON.stringify(apiVersion.contract),
+          JSON.stringify(apiVersion.contracts),
           JSON.stringify(apiVersion.links),
           JSON.stringify(apiVersion.maintainers),
           JSON.stringify(apiVersion.createdAt),

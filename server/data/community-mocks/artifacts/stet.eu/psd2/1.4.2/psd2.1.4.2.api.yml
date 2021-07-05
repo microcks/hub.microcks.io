@@ -39,9 +39,9 @@ metadata:
 spec:
   version: '1.4.2'
   capabilities: Incomplete Mocks
-  contract:
-    type: postman
-    url: https://github.com/microcks/microcks-quickstarters/raw/main/banking/stet.eu/PSD2%20ASPSP%20services%20for%20AISP%2C%20PISP%20and%20CBPII%20v1.4.postman_collection.json
+  contracts:
+    - type: postman
+      url: https://github.com/microcks/microcks-quickstarters/raw/main/banking/stet.eu/PSD2%20ASPSP%20services%20for%20AISP%2C%20PISP%20and%20CBPII%20v1.4.postman_collection.json
   links:
     - name: Stet.eu mocks repository
       url: https://github.com/microcks/microcks-quickstarters

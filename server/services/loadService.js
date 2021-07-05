@@ -64,7 +64,7 @@ const extractAPIVersionData = (versionDirPath, fileName) => {
     content = yaml.load(fs.readFileSync(filePath));
     fileType = getFileType(content);
   } catch (e) {
-    console.error(`ERROR: Unable to parse ${fileName}`);
+    console.error(`ERROR: Unable to parse ${fileName} as an APIVersion`);
     console.error(e.message);
     return null;
   }
@@ -127,29 +127,30 @@ const extractMockData = (packageDirPath, packageDirFileName) => {
         };
       }
     });
-  }
+  } else {
   
-  // packageDirFileName is not a directory but a file.
-  try {
-    console.log(`    Reading APIPackage file ${apiDirPath}`); // openbanking.org.uk.package.yml
-    //content = yaml.safeLoad(fs.readFileSync(apiDirPath));
-    content = yaml.load(fs.readFileSync(apiDirPath));
-    fileType = getFileType(content);
-  } catch (e) {
-    console.error(`ERROR: Unable to parse ${packageDirFileName}`);
-    console.error(e.message);
-    return {
-      packageFile: null,
-      apiVersionsFiles
-    };
-  }
+    // packageDirFileName is not a directory but a file.
+    try {
+      console.log(`    Reading APIPackage file ${apiDirPath}`); // openbanking.org.uk.package.yml
+      //content = yaml.safeLoad(fs.readFileSync(apiDirPath));
+      content = yaml.load(fs.readFileSync(apiDirPath));
+      fileType = getFileType(content);
+    } catch (e) {
+      console.error(`ERROR: Unable to parse ${packageDirFileName} as an APIPackage`);
+      console.error(e.message);
+      return {
+        packageFile: null,
+        apiVersionsFiles
+      };
+    }
 
-  if (fileType === 'PKG') {
-    packageFile = content;
-  } else if (fileType === 'API') {
-    apiVersionFiles.push(content);
-  } else if (fileType === 'Unknown') {
-    console.warn(`Cannot identify file ${packageDirFileName} at folder ${packageDirPath}. Ignoring file`);
+    if (fileType === 'PKG') {
+      packageFile = content;
+    } else if (fileType === 'API') {
+      apiVersionFiles.push(content);
+    } else if (fileType === 'Unknown') {
+      console.warn(`Cannot identify file ${packageDirFileName} at folder ${packageDirPath}. Ignoring file`);
+    }
   }
 
   return {

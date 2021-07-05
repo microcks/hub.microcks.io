@@ -42,9 +42,9 @@ metadata:
 spec:
   version: '2.3.0'
   capabilities: Incomplete Mocks
-  contract:
-    type: postman
-    url: https://github.com/microcks/microcks-quickstarters/raw/main/banking/openbanking.org.uk/Openbanking.org.uk%20ATM%20API%20v2.3.0.postman_collection.json
+  contracts:
+    - type: postman
+      url: https://github.com/microcks/microcks-quickstarters/raw/main/banking/openbanking.org.uk/Openbanking.org.uk%20ATM%20API%20v2.3.0.postman_collection.json
   links:
     - name: OpenBanking.org.uk mocks repository
       url: https://github.com/microcks/microcks-quickstarters
