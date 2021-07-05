@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/nodejs-10:latest
+FROM registry.access.redhat.com/ubi8/nodejs-14-minimal:1-11
 
 MAINTAINER Laurent Broudoux <laurent.broudoux@gmail.com>
 
