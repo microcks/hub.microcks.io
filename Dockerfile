@@ -21,7 +21,7 @@ RUN cd ${APP_ROOT}/frontend; npm install \
 # server
 COPY server/ ${APP_ROOT}/server
 RUN cd ${APP_ROOT}/server \
-    && npm install \
+    && npm install --unsafe-perm \
     && rm -rdf /opt/app-root/src/.npm /tmp/v8-compile-cache-0
 
 # prepare upstream mocks for server processing
