@@ -23,6 +23,6 @@ var controller = require('./webhook.controller');
 
 var router = express.Router();
 
-router.post('/', controller.updateLocalMocks);
+router.post('/:secret', controller.updateLocalMocks);
 
 module.exports = router;

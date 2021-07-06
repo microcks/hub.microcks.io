@@ -22,7 +22,7 @@ var errors = require('./components/errors');
 
 const getReleaseDate = (request, response) => {
   const releaseInfo = {
-    releaseDate: "2021-04-09",
+    releaseDate: "2021-07-06",
     currentTime: Date.now()
   };
   response.send({ releaseInfo });

@@ -21,14 +21,20 @@
 const updateService = require('../../services/updateService');
 
 exports.updateLocalMocks = function (req, res) {
-  console.debug("-- Invoking the updateLocalMocks API");
+  console.debug("-- Invoking the updateLocalMocks API using secret '" + req.params.secret + "'");
 
-  updateService.updateLocalMocks(res, (success, err) => {
-    if (err) {
-      res.status(500).send(err);
-      return;
-    }
+  // Update only if provided secret matches app configured one.
+  var webhookSecret = req.app.get('webhookSecret');
+  if (webhookSecret === req.params.secret) {
+    updateService.updateLocalMocks(res, (success, err) => {
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
 
-    return res.status(200);
-  });
+      return res.status(200);
+    });
+  } else {
+    return res.status(403).send('Bad authorization secret');
+  }
 };

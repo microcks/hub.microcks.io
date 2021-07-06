@@ -27,9 +27,11 @@ const persistentStore = require('./store/persistentStore');
 
 // Retrieve config
 const port = process.env.PORT || 4000;
+const webhookSecret = process.env.WEBHOOK_SECRET || 'secret101';
 
-// Setup server
+// Setup server with config
 const app = express();
+app.set('webhookSecret', webhookSecret);
 app.use(cors());
 
 // Configure paths for static resources in production mode
