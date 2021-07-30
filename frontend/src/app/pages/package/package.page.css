@@ -66,6 +66,10 @@
   padding: 15px;
 }
 
+a.mh-package-api-list-view_item:hover {
+  color: inherit !important;
+}
+
 .catalog-tile-pf-icon {
   font-size: 40px;
   height: 40px;

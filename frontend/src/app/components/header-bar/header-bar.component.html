@@ -32,4 +32,22 @@
       </ul>
     </div>
   </div>
+
+  
+  <form class="mh-header-bar-xs_search search-pf">
+    <div class="form-group has-clear">
+      <div class="search-pf-input-group">
+        <span class="fa fa-search mh-header-bar_search-icon" aria-hidden="true"></span>
+        <label for="search-input" class="sr-only">Search Microcks Hub</label>
+        <input id="search-input" type="search" autocomplete="off" class="form-control mh-header-bar_search-input" 
+            placeholder="Search Microcks Hub..." autocorrect="off" autocapitalize="off" spellcheck="false" value=""
+            name="searchValue" [(ngModel)]="searchValue">
+        <a id="search-clear" class="fa fa-times-circle mh-header-bar_clear-icon" [ngClass]="{'disabled':searchValue === ''}"
+            (click)="clearSearchValue()">
+          <span class="sr-only">Clear Search</span>
+        </a>
+      </div>
+    </div>
+  </form>
+  
 </div>

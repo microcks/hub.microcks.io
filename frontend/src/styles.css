@@ -13,6 +13,11 @@ h1 {
   margin-bottom: 20px;
 }
 
+a:hover {
+  color: #df691a !important;
+  text-decoration: underline;
+}
+
 .bg-lighter {
   background-color: #fafbfd;
 }
@@ -25,6 +30,11 @@ h1 {
   /*color: #ffffff;
   align-items: center;
   overflow-x: hidden;*/
+}
+@media (max-width: 767px) {
+  .mh-page-header {
+    padding-top: 90px;
+  }
 }
 .mh-page-header_inner {
   position: relative;

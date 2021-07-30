@@ -11,6 +11,7 @@
   font-weight: 500;
   letter-spacing: 2px;
   text-shadow: 0 2px 4px rgba(0,0,0,.2);
+  text-align: center;
 }
 .mh-home-header-content .mh-home-header-content-subtitle {
   color: #fff;
@@ -197,6 +198,10 @@ input[type=checkbox], input[type=radio] {
   margin: 0 15px 15px 0;
   padding: 15px;
   width: 220px;
+}
+
+a.catalog-tile-pf:hover {
+  color: inherit !important;
 }
 
 .catalog-tile-pf-icon {
