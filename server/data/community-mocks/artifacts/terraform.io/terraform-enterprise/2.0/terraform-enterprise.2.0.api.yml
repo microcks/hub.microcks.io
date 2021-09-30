@@ -3,46 +3,46 @@ kind: APIVersion
 metadata:
   name: terraform-enterprise.2.0
   displayName: Terraform Enterprise API
-  createdAt: 2020-01-03 19:01:00
+  createdAt: '2020-01-03 19:01:00'
   description: '
-    Terraform Enterprise is our self-hosted distribution of Terraform Cloud. It offers 
-    enterprises a private instance of the Terraform Cloud application, with no resource limits 
-    and with additional enterprise-grade architectural features like audit logging and SAML 
+    Terraform Enterprise is our self-hosted distribution of Terraform Cloud. It offers
+    enterprises a private instance of the Terraform Cloud application, with no resource limits
+    and with additional enterprise-grade architectural features like audit logging and SAML
     single sign-on.
 
-    Terraform Cloud is an application that helps teams use Terraform together. It manages 
-    Terraform runs in a consistent and reliable environment, and includes easy access to shared 
-    state and secret data, access controls for approving changes to infrastructure, a private 
-    registry for sharing Terraform modules, detailed policy controls for governing the contents 
+    Terraform Cloud is an application that helps teams use Terraform together. It manages
+    Terraform runs in a consistent and reliable environment, and includes easy access to shared
+    state and secret data, access controls for approving changes to infrastructure, a private
+    registry for sharing Terraform modules, detailed policy controls for governing the contents
     of Terraform configurations, and more.
 
 
     ### Enterprise
 
-    Terraform Enterprise provides collaboration, governance, and self-service workflows 
-    on top of the infrastructure as code provisioning from open source. Terraform Enterprise 
-    provides workspaces, modules, and other powerful constructs for teams working together 
-    to build infrastructure. Operators can package infrastructure as code into reusable 
-    modules enabling developers to quickly provision in a self-service fashion. 
-    
-    Likewise, Policy as code and logging enable organizations to secure, govern, and audit 
+    Terraform Enterprise provides collaboration, governance, and self-service workflows
+    on top of the infrastructure as code provisioning from open source. Terraform Enterprise
+    provides workspaces, modules, and other powerful constructs for teams working together
+    to build infrastructure. Operators can package infrastructure as code into reusable
+    modules enabling developers to quickly provision in a self-service fashion.
+
+    Likewise, Policy as code and logging enable organizations to secure, govern, and audit
     their entire deployment.
 
     * Collaborate on infrastructure as code
 
     * Self-Service Infrastructure
-    
+
     * Policy and Governance
 
 
     ### Open Source and Cloud
 
     Terraform allows infrastructure to be expressed as code. The desired state is expressed
-    in a simple human readable language. Terraform uses this language to provide an execution 
-    plan of changes, which can be reviewed for safety and then applied to make changes. 
-    
-    Extensible providers allow Terraform to manage a broad range of resources, including hardware, 
-    IaaS, PaaS, and SaaS services. Terraform Cloud provides free collaboration and automation 
+    in a simple human readable language. Terraform uses this language to provide an execution
+    plan of changes, which can be reviewed for safety and then applied to make changes.
+
+    Extensible providers allow Terraform to manage a broad range of resources, including hardware,
+    IaaS, PaaS, and SaaS services. Terraform Cloud provides free collaboration and automation
     features as well as paid Team and Governance upgrades.
 
     * Infrastructure as code
@@ -63,8 +63,6 @@ spec:
   links:
     - name: Terraform Enterprise mocks repository
       url: https://github.com/nehrman/terraform-enterprise
-  provider:
-    name: HashiCorp
   maintainers:
     - email: nehrman@hashicorp.com
       name: Nicolas Ehrman

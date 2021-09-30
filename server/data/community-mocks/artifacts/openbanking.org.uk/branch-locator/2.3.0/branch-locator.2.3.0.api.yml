@@ -3,10 +3,10 @@ kind: APIVersion
 metadata:
   name: branch-locator.2.3.0
   displayName: Open Data API - Branch Locator
-  createdAt: 2021-04-09 19:01:00
+  createdAt: '2021-04-09 19:01:00'
   description: 'This specification includes all relevant artefacts for the Open Data Branch API Specification.
 
-    This endpoint can contain multiple brands owned by a particular banking group. Each brand can own multiple branches. 
+    This endpoint can contain multiple brands owned by a particular banking group. Each brand can own multiple branches.
 
     A branch is made up of:-
 
@@ -29,30 +29,30 @@ metadata:
     * Accessibility (see subsection below)
 
     * Postal Address (see subsection below)
-    
+
 
     ### Postal Address
 
     This is where the Branch is located and is a mixture of a postal address and the geographic coordinates (decimal
-    Latitude & Longitude). For geolocation purposes, it is highly recommended that each branch is identified via the 
+    Latitude & Longitude). For geolocation purposes, it is highly recommended that each branch is identified via the
     geographic coordinates.
 
     ### Mobile branch addresses
 
-    Mobile branch specific attributes such as parking location and stop name can be added as a 0..7 free format 
-    `AddressLine` fields 
+    Mobile branch specific attributes such as parking location and stop name can be added as a 0..7 free format
+    `AddressLine` fields
 
     ### Services and Facilities/Other Services and Facilities
 
     This allows the implementer to choose from standard services/facilities e.g. Parking and also allows the specification
-    of other services/facilties using the OtherServiceFacility code block, where these are proprietary or currently 
-    missing from the standard code list. Periodic review of OtherServiceFacility information provided by each bank will 
+    of other services/facilties using the OtherServiceFacility code block, where these are proprietary or currently
+    missing from the standard code list. Periodic review of OtherServiceFacility information provided by each bank will
     allow us to decide if any of that information should be subsequently added to the standard code list.
 
     ### Accessibility/Other Accessibility
 
-    This allows you to specify accessibility features of the branch e.g. Wheelchair access, and also allows 
-    specification of OtherAccessibility features, where these are proprietary or currently missing from the standard 
+    This allows you to specify accessibility features of the branch e.g. Wheelchair access, and also allows
+    specification of OtherAccessibility features, where these are proprietary or currently missing from the standard
     code list.
 
     ### Availability
@@ -71,10 +71,8 @@ spec:
   links:
     - name: OpenBanking.org.uk mocks repository
       url: https://github.com/microcks/microcks-quickstarters
-  provider:
-    name: Laurent Broudoux
   maintainers:
-    - email: laurent.broudoux@gmail.com
+    - email: laurent@microcks.io
       name: Laurent Broudoux
   keywords:
     - openbanking

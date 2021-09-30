@@ -3,7 +3,7 @@ kind: APIVersion
 metadata:
   name: psd2.1.4.2
   displayName: PSD2 ASPSP services for AISP, PISP and CBPII.
-  createdAt: 2021-04-09 01:25:00
+  createdAt: '2021-04-09 01:25:00'
   description: '
     This API aims to provide a secure and easy-to-use set of services to be implemented by European
     ASPSPs (Account Servicing Payment Service Providers) on the server side for:
@@ -21,7 +21,7 @@ metadata:
     This API has been built with the latest technology standards using `REST`, `OAuth2`, `JSON` and `HTTP-signature`.
     It relies on ISO20022 elements for structuring the data to be exchanged between TPPs and ASPSPs.
 
-    
+
     This update provides a lot of enhancements in order to:
 
     * Comply with the opinions and clarifications that were published by the European Banking Authority
@@ -45,10 +45,8 @@ spec:
   links:
     - name: Stet.eu mocks repository
       url: https://github.com/microcks/microcks-quickstarters
-  provider:
-    name: Laurent Broudoux
   maintainers:
-    - email: laurent.broudoux@gmail.com
+    - email: laurent@microcks.io
       name: Laurent Broudoux
   keywords:
     - openbanking

@@ -101,7 +101,6 @@ const normalizeAPIVersion = async apiVersion => {
     'version',
     'versionForCompare',
     'replaces',
-    'provider',
     'description',
     'imgUrl',
     'thumbUrl',
@@ -120,7 +119,6 @@ const normalizeAPIVersion = async apiVersion => {
     version: spec.version,
     versionForCompare: normalizeVersion(spec.version),
     replaces: spec.replaces,
-    provider: _.get(spec, 'provider.name'),
     description: metadata.description,
     imgUrl: iconObj ? `data:${iconObj.mediatype};base64,${iconObj.base64data}` : '',
     thumbUrl: thumbBase64 || '',
@@ -162,7 +160,7 @@ const getValidAPIVersions = (apiPackage, apiVersions) => {
       name: api.name,
       currentVersion: api.currentVersion
     };
-
+    
     const currentAPIVersion = _.find(apiVersions, { id: api.name, version: api.currentVersion });
     if (!currentAPIVersion) {
       console.error(
@@ -218,12 +216,13 @@ const normalizeAPIPackage = async (apiPackage, apiVersions) => {
     'name', 
     'displayName', 
     'categories',
+    'provider',
+    'source',
     'createdAt',
     'updatedAt',
     'description',
     'imgUrl',
     'thumbUrl',
-    'provider',
     'maturity',
     'longDescription',
     'apis'
@@ -232,12 +231,13 @@ const normalizeAPIPackage = async (apiPackage, apiVersions) => {
     name: metadata.name,
     displayName: _.get(metadata, 'displayName', metadata.name),
     categories: categoriesString && _.map(categoriesString.split(','), category => category.trim()),
+    provider: _.get(metadata, 'provider.name'),
+    source: metadata.source,
     createdAt: metadata.createdAt,
     updatedAt: metadata.updatedAt,
     description: metadata.description,
     imgUrl: iconObj ? `data:${iconObj.mediatype};base64,${iconObj.base64data}` : '',
     thumbUrl: thumbBase64 || '',
-    provider: _.get(metadata, 'provider.name'),
     maturity: _.get(spec, 'maturity'),
     longDescription: _.get(spec, 'description', metadata.description),
     apis: apis

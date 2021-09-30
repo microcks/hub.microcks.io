@@ -30,7 +30,6 @@ const DISPLAY_NAME_FIELD = 'displayName TEXT';
 const VERSION_FIELD = 'version TEXT';
 const VERSION_COMPARE_FIELD = 'versionForCompare TEXT';
 const REPLACES_FIELD = 'replaces TEXT';
-const PROVIDER_FIELD = 'provider TEXT';
 const DESCRIPTION_FIELD = 'description TEXT';
 const IMG_FIELD = 'imgUrl TEXT';
 const THUMB_FIELD = 'thumbUrl TEXT';
@@ -49,7 +48,6 @@ const apiVersionFields = [
   'version',
   'versionForCompare',
   'replaces',
-  'provider',
   'description',
   'imgUrl',
   'thumbUrl',
@@ -75,6 +73,7 @@ const PACKAGE_DESCRIPTION_FIELD = 'description TEXT';
 const PACKAGE_IMG_FIELD = 'imgUrl TEXT';
 const PACKAGE_THUMB_FIELD = 'thumbUrl TEXT';
 const PACKAGE_PROVIDER_FIELD = 'provider TEXT';
+const PACKAGE_SOURCE_FIELD = 'source TEXT';
 const PACKAGE_MATURITY_FIELD = 'maturity TEXT';
 const PACKAGE_LONG_DESCRIPTION_FIELD = 'longDescription TEXT';
 const PACKAGE_APIS_FIELD = 'apis BLOB';
@@ -89,6 +88,7 @@ const packageFields = [
   'imgUrl',
   'thumbUrl',
   'provider',
+  'source',
   'maturity',
   'longDescription',
   'apis'
@@ -113,7 +113,6 @@ exports.initialize = callback => {
         ${VERSION_FIELD},
         ${VERSION_COMPARE_FIELD},
         ${REPLACES_FIELD},
-        ${PROVIDER_FIELD},
         ${DESCRIPTION_FIELD},
         ${IMG_FIELD},
         ${THUMB_FIELD},
@@ -140,6 +139,7 @@ exports.initialize = callback => {
             ${PACKAGE_IMG_FIELD},
             ${PACKAGE_THUMB_FIELD},
             ${PACKAGE_PROVIDER_FIELD},
+            ${PACKAGE_SOURCE_FIELD},
             ${PACKAGE_MATURITY_FIELD},
             ${PACKAGE_LONG_DESCRIPTION_FIELD},
             ${PACKAGE_APIS_FIELD}
@@ -289,7 +289,6 @@ exports.setAPIVersions = (apiVersions, callback) => {
           apiVersion.version,
           apiVersion.versionForCompare,
           apiVersion.replaces,
-          apiVersion.provider,
           apiVersion.description,
           apiVersion.imgUrl,
           apiVersion.thumbUrl,
@@ -333,7 +332,7 @@ exports.getPackage = (packageName, callback) => {
 
 exports.getPackages = callback => {
   //db.all(`SELECT * FROM ${PACKAGES_TABLE}`, (err, rows) => {
-  db.all(`SELECT name, displayName, categories, createdAt, updatedAt, description, thumbUrl, provider, maturity, apis FROM ${PACKAGES_TABLE}`, (err, rows) => {
+  db.all(`SELECT name, displayName, categories, createdAt, updatedAt, description, thumbUrl, provider, source, maturity, apis FROM ${PACKAGES_TABLE}`, (err, rows) => {
     if (err) {
       console.error(err.message);
       callback(null, err.message);
@@ -365,6 +364,7 @@ exports.setPackages = (packages, callback) => {
           apiPackage.imgUrl,
           apiPackage.thumbUrl,
           apiPackage.provider,
+          apiPackage.source,
           apiPackage.maturity,
           apiPackage.longDescription,
           JSON.stringify(apiPackage.apis)

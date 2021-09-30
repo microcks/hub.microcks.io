@@ -26,6 +26,7 @@ export class APIPackage {
   imgUrl: string;
   thumbUrl: string;
   provider: string;
+  source: string;
   maturity: string;
   longDescription: string;
   apis: APISummary[];
@@ -50,7 +51,6 @@ export class APIVersion {
   versionForCompare: string;
   createdAt: string;
   replaces: string;
-  provider: string;
   description: string;
   imgUrl: string;
   thumbUrl: string;

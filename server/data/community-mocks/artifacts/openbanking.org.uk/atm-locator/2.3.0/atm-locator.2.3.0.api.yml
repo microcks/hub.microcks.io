@@ -3,7 +3,7 @@ kind: APIVersion
 metadata:
   name: atm-locator.2.3.0
   displayName: Open Data API - ATM Locator
-  createdAt: 2021-04-09 19:01:00
+  createdAt: '2021-04-09 19:01:00'
   description: 'This specification includes all relevant artefacts for the Open Data ATM API Specification.
 
     This endpoint can contain multiple brands owned by a particular banking group. Each brand can provide multiple ATMs.
@@ -18,22 +18,22 @@ metadata:
 
     * Accessibility - a pre-defined set of standard code names defining accessibility features that the ATM offers e.g. InductionLoop
 
-    * OtherAccessibility - allows a bank to add it''s own non-standard/proprietary codes, code names & descriptions 
-    
+    * OtherAccessibility - allows a bank to add it''s own non-standard/proprietary codes, code names & descriptions
+
     * Supported Languages - the [2-digit ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
 
     * Location - This is where the ATM is located and is a mix of a postal address and the geographic coordinates (decimal Latitude & Longitude).
     Postal address information can either be:
     ** i) Up to 7 lines of unstructured address information (AddressLine)
-    ** ii) Structured address information e.g. BuildingNumber, StreetName, Town, PostCode etc or a mixture of both. 
-    Location is very important so the API provider should ensure that either geographical coordinates (preferred) or a 
+    ** ii) Structured address information e.g. BuildingNumber, StreetName, Town, PostCode etc or a mixture of both.
+    Location is very important so the API provider should ensure that either geographical coordinates (preferred) or a
     combination of building number & postcode are supplied so that the ATM can be accurately located on a map.
 
-    * Base currency - currently restricted to `GBP` only, but may be extended in future to cope with other currencies 
+    * Base currency - currently restricted to `GBP` only, but may be extended in future to cope with other currencies
     dispensed by ATMs at airports, for example, if the API providers are able to supply this information
 
-    * Minimum possible amount - This will inform a consumer as the minimum possible amount that they can withdraw from an ATM. 
-    Note: This is not the same as the minimum denomination. For example, an ATM may dispense £5 notes but require the consumer to 
+    * Minimum possible amount - This will inform a consumer as the minimum possible amount that they can withdraw from an ATM.
+    Note: This is not the same as the minimum denomination. For example, an ATM may dispense £5 notes but require the consumer to
     withdraw a minimum possible amount of £10.
   '
   icon:
@@ -48,10 +48,8 @@ spec:
   links:
     - name: OpenBanking.org.uk mocks repository
       url: https://github.com/microcks/microcks-quickstarters
-  provider:
-    name: Laurent Broudoux
   maintainers:
-    - email: laurent.broudoux@gmail.com
+    - email: laurent@microcks.io
       name: Laurent Broudoux
   keywords:
     - openbanking

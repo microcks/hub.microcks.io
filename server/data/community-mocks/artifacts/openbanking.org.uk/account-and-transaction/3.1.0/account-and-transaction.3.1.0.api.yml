@@ -2,21 +2,21 @@ apiVersion: mocks.microcks.io/v1alpha1
 kind: APIVersion
 metadata:
   name: account-and-transaction.3.1.0
-  displayName: Read/Write API - Accound and Transaction
-  createdAt: 2021-04-09 09:01:00
-  description: 'The Account and Transaction API Profile describes the flows and 
-    common functionality for the Accounts and Transaction API, which allows an 
+  displayName: Read/Write API - Account and Transaction
+  createdAt: '2021-04-09T09:01:00.000Z'
+  description: 'The Account and Transaction API Profile describes the flows and
+    common functionality for the Accounts and Transaction API, which allows an
     Account Information Service Provider (AISP) to:
 
-    * Register an intent to retrieve account information by creating an "account 
-      access consent". This registers the data "permissions", expiration and 
-      historical period allowed for transactions / statements - that the customer 
+    * Register an intent to retrieve account information by creating an "account
+      access consent". This registers the data "permissions", expiration and
+      historical period allowed for transactions / statements - that the customer
       (PSU) has consented to provide to the AISP; and
 
     * Subsequently, retrieve account and transaction data.
 
-    This profile should be read in conjunction with a compatible Read/Write Data 
-    API Profile which provides a description of the elements that are common across 
+    This profile should be read in conjunction with a compatible Read/Write Data
+    API Profile which provides a description of the elements that are common across
     all the Read/Write Data APIs, and compatible individual resources.
   '
   icon:
@@ -31,10 +31,8 @@ spec:
   links:
     - name: OpenBanking.org.uk mocks repository
       url: https://github.com/microcks/microcks-quickstarters
-  provider:
-    name: Laurent Broudoux
   maintainers:
-    - email: laurent.broudoux@gmail.com
+    - email: laurent@microcks.io
       name: Laurent Broudoux
   keywords:
     - openbanking
