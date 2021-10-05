@@ -12,6 +12,11 @@ WORKDIR ${APP_ROOT}
 # root for build stages
 USER root
 
+# install git lib
+RUN microdnf install curl ca-certificates git \
+    && microdnf update \
+    && microdnf clean all
+
 # frontend
 COPY frontend/ ${APP_ROOT}/frontend
 RUN cd ${APP_ROOT}/frontend; npm install \
