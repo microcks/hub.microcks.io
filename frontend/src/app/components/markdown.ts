@@ -53,10 +53,13 @@ export const markdownConverter = {
         'tbody',
         'tr',
         'th',
-        'td'
+        'td',
+        'img'
       ],
       allowedAttributes: {
-        a: ['href', 'target', 'rel']
+        a: ['href', 'target', 'rel'],
+        code: ['class'],
+        img: ['src', 'alt', 'title']
       },
       allowedSchemes: ['http', 'https', 'mailto'],
       transformTags: {

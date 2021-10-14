@@ -30,11 +30,13 @@ import { FooterBarComponent } from './components/footer-bar/footer-bar.component
 import { HomePageComponent } from './pages/home/home.page';
 import { PackagePageComponent } from './pages/package/package.page';
 import { APIVersionPageComponent } from './pages/package/apiVersion/apiVersion.page';
+import { DocumentationPageComponent } from './pages/doc/doc.page';
 
 @NgModule({
   declarations: [
     AppComponent, HeaderBarComponent, FooterBarComponent, 
-    HomePageComponent, PackagePageComponent, APIVersionPageComponent
+    HomePageComponent, PackagePageComponent, APIVersionPageComponent,
+    DocumentationPageComponent
   ],
   imports: [
     BrowserModule,

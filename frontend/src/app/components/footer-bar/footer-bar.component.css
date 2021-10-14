@@ -111,7 +111,8 @@
 .mh-footer-bar-contents-right_links_list_header {
   color: #fff;
 }
-.mh-footer-bar-contents-right_links_lis>a {
+.mh-footer-bar-contents-right_links_list>a {
   white-space: nowrap;
   margin-bottom: 5px;
+  color: #fff;
 }

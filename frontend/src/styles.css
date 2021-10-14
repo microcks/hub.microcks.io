@@ -12,6 +12,32 @@ h1 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+h2 {
+  font-size: 22px;
+  letter-spacing: 1.34px;
+  margin-top: 26px;
+  margin-bottom: 18px;
+}
+
+code {
+  font-size: 90%;
+  padding: 2px 4px;
+  color: #df691a;
+  word-wrap: break-word;
+  background-color: #f9f5f2;
+  border-radius: 4px;
+}
+pre {
+  background-color: #f9f5f2;
+}
+pre code {
+  color: #df691a;
+  display: block;
+  padding: 1em;
+  font-size: .8rem;
+  line-height: 1.8;
+  overflow-x: auto;
+}
 
 a:hover {
   color: #df691a !important;
@@ -54,6 +80,11 @@ a:hover {
   border-bottom: 1px solid #eaeaea;
   background-color: #ffffff;
   width: 100%;
+}
+.mh-page-toolbar.fixed {
+  position: fixed;
+  top: 71px;
+  z-index: 1010;
 }
 .mh-page-toolbar_inner {
   display: flex;
@@ -115,4 +146,12 @@ ol.breadcrumbs>li+li:before {
   .container-sm {
     max-width: 1220px;
   }
+}
+
+.mh-doc-markdown-view img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+  max-width: 80%;
 }

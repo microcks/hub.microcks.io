@@ -18,6 +18,7 @@
  */
 'use strict';
 
+const express = require('express');
 var errors = require('./components/errors');
 
 const getReleaseDate = (request, response) => {
@@ -35,6 +36,8 @@ module.exports = function (app) {
 
   app.get('/api/releasedate', getReleaseDate);
   app.get('/healthz', (request, response) => {response.sendStatus(200)});
+
+  app.use('/documentation', express.static('documentation'));
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
