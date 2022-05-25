@@ -148,3 +148,7 @@
 .mh-header-bar .dropdown-menu>li>a:hover {
   background-color: #eaeaea;
 }
+
+#header-contribute-dropdown {
+  top: -3px;
+}

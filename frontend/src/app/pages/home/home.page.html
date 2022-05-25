@@ -2,7 +2,8 @@
   <div class="mh-page-header_inner container-sm">
     <div class="mh-home-header-content">
       <h1 class="mh-home-header-content-hero my-3">Welcome to Hub Microcks.io</h1>
-      <p class="mh-home-header-content-subtitle">Hub Microcks.io is a community place for sharing API mocks and contract tests for using with Microcks. Look for your favorite API mocks or list your own today.</p>
+      <!-- <p class="mh-home-header-content-subtitle">Hub Microcks.io is a community place for sharing API mocks and contract tests for using with Microcks. Look for your favorite API mocks or list your own today.</p> -->
+      <p class="mh-home-header-content-subtitle">hub.microcks.io allows API owners to easily distribute their public open API specifications in the form of ready-to-use mocks and test suites for Microcks.</p>
     </div>
   </div>
 </div>
@@ -41,15 +42,15 @@
     <div class="mh-page_contents">
       <div class="mh-page_toolbar">
         <div class="mh-page_toolbar-item mh-page_toolbar-item_left" *ngIf="filteredPackages">
-          {{ filteredPackages.length }} <span class="mh-page_toolbar-item-label">Packages</span>, {{ countFilteredAPIs() }} <span class="mh-page_toolbar-item-label">APIs</span>
+          {{ filteredPackages.length }} <span class="mh-page_toolbar-item-label">Packages</span>, {{ countFilteredAPIs() }} <span class="mh-page_toolbar-item-label">APIs</span>
         </div>
       </div>
       <div class="catalog-tile-view-pf catalog-tile-view-pf-no-categories">
-        <a *ngFor="let package of filteredPackages" id="{{ package.name }}" [routerLink]="['package', package.name]" class="catalog-tile-pf" >
+        <a *ngFor="let package of filteredPackages" id="{{ package.name }}" [routerLink]="['package', package.name]" class="catalog-tile-pf" >
           <div class="catalog-tile-pf-header">
             <img class="catalog-tile-pf-icon" src="{{ package.thumbUrl }}" alt="">
           </div>
-          <div class="catalog-tile-pf-body"><div class="catalog-tile-pf-title">{{ package.displayName }}</div>
+          <div class="catalog-tile-pf-body"><div class="catalog-tile-pf-title">{{ package.displayName }}</div>
           <div class="catalog-tile-pf-subtitle">provided by {{ package.provider }}</div>
             <div class="catalog-tile-pf-description" style="max-height: 69px;">
               <span>{{ package.description }}</span>
