@@ -135,6 +135,20 @@ ol.breadcrumbs>li+li:before {
   padding: 20px 15px 0 15px;
 }
 
+.mh-button {
+  border: none;
+  border-radius: 4px;
+  padding: 6px 15px 7px;
+}
+.mh-button.mh-button-accent {
+  background-color: #df691a;
+  color: #fff;
+}
+a.mh-button.mh-button-accent:hover {
+  color: #fff !important;
+  text-decoration: underline;
+}
+
 .mh-external-link.indicator {
   padding-right: 15px;
 }

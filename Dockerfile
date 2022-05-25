@@ -20,7 +20,7 @@ RUN microdnf install curl ca-certificates git \
 # frontend
 COPY frontend/ ${APP_ROOT}/frontend
 RUN cd ${APP_ROOT}/frontend; npm install \
-    && npm run-script build \
+    && npm run-script build-prod \
     && rm -rdf ${APP_ROOT}/frontend/node_modules ${APP_ROOT}/frontend/.cache-loader /opt/app-root/src/.npm /tmp/v8-compile-cache-0
 
 # server
