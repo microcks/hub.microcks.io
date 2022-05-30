@@ -47,7 +47,7 @@ export class AppComponent {
       this.router.events.pipe(filter(event => event instanceof NavigationEnd))
         .subscribe((event: NavigationEnd) => {
           //console.log("Navigation end detected, calling gtag with " + event.urlAfterRedirects);
-          gtag('config', '${ga_id}',
+          gtag('config', ga_id,
             {
               page_path: event.urlAfterRedirects
             }
