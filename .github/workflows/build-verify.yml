@@ -24,7 +24,7 @@ jobs:
       - name: Set environment for branch
         run: |
           set -x
-          if [[ $GITHUB_REF == 'refs/heads/main' ]]; then
+          if [[ $GITHUB_REF == 'refs/heads/master' ]]; then
             echo "IMAGE_TAG=latest" >> "$GITHUB_ENV"
             echo "PACKAGE_IMAGE=true" >> "$GITHUB_ENV"
           elif [[ $GITHUB_REF == "refs/tags/$GITHUB_REF_NAME" ]]; then
