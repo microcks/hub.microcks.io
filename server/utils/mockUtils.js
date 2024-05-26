@@ -1,24 +1,20 @@
 /*
- * Licensed to Laurent Broudoux (the "Author") under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership. Author licenses this
- * file to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * Copyright The Microcks Authors.
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 'use strict';
 
-const _ = require('lodash');
 const sharp = require('sharp');
 
 const validCapabilityStrings = ['Incomplete Mocks', 'Full Mocks', 'Mocks + Assertions'];
@@ -65,10 +61,10 @@ const normalizeVersion = version =>
     .join('.');
 
 const normalizeAPIVersion = async apiVersion => {
-  const metadata = _.get(apiVersion, 'metadata', {});
-  const spec = _.get(apiVersion, 'spec', {});
-  const iconObj = _.get(apiVersion, 'metadata.icon[0]');
-  const capabilitiesString = _.get(spec, 'capabilities');
+  const metadata = apiVersion.metadata ? apiVersion.metadata : {};
+  const spec = apiVersion.spec ? apiVersion.spec : {};
+  const iconObj = apiVersion.metadata.icon[0];
+  const capabilitiesString = spec.capabilities;
 
   let thumbBase64;
   if (iconObj) {
@@ -115,7 +111,7 @@ const normalizeAPIVersion = async apiVersion => {
   return {
     id: generateIdFromVersionedName(metadata.name),
     name: metadata.name,
-    displayName: _.get(metadata, 'displayName', metadata.name),
+    displayName: metadata.displayName ? metadata.displayName : metadata.name,
     version: spec.version,
     versionForCompare: normalizeVersion(spec.version),
     replaces: spec.replaces,
@@ -138,12 +134,12 @@ const normalizeAPIPackages = (apiPackages, apiVersions) =>
   );
 
 const addReplacedAPIVersions = (apiPackage, packageAPI, currentAPIVersion, apiVersions) => {
-  const replacedAPIVersionName = _.get(currentAPIVersion, 'replaces');
+  const replacedAPIVersionName = currentAPIVersion.replaces;
   if (!replacedAPIVersionName) {
     return;
   }
 
-  const replacedAPIVersion = _.find(apiVersions, { packageName: apiPackage.metadata.name, version: replacedAPIVersionName });
+  const replacedAPIVersion = apiVersions.find((element) => element.packageName === apiPackage.metadata.name && element.version === replacedAPIVersionName);
   if (replacedAPIVersion) {
     packageAPI.versions.push({ name: replacedAPIVersion.name, version: replacedAPIVersion.version });
 
@@ -155,13 +151,13 @@ const addReplacedAPIVersions = (apiPackage, packageAPI, currentAPIVersion, apiVe
 };
 
 const getValidAPIVersions = (apiPackage, apiVersions) => {
-  const packageAPIs = _.map(apiPackage.spec.apis, api => {
+  const packageAPIs = apiPackage.spec.apis.map(api => {
     const packageAPI = {
       name: api.name,
       currentVersion: api.currentVersion
     };
     
-    const currentAPIVersion = _.find(apiVersions, { id: api.name, version: api.currentVersion });
+    const currentAPIVersion = apiVersions.find((element) => element.id === api.name && element.version === api.currentVersion);
     if (!currentAPIVersion) {
       console.error(
         `ERROR: APIPackage ${apiPackage.metadata.name}, api ${api.name} 
@@ -178,14 +174,14 @@ const getValidAPIVersions = (apiPackage, apiVersions) => {
     return packageAPI;
   });
 
-  return _.compact(packageAPIs);
+  return packageAPIs;
 } 
 
 const normalizeAPIPackage = async (apiPackage, apiVersions) => {
-  const spec = _.get(apiPackage, 'spec', {});
-  const metadata = _.get(apiPackage, 'metadata', {});
-  const iconObj = _.get(apiPackage, 'metadata.icon[0]');
-  const categoriesString = _.get(metadata, 'categories');
+  const spec = apiPackage.spec ? apiPackage.spec : {};
+  const metadata = apiPackage.metadata ? apiPackage.metadata : {};
+  const iconObj = apiPackage.metadata.icon[0];
+  const categoriesString = metadata.categories;
   const apis = getValidAPIVersions(apiPackage, apiVersions);
 
   let thumbBase64;
@@ -229,17 +225,17 @@ const normalizeAPIPackage = async (apiPackage, apiVersions) => {
   */
   return {
     name: metadata.name,
-    displayName: _.get(metadata, 'displayName', metadata.name),
-    categories: categoriesString && _.map(categoriesString.split(','), category => category.trim()),
-    provider: _.get(metadata, 'provider.name'),
+    displayName: metadata.displayName ? metadata.displayName : metadata.name,
+    categories: categoriesString && categoriesString.split(',').map((category) => category.trim()),
+    provider: metadata.provider.name,
     source: metadata.source,
     createdAt: metadata.createdAt,
     updatedAt: metadata.updatedAt,
     description: metadata.description,
     imgUrl: iconObj ? `data:${iconObj.mediatype};base64,${iconObj.base64data}` : '',
     thumbUrl: thumbBase64 || '',
-    maturity: _.get(spec, 'maturity'),
-    longDescription: _.get(spec, 'description', metadata.description),
+    maturity: spec.maturity,
+    longDescription: spec.description ? spec.description : metadata.description,
     apis: apis
   };
 };

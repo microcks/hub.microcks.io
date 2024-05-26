@@ -1,24 +1,20 @@
 /*
- * Licensed to Laurent Broudoux (the "Author") under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership. Author licenses this
- * file to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
+ * Copyright The Microcks Authors.
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 'use strict';
 
-const _ = require('lodash');
 const sqlite3 = require('sqlite3').verbose();
 
 let db;
@@ -61,7 +57,7 @@ const apiVersionFields = [
 ];
 
 const apiVersionFieldsList = apiVersionFields.join(', ');
-const apiVersionFieldsRefs = _.map(apiVersionFields, () => '?').join(', ');
+const apiVersionFieldsRefs = apiVersionFields.map(() => '?').join(', ');
 
 const PACKAGES_TABLE = 'apiPackage';
 const PACKAGE_PACKAGE_NAME_FIELD = 'name TEXT';
@@ -95,7 +91,7 @@ const packageFields = [
 ];
 
 const packageFieldsList = packageFields.join(', ');
-const packageFieldsRefs = _.map(packageFields, () => '?').join(', ');
+const packageFieldsRefs = packageFields.map(() => '?').join(', ');
 
 exports.initialize = callback => {
   db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, err => {
@@ -177,7 +173,7 @@ exports.getAPIVersionByName = (apiVersionName, callback) => {
       return;
     }
 
-    if (!_.size(rows)) {
+    if (!rows || rows.length == 0) {
       callback(null, `APIVersion ${apiVersionName} is not found.`);
       return;
     }
@@ -201,7 +197,7 @@ exports.getAPIVersionWithPackage = (packageName, apiVersionName, callback) => {
         return;
       }
 
-      if (!_.size(rows)) {
+      if (!rows || rows.length == 0) {
         callback(null, `No APIVersion '${apiVersionName}' in package '${packageName}' found.`);
         return;
       }
@@ -222,7 +218,7 @@ exports.getAPIVersionsById = (apiVersionId, callback) => {
       callback(null, err.message);
       return;
     }
-    if (!_.size(rows)) {
+    if (!rows || rows.length == 0) {
       callback(null, `APIVersion ${apiVersionId} is not found.`);
       return;
     }
@@ -244,7 +240,7 @@ exports.getLatestAPIVersionsByPackage = (packageName, callback) => {
       callback(null, err.message);
       return;
     }
-    if (!_.size(rows)) {
+    if (!rows || rows.length == 0) {
       callback(null, `APIVersions from ${packageName} are not found.`);
       return;
     }
@@ -263,7 +259,7 @@ exports.getAPIVersions = callback => {
       callback(null, err.message);
       return;
     }
-    const apiVersions = _.map(rows, row => normalizeAPIVersionRow(row));
+    const apiVersions = rows.map(row => normalizeAPIVersionRow(row));
     callback(apiVersions);
   });
 };
@@ -274,7 +270,7 @@ exports.clearAPIVersions = callback => {
 
 exports.setAPIVersions = (apiVersions, callback) => {
   const sql = `INSERT OR IGNORE INTO ${VERSIONS_TABLE} (${apiVersionFieldsList}) VALUES (${apiVersionFieldsRefs})`;
-  console.log(`=> Loading ${_.size(apiVersions)} APIVersions in database`);
+  console.log(`=> Loading ${apiVersions.length} APIVersions in database`);
   exports.clearAPIVersions(clearErr => {
     if (clearErr) {
       console.error(clearErr.message);
@@ -321,7 +317,7 @@ exports.getPackage = (packageName, callback) => {
       callback(null, err.message);
       return;
     }
-    if (!_.size(rows)) {
+    if (!rows || rows.length == 0) {
       callback(null, `package ${packageName} is not found.`);
       return;
     }
@@ -349,7 +345,7 @@ exports.clearPackages = callback => {
 
 exports.setPackages = (packages, callback) => {
   const sql = `INSERT OR IGNORE INTO ${PACKAGES_TABLE} (${packageFieldsList}) VALUES (${packageFieldsRefs})`;
-  console.log(`=> Loading ${_.size(packages)} APIPackages in database`);
+  console.log(`=> Loading ${packages.length} APIPackages in database`);
   exports.clearPackages(() =>
     db.serialize(() => {
       db.run('BEGIN TRANSACTION');
