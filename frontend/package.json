@@ -47,7 +47,7 @@
 		"vitest": "^1.2.0"
 	},
 	"dependencies": {
-		"bits-ui": "^0.21.9",
+		"bits-ui": "^0.21.10",
 		"clsx": "^2.1.1",
 		"mode-watcher": "^0.3.0",
 		"svelte-radix": "^1.1.0",

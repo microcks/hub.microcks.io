@@ -1,0 +1,27 @@
+<div class="mh-page-header bg-dark">
+  <div class="mh-page-header_inner container-sm">
+    <div class="mh-doc-header-content">
+    </div>
+  </div>
+</div>
+<div class="mh-page-toolbar fixed">
+  <div class="mh-page-toolbar_inner container-sm">
+    <ol role="navigation" aria-label="breadcrumbs" class="breadcrumbs" *ngIf="resolvedDoc">
+      <li class>
+        <a href="/">Home</a>
+      </li>
+      <li class="active">
+        <span>{{ renderTitle() }}</span>
+      </li>
+    </ol>
+  </div>
+</div>
+<div class="mh-page-contents">
+  <div class="mh-page-contents_inner container-sm">
+    <div class="mh-doc-page row" *ngIf="resolvedDoc">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="mh-doc-markdown-view" [innerHTML]="renderDoc()"></div>
+      </div>
+    </div>
+  </div>
+</div>

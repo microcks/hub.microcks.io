@@ -6,5 +6,5 @@
 </svelte:head>
 
 <section>
-	<h1 class="text-4xl">hello word</h1>
+	<h1>hello world</h1>
 </section>
