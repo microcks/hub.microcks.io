@@ -1,5 +1,6 @@
 <script>
 	import HeroBanner from '@/global/HeroBanner.svelte';
+	import SectionPackages from '@/packages/SectionPackages.svelte';
 </script>
 
 <svelte:head>
@@ -9,4 +10,5 @@
 
 <section>
 	<HeroBanner />
+	<SectionPackages />
 </section>
