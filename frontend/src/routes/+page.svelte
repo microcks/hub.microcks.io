@@ -1,4 +1,6 @@
-<script></script>
+<script>
+	import HeroBanner from '@/global/HeroBanner.svelte';
+</script>
 
 <svelte:head>
 	<title>Home</title>
@@ -6,5 +8,5 @@
 </svelte:head>
 
 <section>
-	<h1>hello world</h1>
+	<HeroBanner />
 </section>

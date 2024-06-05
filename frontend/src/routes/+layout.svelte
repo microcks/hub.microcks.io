@@ -1,13 +1,17 @@
 <script>
-	import { ModeWatcher } from "mode-watcher";
+	import { ModeWatcher } from 'mode-watcher';
 
-	import Header from "$lib/components/global/navigation/Header.svelte";
+	import Header from '@/global/Header.svelte';
+	import Footer from '@/global/Footer.svelte';
+	import SubmitSection from '@/global/SubmitSection.svelte';
 
-	import "../app.css";
+	import '../app.css';
 </script>
 
 <main>
 	<ModeWatcher />
 	<Header />
 	<slot />
+	<SubmitSection />
+	<Footer />
 </main>

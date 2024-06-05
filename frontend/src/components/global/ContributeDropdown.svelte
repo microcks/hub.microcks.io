@@ -7,7 +7,7 @@
 
 <Root>
     <Trigger asChild let:builder>
-        <Button builders={[builder]} variant="default" class="dark:text-foreground">
+        <Button builders={[builder]} variant="default">
             Contribute
             <ChevronDown size={16} />
         </Button>
