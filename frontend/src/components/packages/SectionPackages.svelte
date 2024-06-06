@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import FiltersPackages from '@/packages/FiltersPackages.svelte';
 	import GridPackages from '@/packages/GridPackages.svelte';
 </script>

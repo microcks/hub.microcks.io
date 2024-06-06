@@ -1,28 +1,29 @@
 {
-    "name": "hub.microcks.io",
-    "version": "0.0.1",
-    "description": "hub.microcks.io is a catalog of community mocks and tests for public API and microservices",
-    "scripts": {
-        "test": "echo \"No test specified for now\" && exit 0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/microcks/hub.microcks.io.git"
-    },
-    "dependencies": {
-        "lucide-svelte": "^0.383.0"
-    },
-    "keywords": [
-        "api",
-        "mocks",
-        "testing",
-        "microservices",
-        "kubernetes"
-    ],
-    "author": "laurent@microcks.io",
-    "license": "Apache-2.0",
-    "bugs": {
-        "url": "https://github.com/microcks/hub.microcks.io/issues"
-    },
-    "homepage": "https://github.com/microcks/hub.microcks.io#readme"
+  "name": "hub.microcks.io",
+  "version": "0.0.1",
+  "description": "hub.microcks.io is a catalog of community mocks and tests for public API and microservices",
+  "scripts": {
+    "test": "echo \"No test specified for now\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microcks/hub.microcks.io.git"
+  },
+  "dependencies": {
+    "eslint-plugin-tailwindcss": "^3.17.0",
+    "lucide-svelte": "^0.383.0"
+  },
+  "keywords": [
+    "api",
+    "mocks",
+    "testing",
+    "microservices",
+    "kubernetes"
+  ],
+  "author": "laurent@microcks.io",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/microcks/hub.microcks.io/issues"
+  },
+  "homepage": "https://github.com/microcks/hub.microcks.io#readme"
 }

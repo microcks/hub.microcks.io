@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { stringToLowerCaseWithoutSpace } from '#/stringTransform';
+
 	export let item: {
 		id: number;
 		name: string;
@@ -12,13 +14,16 @@
 			description: string;
 		}[];
 	};
+
+	const packageSlug: string = stringToLowerCaseWithoutSpace(item.provider);
 </script>
 
-<div
-	class="border border-border w-full p-4 flex flex-col items-start justify-center gap-2 rounded-lg"
+<a
+	class="border border-border w-full p-4 flex flex-col items-start rounded-lg hover:shadow hover:border-primary"
+	href={`/package/${packageSlug}`}
 >
-	<div class="h-24 w-24 rounded bg-red-500"></div>
-	<h3 class="font-normal text-lg">{item.name}</h3>
-	<span class="text-foreground">provided by {item.provider}</span>
+	<img src={item.logo} alt={`${item.provider} logo`} class="w-auto h-12 mb-4" />
+	<h3 class="font-normal text-lg mb-1">{item.name}</h3>
+	<span class="text-muted-foreground mb-4">provided by {item.provider}</span>
 	<p>{item.description}</p>
-</div>
+</a>

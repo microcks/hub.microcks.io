@@ -54,7 +54,7 @@
 							{#if item.items}
 								{#each item.items as subItem (subItem.title)}
 									<a href={subItem.href} class="flex justify-between items-center" target="_blank">
-										<span class="text-foreground/75">{subItem.title}</span>
+										<span class="text-foreground/75 hover:text-primary">{subItem.title}</span>
 									</a>
 								{/each}
 							{/if}
