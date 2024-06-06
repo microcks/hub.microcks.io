@@ -21,7 +21,7 @@
 		<p class="text-muted-foreground font-medium mb-2">Catégorie</p>
 		<ul>
 			{#each categories as category}
-				<li class="hover:bg-muted p-1 rounded hover:cursor-pointer">
+				<li class="hover:bg-muted p-2 rounded hover:cursor-pointer">
 					{category}
 				</li>
 			{/each}
