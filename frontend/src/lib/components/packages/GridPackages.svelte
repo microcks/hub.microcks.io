@@ -1,6 +1,6 @@
 <script lang="ts">
+	import CardPackage from '$lib/components/packages/CardPackage.svelte';
 	import packagesData from '#/packages.data';
-	import CardPackage from '@/packages/CardPackage.svelte';
 
 	const nbPackages = packagesData.length;
 	const nbApis = packagesData.reduce((acc, pkg) => acc + (pkg.apis ? pkg.apis.length : 0), 0);

@@ -1,8 +1,7 @@
 <script lang="ts">
 	import ModeToggle from '$lib/components/ui/mode-toggle/mode-toggle.svelte';
-
-	import SearchbarHeader from '@/global/SearchbarHeader.svelte';
-	import ContributeDropdown from '@/global/ContributeDropdown.svelte';
+	import SearchbarHeader from '$lib/components/global/SearchbarHeader.svelte';
+	import ContributeDropdown from '$lib/components/global/ContributeDropdown.svelte';
 </script>
 
 <header class="w-full h-auto p-8 flex flex-row items-center justify-between">

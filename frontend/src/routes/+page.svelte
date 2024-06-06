@@ -1,6 +1,6 @@
 <script lang="ts">
-	import HeroBanner from '@/global/HeroBanner.svelte';
-	import SectionPackages from '@/packages/SectionPackages.svelte';
+	import HeroBanner from '$lib/components/global/HeroBanner.svelte';
+	import SectionPackages from '$lib/components/packages/SectionPackages.svelte';
 </script>
 
 <svelte:head>

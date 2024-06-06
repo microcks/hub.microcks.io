@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import Breadcrumb from '@/global/Breadcrumb.svelte';
+	import Breadcrumb from '$lib/components/global/Breadcrumb.svelte';
 	import packagesData from '#/packages.data';
-	import type { Package } from '#/types';
 
 	const slug = $page.params.pkj_slug;
 	let error: string | null = null;
@@ -16,8 +15,6 @@
 	} else {
 		error = null;
 	}
-
-	console.log(packageData);
 </script>
 
 <section class="w-full p-8">
