@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Breadcrumb from '$lib/components/global/Breadcrumb.svelte';
+	import DescriptionPackage from '$lib/components/pages/packages/DescriptionPakage.svelte';
+	import ListApis from '$lib/components/pages/packages/ListApis.svelte';
 	import packagesData from '#/packages.data';
 
 	const slug = $page.params.pkj_slug;
@@ -17,15 +19,14 @@
 	}
 </script>
 
-<section class="w-full p-8">
+<div class="w-full p-8">
 	{#if error}
 		<p class="text-red-500">{error}</p>
 	{:else if packageData}
 		<Breadcrumb {slug} packageName={packageData.name} />
-		<p>The slug is {slug}</p>
-		<p>Package Name: {packageData.name}</p>
-		<p>Provider: {packageData.provider}</p>
-		<p>Description: {packageData.description}</p>
-		<img src={packageData.logo} alt={`${packageData.provider} logo`} class="w-auto h-12 mb-4" />
+		<section class="w-full h-auto flex flex-row items-start">
+			<DescriptionPackage pkj={packageData} />
+			<ListApis apiList={packageData.apis} pkj={packageData} />
+		</section>
 	{/if}
-</section>
+</div>

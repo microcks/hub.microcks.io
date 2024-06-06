@@ -1,3 +1,5 @@
+// these are temporary data
+
 const packagesData = [
 	{
 		id: 1,
@@ -12,12 +14,16 @@ const packagesData = [
 			{
 				id: 1,
 				name: 'api 1',
-				description: 'description api 1'
+				description: 'description api 1',
+				slug: 'api-1',
+				version: '1.0.0'
 			},
 			{
 				id: 2,
 				name: 'api 2',
-				description: 'description api 2'
+				description: 'description api 2',
+				slug: 'api-2',
+				version: '1.0.0'
 			}
 		]
 	},
@@ -33,12 +39,16 @@ const packagesData = [
 			{
 				id: 1,
 				name: 'api 1',
-				description: 'description api 1'
+				description: 'description api 1',
+				slug: 'api-1',
+				version: '1.0.0'
 			},
 			{
 				id: 2,
 				name: 'api 2',
-				description: 'description api 2'
+				description: 'description api 2',
+				slug: 'api-2',
+				version: '1.0.0'
 			}
 		]
 	},
@@ -54,12 +64,16 @@ const packagesData = [
 			{
 				id: 1,
 				name: 'api 1',
-				description: 'description api 1'
+				description: 'description api 1',
+				slug: 'api-1',
+				version: '1.0.0'
 			},
 			{
 				id: 2,
 				name: 'api 2',
-				description: 'description api 2'
+				description: 'description api 2',
+				slug: 'api-2',
+				version: '1.0.0'
 			}
 		]
 	},
@@ -75,12 +89,16 @@ const packagesData = [
 			{
 				id: 1,
 				name: 'api 1',
-				description: 'description api 1'
+				description: 'description api 1',
+				slug: 'api-1',
+				version: '1.0.0'
 			},
 			{
 				id: 2,
 				name: 'api 2',
-				description: 'description api 2'
+				description: 'description api 2',
+				slug: 'api-2',
+				version: '1.0.0'
 			}
 		]
 	},
@@ -96,12 +114,16 @@ const packagesData = [
 			{
 				id: 1,
 				name: 'api 1',
-				description: 'description api 1'
+				description: 'description api 1',
+				slug: 'api-1',
+				version: '1.0.0'
 			},
 			{
 				id: 2,
 				name: 'api 2',
-				description: 'description api 2'
+				description: 'description api 2',
+				slug: 'api-2',
+				version: '1.0.0'
 			}
 		]
 	},
@@ -118,12 +140,16 @@ const packagesData = [
 			{
 				id: 1,
 				name: 'api 1',
-				description: 'description api 1'
+				description: 'description api 1',
+				slug: 'api-1',
+				version: '1.0.0'
 			},
 			{
 				id: 2,
 				name: 'api 2',
-				description: 'description api 2'
+				description: 'description api 2',
+				slug: 'api-2',
+				version: '1.0.0'
 			}
 		]
 	}

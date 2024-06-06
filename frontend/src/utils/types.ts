@@ -2,6 +2,8 @@ export type API = {
 	id: number;
 	name: string;
 	description: string;
+	slug: string;
+	version: string;
 };
 
 export type Package = {
