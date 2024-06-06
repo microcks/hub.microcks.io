@@ -1,4 +1,4 @@
-<script></script>
+<script lang="ts"></script>
 
 <svelte:head>
 	<title>Doc</title>

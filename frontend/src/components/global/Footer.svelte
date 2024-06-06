@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Twitter from 'lucide-svelte/icons/twitter';
 	import Linkedin from 'lucide-svelte/icons/linkedin';
 	import Youtube from 'lucide-svelte/icons/youtube';

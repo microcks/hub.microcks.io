@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { ModeWatcher } from 'mode-watcher';
 
 	import Header from '@/global/Header.svelte';

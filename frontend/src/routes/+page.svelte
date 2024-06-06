@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import HeroBanner from '@/global/HeroBanner.svelte';
 	import SectionPackages from '@/packages/SectionPackages.svelte';
 </script>
