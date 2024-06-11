@@ -13,94 +13,94 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-'use strict';
+"use strict";
 
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require("sqlite3").verbose();
 
 let db;
 
-const VERSIONS_TABLE = 'apiVersions';
-const ID_FIELD = 'id TEXT';
-const NAME_FIELD = 'name TEXT';
-const DISPLAY_NAME_FIELD = 'displayName TEXT';
-const VERSION_FIELD = 'version TEXT';
-const VERSION_COMPARE_FIELD = 'versionForCompare TEXT';
-const REPLACES_FIELD = 'replaces TEXT';
-const DESCRIPTION_FIELD = 'description TEXT';
-const IMG_FIELD = 'imgUrl TEXT';
-const THUMB_FIELD = 'thumbUrl TEXT';
-const CAPABILITY_LEVEL_FIELD = 'capabilityLevel BLOB';
-const CONTRACTS_FIELD = 'contracts BLOB';
-const LINKS_FIELD = 'links BLOB';
-const MAINTAINERS_FIELD = 'maintainers BLOB';
-const CREATED_FIELD = 'createdAt BLOB';
-const KEYWORDS_FIELD = 'keywords BLOB';
-const PACKAGE_NAME_FIELD = 'packageName TEXT';
+const VERSIONS_TABLE = "apiVersions";
+const ID_FIELD = "id TEXT";
+const NAME_FIELD = "name TEXT";
+const DISPLAY_NAME_FIELD = "displayName TEXT";
+const VERSION_FIELD = "version TEXT";
+const VERSION_COMPARE_FIELD = "versionForCompare TEXT";
+const REPLACES_FIELD = "replaces TEXT";
+const DESCRIPTION_FIELD = "description TEXT";
+const IMG_FIELD = "imgUrl TEXT";
+const THUMB_FIELD = "thumbUrl TEXT";
+const CAPABILITY_LEVEL_FIELD = "capabilityLevel BLOB";
+const CONTRACTS_FIELD = "contracts BLOB";
+const LINKS_FIELD = "links BLOB";
+const MAINTAINERS_FIELD = "maintainers BLOB";
+const CREATED_FIELD = "createdAt BLOB";
+const KEYWORDS_FIELD = "keywords BLOB";
+const PACKAGE_NAME_FIELD = "packageName TEXT";
 
 const apiVersionFields = [
-  'id',
-  'name',
-  'displayName',
-  'version',
-  'versionForCompare',
-  'replaces',
-  'description',
-  'imgUrl',
-  'thumbUrl',
-  'capabilityLevel',
-  'contracts',
-  'links',
-  'maintainers',
-  'createdAt',
-  'keywords',
-  'packageName'
+  "id",
+  "name",
+  "displayName",
+  "version",
+  "versionForCompare",
+  "replaces",
+  "description",
+  "imgUrl",
+  "thumbUrl",
+  "capabilityLevel",
+  "contracts",
+  "links",
+  "maintainers",
+  "createdAt",
+  "keywords",
+  "packageName",
 ];
 
-const apiVersionFieldsList = apiVersionFields.join(', ');
-const apiVersionFieldsRefs = apiVersionFields.map(() => '?').join(', ');
+const apiVersionFieldsList = apiVersionFields.join(", ");
+const apiVersionFieldsRefs = apiVersionFields.map(() => "?").join(", ");
 
-const PACKAGES_TABLE = 'apiPackage';
-const PACKAGE_PACKAGE_NAME_FIELD = 'name TEXT';
-const PACKAGE_DISPLAY_NAME_FIELD = 'displayName TEXT';
-const PACKAGE_CATEGORIES_FIELD = 'categories BLOB';
-const PACKAGE_CREATED_FIELD = 'createdAt BLOB';
-const PACKAGE_UPDATED_FIELD = 'updatedAt BLOB';
-const PACKAGE_DESCRIPTION_FIELD = 'description TEXT';
-const PACKAGE_IMG_FIELD = 'imgUrl TEXT';
-const PACKAGE_THUMB_FIELD = 'thumbUrl TEXT';
-const PACKAGE_PROVIDER_FIELD = 'provider TEXT';
-const PACKAGE_SOURCE_FIELD = 'source TEXT';
-const PACKAGE_MATURITY_FIELD = 'maturity TEXT';
-const PACKAGE_LONG_DESCRIPTION_FIELD = 'longDescription TEXT';
-const PACKAGE_APIS_FIELD = 'apis BLOB';
+const PACKAGES_TABLE = "apiPackage";
+const PACKAGE_PACKAGE_NAME_FIELD = "name TEXT";
+const PACKAGE_DISPLAY_NAME_FIELD = "displayName TEXT";
+const PACKAGE_CATEGORIES_FIELD = "categories BLOB";
+const PACKAGE_CREATED_FIELD = "createdAt BLOB";
+const PACKAGE_UPDATED_FIELD = "updatedAt BLOB";
+const PACKAGE_DESCRIPTION_FIELD = "description TEXT";
+const PACKAGE_IMG_FIELD = "imgUrl TEXT";
+const PACKAGE_THUMB_FIELD = "thumbUrl TEXT";
+const PACKAGE_PROVIDER_FIELD = "provider TEXT";
+const PACKAGE_SOURCE_FIELD = "source TEXT";
+const PACKAGE_MATURITY_FIELD = "maturity TEXT";
+const PACKAGE_LONG_DESCRIPTION_FIELD = "longDescription TEXT";
+const PACKAGE_APIS_FIELD = "apis BLOB";
 
 const packageFields = [
-  'name', 
-  'displayName', 
-  'categories',
-  'createdAt',
-  'updatedAt',
-  'description',
-  'imgUrl',
-  'thumbUrl',
-  'provider',
-  'source',
-  'maturity',
-  'longDescription',
-  'apis'
+  "name",
+  "displayName",
+  "categories",
+  "createdAt",
+  "updatedAt",
+  "description",
+  "imgUrl",
+  "thumbUrl",
+  "provider",
+  "source",
+  "maturity",
+  "longDescription",
+  "apis",
 ];
 
-const packageFieldsList = packageFields.join(', ');
-const packageFieldsRefs = packageFields.map(() => '?').join(', ');
+const packageFieldsList = packageFields.join(", ");
+const packageFieldsRefs = packageFields.map(() => "?").join(", ");
 
-exports.initialize = callback => {
-  db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, err => {
+exports.initialize = (callback) => {
+  db = new sqlite3.Database(":memory:", sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
       console.error(err.message);
       callback(err);
       return;
     }
-    console.log('Connected to the in-memory SQlite database.');
+    console.log("Connected to the in-memory SQlite database.");
     db.run(
       `CREATE TABLE ${VERSIONS_TABLE} (
         ${ID_FIELD},
@@ -120,7 +120,7 @@ exports.initialize = callback => {
         ${KEYWORDS_FIELD},
         ${PACKAGE_NAME_FIELD}
       )`,
-      err2 => {
+      (err2) => {
         if (err2) {
           callback(err2);
         }
@@ -151,7 +151,7 @@ exports.close = () => {
   db.close();
 };
 
-const normalizeAPIVersionRow = row => {
+const normalizeAPIVersionRow = (row) => {
   row.createdAt = JSON.parse(row.createdAt);
   row.contracts = JSON.parse(row.contracts);
   row.links = JSON.parse(row.links);
@@ -166,19 +166,22 @@ const normalizeAPIVersionRow = row => {
  * @param {Function} callback
  */
 exports.getAPIVersionByName = (apiVersionName, callback) => {
-  db.all(`SELECT * FROM ${VERSIONS_TABLE} where name = '${apiVersionName}'`, (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      callback(null, err.message);
-      return;
-    }
+  db.all(
+    `SELECT * FROM ${VERSIONS_TABLE} where name = '${apiVersionName}'`,
+    (err, rows) => {
+      if (err) {
+        console.error(err.message);
+        callback(null, err.message);
+        return;
+      }
 
-    if (!rows || rows.length == 0) {
-      callback(null, `APIVersion ${apiVersionName} is not found.`);
-      return;
+      if (!rows || rows.length == 0) {
+        callback(null, `APIVersion ${apiVersionName} is not found.`);
+        return;
+      }
+      callback(normalizeAPIVersionRow(rows[0]));
     }
-    callback(normalizeAPIVersionRow(rows[0]));
-  });
+  );
 };
 
 /**
@@ -198,7 +201,10 @@ exports.getAPIVersionWithPackage = (packageName, apiVersionName, callback) => {
       }
 
       if (!rows || rows.length == 0) {
-        callback(null, `No APIVersion '${apiVersionName}' in package '${packageName}' found.`);
+        callback(
+          null,
+          `No APIVersion '${apiVersionName}' in package '${packageName}' found.`
+        );
         return;
       }
       callback(normalizeAPIVersionRow(rows[0]));
@@ -212,18 +218,21 @@ exports.getAPIVersionWithPackage = (packageName, apiVersionName, callback) => {
  * @param {Function} callback
  */
 exports.getAPIVersionsById = (apiVersionId, callback) => {
-  db.all(`SELECT * FROM ${VERSIONS_TABLE} where id = '${apiVersionId}'`, (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      callback(null, err.message);
-      return;
+  db.all(
+    `SELECT * FROM ${VERSIONS_TABLE} where id = '${apiVersionId}'`,
+    (err, rows) => {
+      if (err) {
+        console.error(err.message);
+        callback(null, err.message);
+        return;
+      }
+      if (!rows || rows.length == 0) {
+        callback(null, `APIVersion ${apiVersionId} is not found.`);
+        return;
+      }
+      callback(rows.map(normalizeAPIVersionRow));
     }
-    if (!rows || rows.length == 0) {
-      callback(null, `APIVersion ${apiVersionId} is not found.`);
-      return;
-    }
-    callback(rows.map(normalizeAPIVersionRow));
-  });
+  );
 };
 
 /**
@@ -232,52 +241,55 @@ exports.getAPIVersionsById = (apiVersionId, callback) => {
  * @param {Function} callback
  */
 exports.getLatestAPIVersionsByPackage = (packageName, callback) => {
-  db.all(`SELECT * FROM (select name, max(versionForCompare) from ${VERSIONS_TABLE} 
+  db.all(
+    `SELECT * FROM (select name, max(versionForCompare) from ${VERSIONS_TABLE} 
       where packageName = '${packageName}' group by id) as x 
-        inner join ${VERSIONS_TABLE} as v on v.name = x.name`, (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      callback(null, err.message);
-      return;
+        inner join ${VERSIONS_TABLE} as v on v.name = x.name`,
+    (err, rows) => {
+      if (err) {
+        console.error(err.message);
+        callback(null, err.message);
+        return;
+      }
+      if (!rows || rows.length == 0) {
+        callback(null, `APIVersions from ${packageName} are not found.`);
+        return;
+      }
+      callback(rows.map(normalizeAPIVersionRow));
     }
-    if (!rows || rows.length == 0) {
-      callback(null, `APIVersions from ${packageName} are not found.`);
-      return;
-    }
-    callback(rows.map(normalizeAPIVersionRow));
-  });
+  );
 };
 
 /**
  * Get all APIVersions
  * @param {Function} callback
  */
-exports.getAPIVersions = callback => {
+exports.getAPIVersions = (callback) => {
   db.all(`SELECT * FROM ${VERSIONS_TABLE}`, (err, rows) => {
     if (err) {
       console.error(err.message);
       callback(null, err.message);
       return;
     }
-    const apiVersions = rows.map(row => normalizeAPIVersionRow(row));
+    const apiVersions = rows.map((row) => normalizeAPIVersionRow(row));
     callback(apiVersions);
   });
 };
 
-exports.clearAPIVersions = callback => {
+exports.clearAPIVersions = (callback) => {
   db.run(`DELETE FROM ${VERSIONS_TABLE}`, callback);
 };
 
 exports.setAPIVersions = (apiVersions, callback) => {
   const sql = `INSERT OR IGNORE INTO ${VERSIONS_TABLE} (${apiVersionFieldsList}) VALUES (${apiVersionFieldsRefs})`;
   console.log(`=> Loading ${apiVersions.length} APIVersions in database`);
-  exports.clearAPIVersions(clearErr => {
+  exports.clearAPIVersions((clearErr) => {
     if (clearErr) {
       console.error(clearErr.message);
     }
     db.serialize(() => {
-      db.run('BEGIN TRANSACTION');
-      apiVersions.forEach(apiVersion => {
+      db.run("BEGIN TRANSACTION");
+      apiVersions.forEach((apiVersion) => {
         db.run(sql, [
           apiVersion.id,
           apiVersion.name,
@@ -294,15 +306,15 @@ exports.setAPIVersions = (apiVersions, callback) => {
           JSON.stringify(apiVersion.maintainers),
           JSON.stringify(apiVersion.createdAt),
           JSON.stringify(apiVersion.keywords),
-          apiVersion.packageName
+          apiVersion.packageName,
         ]);
       });
-      db.run('END', callback);
+      db.run("END", callback);
     });
   });
 };
 
-const normalizePackageRow = row => {
+const normalizePackageRow = (row) => {
   row.apis = JSON.parse(row.apis);
   row.categories = JSON.parse(row.categories);
   row.createdAt = JSON.parse(row.createdAt);
@@ -311,35 +323,41 @@ const normalizePackageRow = row => {
 };
 
 exports.getPackage = (packageName, callback) => {
-  db.all(`SELECT * FROM ${PACKAGES_TABLE} where name = '${packageName}'`, (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      callback(null, err.message);
-      return;
+  db.all(
+    `SELECT * FROM ${PACKAGES_TABLE} where name = '${packageName}'`,
+    (err, rows) => {
+      if (err) {
+        console.error(err.message);
+        callback(null, err.message);
+        return;
+      }
+      if (!rows || rows.length == 0) {
+        callback(null, `package ${packageName} is not found.`);
+        return;
+      }
+      const apiPackage = normalizePackageRow(rows[0]);
+      callback(apiPackage);
     }
-    if (!rows || rows.length == 0) {
-      callback(null, `package ${packageName} is not found.`);
-      return;
-    }
-    const apiPackage = normalizePackageRow(rows[0]);
-    callback(apiPackage);
-  });
+  );
 };
 
-exports.getPackages = callback => {
+exports.getPackages = (callback) => {
   //db.all(`SELECT * FROM ${PACKAGES_TABLE}`, (err, rows) => {
-  db.all(`SELECT name, displayName, categories, createdAt, updatedAt, description, thumbUrl, provider, source, maturity, apis FROM ${PACKAGES_TABLE}`, (err, rows) => {
-    if (err) {
-      console.error(err.message);
-      callback(null, err.message);
-      return;
+  db.all(
+    `SELECT name, displayName, categories, createdAt, updatedAt, description, thumbUrl, provider, source, maturity, apis FROM ${PACKAGES_TABLE}`,
+    (err, rows) => {
+      if (err) {
+        console.error(err.message);
+        callback(null, err.message);
+        return;
+      }
+      const apiPackages = rows.map((row) => normalizePackageRow(row));
+      callback(apiPackages);
     }
-    const apiPackages = _.map(rows, row => normalizePackageRow(row));
-    callback(apiPackages);
-  });
+  );
 };
 
-exports.clearPackages = callback => {
+exports.clearPackages = (callback) => {
   db.run(`DELETE FROM ${PACKAGES_TABLE}`, callback);
 };
 
@@ -348,8 +366,8 @@ exports.setPackages = (packages, callback) => {
   console.log(`=> Loading ${packages.length} APIPackages in database`);
   exports.clearPackages(() =>
     db.serialize(() => {
-      db.run('BEGIN TRANSACTION');
-      packages.forEach(apiPackage => {
+      db.run("BEGIN TRANSACTION");
+      packages.forEach((apiPackage) => {
         db.run(sql, [
           apiPackage.name,
           apiPackage.displayName,
@@ -363,10 +381,10 @@ exports.setPackages = (packages, callback) => {
           apiPackage.source,
           apiPackage.maturity,
           apiPackage.longDescription,
-          JSON.stringify(apiPackage.apis)
+          JSON.stringify(apiPackage.apis),
         ]);
       });
-      db.run('END', callback);
+      db.run("END", callback);
     })
   );
 };
