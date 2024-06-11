@@ -1,4 +1,7 @@
-<script></script>
+<script lang="ts">
+	import HeroBanner from '$lib/components/global/HeroBanner.svelte';
+	import SectionPackages from '$lib/components/packages/SectionPackages.svelte';
+</script>
 
 <svelte:head>
 	<title>Home</title>
@@ -6,5 +9,6 @@
 </svelte:head>
 
 <section>
-	<h1 class="text-4xl">hello word</h1>
+	<HeroBanner />
+	<SectionPackages />
 </section>

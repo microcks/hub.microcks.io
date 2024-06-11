@@ -54,6 +54,17 @@
 		@apply border-border;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-background text-foreground max-w-7xl m-auto;
 	}
 }
+
+* {
+	/* scrollbar-width: none;
+	ms-overflow-style: none;
+	scroll-behavior: smooth; */
+	font-family: 'Instrument Sans', sans-serif;
+}
+
+/* body::-webkit-scrollbar {
+	display: none;
+} */

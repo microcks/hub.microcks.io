@@ -1,6 +1,6 @@
 # HubMicrocksIoFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
+This project SvelteKit was generated with [Vite](https://github.com/vitejs/vite) version 5.0.3.
 
 ## Development server
 
@@ -12,4 +12,4 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 
 ## Running unit tests
 
-Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm test` to execute the unit tests via [Vitest](https://github.com/vitest-dev/vitest).
