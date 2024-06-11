@@ -1,18 +1,24 @@
-export type API = {
-	id: number;
+export type APIVersions = {
 	name: string;
-	description: string;
-	slug: string;
 	version: string;
 };
 
-export type Package = {
-	id: number;
+export type API = {
 	name: string;
-	provider: string;
-	description: string;
-	logo: string;
+	currentVersion: string;
+	versions: APIVersions[];
+};
+
+export type Package = {
+	name: string;
+	displayName: string;
 	categories: string[];
-	slug: string;
+	createDate: string;
+	updatedDate: string;
+	description: string;
+	thumbUrl: string;
+	provider: string;
+	source: string;
+	maturity: string;
 	apis: API[];
 };

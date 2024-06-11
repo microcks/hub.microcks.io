@@ -3,7 +3,7 @@
 const packagesData = [
 	{
 		id: 1,
-		name: 'Camara APIs    ',
+		name: 'Camara APIs',
 		provider: 'CamaraProject.org',
 		description:
 			'Camara Project standard APIs enable seamless access to Telco network capabilities',
