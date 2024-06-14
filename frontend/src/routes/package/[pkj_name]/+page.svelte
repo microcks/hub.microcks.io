@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { Package, API } from '#/types';
+	import type { PackageDetails, APISDetails } from '#/types';
 
 	import Breadcrumb from '$lib/components/global/Breadcrumb.svelte';
 	import DescriptionPackage from '$lib/components/pages/packages/DescriptionPakage.svelte';
 	import ListApis from '$lib/components/pages/packages/ListApis.svelte';
 
 	export let data;
-	let packageData: Package = data.packageData;
-	let apisData: API[] = data.apisData;
+	let packageData: PackageDetails = data.packageData;
+	let apisData: APISDetails[] = data.apisData;
 </script>
 
 {#if !packageData}
