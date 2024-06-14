@@ -1,4 +1,4 @@
-export type APIVersions = {
+type APIVersions = {
 	name: string;
 	version: string;
 };
@@ -22,3 +22,36 @@ export type Package = {
 	maturity: string;
 	apis: API[];
 };
+
+export interface PackageDetails extends Package {
+	imgUrl: string;
+	longDescription: string;
+}
+
+export interface APISDetails extends API {
+	maxVersionForCompare: string;
+	id: string;
+	displayName: string;
+	version: string;
+	versionForCompare: string;
+	replaces: null;
+	description: string;
+	imgUrl: string;
+	thumbUrl: string;
+	capabilityLevel: string;
+	contracts: {
+		type: string;
+		url: string;
+	};
+	link: {
+		name: string;
+		url: string;
+	};
+	maintaineres: {
+		name: string;
+		email: string;
+	};
+	createdAt: string;
+	keywords: string[];
+	packageName: Package['name'];
+}

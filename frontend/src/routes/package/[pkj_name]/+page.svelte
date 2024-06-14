@@ -1,12 +1,13 @@
 <script lang="ts">
-	import type { Package } from '#/types';
+	import type { Package, API } from '#/types';
 
 	import Breadcrumb from '$lib/components/global/Breadcrumb.svelte';
 	import DescriptionPackage from '$lib/components/pages/packages/DescriptionPakage.svelte';
 	import ListApis from '$lib/components/pages/packages/ListApis.svelte';
 
 	export let data;
-	let packageData: Package = data.data;
+	let packageData: Package = data.packageData;
+	let apisData: API[] = data.apisData;
 </script>
 
 {#if !packageData}
@@ -16,7 +17,7 @@
 		<Breadcrumb pkgName={packageData.name} pkgDisplayName={packageData.displayName} />
 		<div class="w-full h-auto flex flex-row items-start p-4">
 			<DescriptionPackage pkg={packageData} />
-			<ListApis apiList={packageData.apis} pkg={packageData} />
+			<ListApis {apisData} pkg={packageData} />
 		</div>
 	</section>
 {/if}

@@ -12,6 +12,9 @@
 			<h3>
 				{api.name}
 			</h3>
+			<p class="text-muted-foreground">
+				{api.currentVersion}
+			</p>
 		</div>
 	</a>
 </li>
