@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Package } from '#/types';
+	import type { PackageDetails } from '#/types';
 
-	export let pkg: Package;
+	export let pkg: PackageDetails;
 </script>
 
 {#if !pkg}
@@ -12,11 +12,10 @@
 			<img src={pkg.thumbUrl} alt={`${pkg.provider} logo`} class="h-12 w-auto" />
 			<div class="flex flex-col gap-2">
 				<h1 class="text-2xl font-normal">{pkg.name}</h1>
-				<p class="text-muted-foreground">{pkg.description}</p>
 			</div>
 		</div>
 		<div class="w-full h-auto">
-			<p>{pkg.description}</p>
+			<p>{pkg.longDescription}</p>
 		</div>
 	</div>
 {/if}

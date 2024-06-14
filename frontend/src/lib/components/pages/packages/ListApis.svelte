@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { API, Package } from '#/types';
+	import type { APISDetails, Package } from '#/types';
 
 	import CardApi from '$lib/components/pages/packages/CardApi.svelte';
 
-	export let apisData: API[];
+	export let apisData: APISDetails[];
 	export let pkg: Package;
 </script>
 
