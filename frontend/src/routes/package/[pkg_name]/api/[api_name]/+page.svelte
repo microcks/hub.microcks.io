@@ -23,7 +23,7 @@
 		/>
 		<div class="w-full h-auto flex flex-row items-start py-2">
 			<DescriptionApi {pkg} {api} />
-			<OverviewApi {api} />
+			<OverviewApi {pkg} {api} />
 		</div>
 	</section>
 {/if}
