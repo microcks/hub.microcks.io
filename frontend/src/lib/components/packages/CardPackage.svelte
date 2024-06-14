@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Package } from '#/types';
+	import { lowercase } from '#/string';
 
 	export let pkg: Package;
 </script>
@@ -9,7 +10,7 @@
 {:else}
 	<a
 		class="border border-border w-full p-4 flex flex-col items-start rounded-lg hover:shadow hover:border-primary"
-		href={`/package/${pkg.provider}`}
+		href={`/package/${lowercase(pkg.name)}`}
 	>
 		<img src={pkg.thumbUrl} alt={`${pkg.provider} logo`} class="w-auto h-12 mb-4" />
 		<h3 class="font-normal text-lg mb-1">{pkg.name}</h3>
