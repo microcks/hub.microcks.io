@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+
 	import Breadcrumb from '$lib/components/global/Breadcrumb.svelte';
 	import DescriptionPackage from '$lib/components/pages/packages/DescriptionPakage.svelte';
 	import ListApis from '$lib/components/pages/packages/ListApis.svelte';
+
 	import packagesData from '#/packages.data';
 
 	const slug = $page.params.pkj_slug;
