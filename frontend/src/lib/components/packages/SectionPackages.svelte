@@ -11,7 +11,7 @@
 	<p>Loading...from section</p>
 {:else}
 	<section class="w-full h-auto flex flex-row gap-4 p-8">
-		<FiltersPackages />
+		<FiltersPackages {packagesData} />
 		<GridPackages {packagesData} />
 	</section>
 {/if}
