@@ -28,7 +28,7 @@ export interface PackageDetails extends Package {
 	longDescription: string;
 }
 
-export interface APISDetails extends API {
+export interface APIDetails extends API {
 	maxVersionForCompare: string;
 	id: string;
 	displayName: string;
