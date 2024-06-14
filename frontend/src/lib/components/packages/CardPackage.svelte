@@ -2,8 +2,6 @@
 	import type { Package } from '#/types';
 
 	export let pkg: Package;
-
-	// console.log('from card', 'pkg', pkg, 'typeof', typeof pkg);
 </script>
 
 {#if !pkg}
