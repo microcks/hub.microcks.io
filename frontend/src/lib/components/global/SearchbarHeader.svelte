@@ -6,7 +6,7 @@
 </script>
 
 <div class="relative flex flex-row items-center text-muted-foreground">
-	<Input placeholder="Search Microcks Hub..." size={48} class="w-full pl-10 text-muted" />
+	<Input placeholder="Search Microcks Hub..." size={48} class="w-full pl-10" />
 	<Search class="absolute top-1/2 left-4 transform -translate-y-1/2" size={16} />
 	<div
 		class="absolute top-1/2 right-4 flex flex-row items-center justify-center text-muted-foreground transform -translate-y-1/2"
