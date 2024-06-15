@@ -16,7 +16,7 @@
 {:else}
 	<section class="p-8 w-full">
 		<Breadcrumb pkgName={pkg.name} pkgDisplayName={pkg.displayName} />
-		<div class="w-full h-auto flex flex-row items-start p-4">
+		<div class="w-full h-auto flex flex-row items-start gap-8 py-4">
 			<DescriptionPackage {pkg} />
 			<ListApis {apisData} {pkg} />
 		</div>

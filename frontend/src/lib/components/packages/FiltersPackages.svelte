@@ -11,14 +11,14 @@
 </script>
 
 {#if !packagesData || !categories || !providers}
-	<p>Loading...from section</p>
+	<p>Loading...</p>
 {:else}
 	<div class="w-1/4">
 		<div class="mb-4">
 			<p class="text-muted-foreground font-medium mb-2">Catégorie</p>
-			<ul>
+			<ul class="flex flex-col gap-2">
 				{#each categories as category}
-					<li class="hover:bg-muted p-2 rounded hover:cursor-pointer">
+					<li class="hover:bg-muted p-1 rounded hover:cursor-pointer">
 						{category}
 					</li>
 				{/each}
@@ -28,7 +28,7 @@
 			<p class="text-muted-foreground font-medium mb-2">Providers</p>
 			<ul class="flex flex-col gap-2">
 				{#each providers as provider}
-					<li class="flex items-center gap-2">
+					<li class="flex items-center gap-2 p-1">
 						<Checkbox id={String(provider)} /><Label for={String(provider)}>{provider}</Label>
 					</li>
 				{/each}
