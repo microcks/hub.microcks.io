@@ -1,8 +1,12 @@
 <script lang="ts">
+	import { marked } from 'marked';
+
 	import type { PackageDetails, APIDetails } from '#/types';
 
 	export let pkg: PackageDetails;
 	export let api: APIDetails;
+
+	let description = marked(api.description);
 </script>
 
 <div class="w-3/5 p-4">
@@ -14,6 +18,6 @@
 		</div>
 	</div>
 	<div class="w-full h-auto">
-		<p>{api.description}</p>
+		<p>{description}</p>
 	</div>
 </div>

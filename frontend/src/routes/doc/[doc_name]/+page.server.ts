@@ -1,13 +1,9 @@
 import type { PageServerLoad } from './$types';
 
-import asyncFetch from '#/asyncFetch';
-
 export const load: PageServerLoad = async ({ params }) => {
-	const nameDoc = params.doc_name ? `/${params.doc_name}` : '';
-
-	const docData = await asyncFetch(`http://localhost:4000/documentation${nameDoc}`);
-
-	console.log(docData);
+	const nameDoc = params.doc_name ? `/${params.doc_name}.md` : '';
+	const response = await fetch(`http://localhost:4000/documentation${nameDoc}`);
+	const docData = await response.text();
 
 	return {
 		docData

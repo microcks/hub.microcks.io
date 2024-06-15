@@ -1,7 +1,11 @@
 <script lang="ts">
+	import { marked } from 'marked';
+
 	import type { PackageDetails } from '#/types';
 
 	export let pkg: PackageDetails;
+
+	let description = marked(pkg.longDescription);
 </script>
 
 {#if !pkg}
@@ -15,7 +19,7 @@
 			</div>
 		</div>
 		<div class="w-full h-auto">
-			<p>{pkg.longDescription}</p>
+			<p>{description}</p>
 		</div>
 	</div>
 {/if}
