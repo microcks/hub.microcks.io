@@ -9,7 +9,7 @@
 >
 	<h2 class="text-xl">List your APi mocks on hub.microcks.io</h2>
 	<a href="/doc/how-to-contribute">
-		<Button>
+		<Button class="flex flex-row items-center gap-1">
 			Submit your mocks
 			<MoveRight size={16} />
 		</Button>

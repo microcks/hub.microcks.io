@@ -9,7 +9,7 @@
 	export let api: APIDetails;
 </script>
 
-<div class="w-2/5 flex flex-col items-start gap-4">
+<div class="w-2/5 flex flex-col items-start gap-4 py-4">
 	<Root>
 		<Trigger class="w-full">
 			<Button class="w-full">Install</Button>
