@@ -7,7 +7,7 @@
 
 <div class="w-3/5 p-4">
 	<div class="flex flex-row items-center gap-6 w-full h-auto mb-8">
-		<img src={api.thumbUrl} alt={`${pkg.provider} logo`} class="h-16 w-auto" />
+		<img src={api.thumbUrl} alt={`${pkg.provider} logo`} class="h-12 w-auto" />
 		<div class="flex flex-col gap-1">
 			<h1 class="text-2xl font-normal">{api.displayName}</h1>
 			<p class="text-muted-foreground">Version {api.version}</p>
