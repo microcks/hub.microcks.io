@@ -65,7 +65,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "hub-microcks-io-frontend:build",
-            "proxyConfig": "proxy.conf.json"
+            "proxyConfig": "proxy.conf.js"
           },
           "configurations": {
             "production": {
@@ -122,6 +122,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "hub-microcks-io-frontend"
 }

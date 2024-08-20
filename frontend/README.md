@@ -4,7 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
+Start the hub.microcks.io backend server as described in the [backend README](../server/README.md).
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+> If you want to customize the backend URL, you can use the `API_URL` environment variable. For example, to use a local backend server, you can run `API_URL=http://localhost:4001 ng serve`.
 
 ## Code scaffolding
 
