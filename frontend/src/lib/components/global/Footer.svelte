@@ -5,6 +5,7 @@
 	import Github from 'lucide-svelte/icons/github';
 
 	import Button from '$lib/components/ui/button/button.svelte';
+	import microcksLogo from '../../../assets/images/microcks.svg';
 
 	const navigationItems = [
 		{
@@ -36,6 +37,7 @@
 		<div class="grid lg:grid-cols-2 gap-10 items-center">
 			<div class="flex gap-8 flex-col items-start">
 				<div class="flex gap-4 flex-col">
+					<img src={microcksLogo} alt="Microcks logo" class="w-36 h-36" />
 					<h2 class="text-lg md:text-2xl max-w-xl font-regular text-left">Microcks</h2>
 					<p class="text-lg max-w-lg text-foreground/75 text-left">
 						Microcks is an open source Kubernetes native platform for mocking APIs and

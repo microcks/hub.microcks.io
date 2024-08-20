@@ -7,7 +7,7 @@
 
 <Root>
 	<Trigger asChild let:builder>
-		<Button builders={[builder]} variant="default">
+		<Button builders={[builder]} variant="default" class="flex flew-row items-center gap-1">
 			Contribute
 			<ChevronDown size={16} />
 		</Button>

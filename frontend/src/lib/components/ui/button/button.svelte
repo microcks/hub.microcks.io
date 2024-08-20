@@ -15,7 +15,7 @@
 
 <ButtonPrimitive.Root
 	{builders}
-	class={`${cn(buttonVariants({ variant, size, className }))} dark:text-foreground flex gap-1`}
+	class={cn(buttonVariants({ variant, size, className }))}
 	type="button"
 	{...$$restProps}
 	on:click

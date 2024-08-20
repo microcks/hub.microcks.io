@@ -1,19 +1,23 @@
 <script lang="ts">
-	import type { Package, API } from '#/types';
+	import { marked } from 'marked';
 
-	export let pkj: Package;
-	export let api: API;
+	import type { PackageDetails, APIDetails } from '#/types';
+
+	export let pkg: PackageDetails;
+	export let api: APIDetails;
+
+	let description = marked(api.description);
 </script>
 
-<div class="w-3/4 py-2">
-	<div class="flex flex-row items-center gap-4 w-full h-auto mb-8">
-		<img src={pkj.logo} alt={`${pkj.provider} logo`} class="h-16 w-auto" />
-		<div class="flex flex-col gap-2">
-			<h1 class="text-2xl font-normal">{api.name}</h1>
-			<p class="text-muted-foreground">{api.description}</p>
+<div class="w-3/5 p-4">
+	<div class="flex flex-row items-center gap-6 w-full h-auto mb-8">
+		<img src={api.thumbUrl} alt={`${pkg.provider} logo`} class="h-12 w-auto" />
+		<div class="flex flex-col gap-1">
+			<h1 class="text-2xl font-normal">{api.displayName}</h1>
+			<p class="text-muted-foreground">Version {api.version}</p>
 		</div>
 	</div>
 	<div class="w-full h-auto">
-		<p>{api.description}</p>
+		<p>{description}</p>
 	</div>
 </div>
