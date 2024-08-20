@@ -146,7 +146,7 @@
                     {{ contract.url }}
                   </div>
                   <div style="position: relative; display: inline-block; z-index: 98; color: rgb(85, 85, 85); cursor: pointer; top: 2px;">
-                    <a (mouseenter)="onCopyEnter($event)" (click)="copyToClipboard(contract, $event)" 
+                    <a (mouseenter)="onCopyEnter($event)" (click)="copyToClipboard(contract.url, $event)" 
                         data-toggle="tooltip" data-placement="top" title="{{ guiCommandStatus }}" class="oh-install-modal_install-command-copy">
                       <span aria-hidden="true" class="fa fa-clipboard"></span>
                       <span class="sr-only">Copy to Clipboard</span>
