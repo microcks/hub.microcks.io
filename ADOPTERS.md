@@ -8,7 +8,7 @@ If you need to know why and how to add yourself to the list, please read the blo
 
 This document also lists the organizations that use Microcks based on public information available in blog posts, events and videos. If any organization would like to get added or removed please edit this file (make a pull request) after following our [contribution guide](https://github.com/microcks/.github/blob/master/CONTRIBUTING.md) and by following these specifics guidelines:
 - Kindly include a reference (such as a link to a public blog post, video, slides, etc.) that mentions the use of Microcks.
-- You consent to having your company’s name and logo featured on the [Microcks.io website](https://microcks.io/), including in our adopters' section and possibly displayed in our rotating logo carousel.
+- You consent to having your company’s name and logo featured on the [Microcks.io website](https://microcks.io/), included in our adopters' section, and potentially displayed in our rotating logo carousel.
 
 > You can contact the project [maintainers](https://github.com/microcks/.github/blob/main/MAINTAINERS.md) if you have any questions or need further information.
 
@@ -34,3 +34,4 @@ This document also lists the organizations that use Microcks based on public inf
 | [Fluent CI](https://fluentci.io/) | [Tsiry Sandratraina](https://github.com/tsirysndr)| We use Microcks to mock and test our REST and GraphQL APIs. We also provide an open source [Microcks module](https://github.com/fluent-ci-templates/microcks-pipeline) for [Dagger](https://dagger.io) and [Fluent CI](https://fluentci.io).
 | [Nordic Semiconductor](https://nordicsemi.com) | [Patrick Barnes](https://www.linkedin.com/in/patrick-barnes-pdx/) | We use Microcks mainly via testcontainers to test the REST APIs (and probably soon, our async, event-based APIs) for the microservices that comprise our IoT platform, [nRFCloud.com](https://nrfcloud.com/). Microcks has been invaluable, and the Microcks team a real pleasure to work with!
 | [Office national de l'emploi (ONEm)](https://www.onem.be/) | [Samuel Antoine](https://www.linkedin.com/in/samuel-antoine-07347b171/) [Christophe Lopez](https://www.linkedin.com/in/aeoncl/) | We use Microcks as both OpenAPI contract testing tool and mock provider.
+| [Bitso](https://bitso.com/) | [Caio Amaral](https://www.linkedin.com/in/camaral) | Microcks supports Bitso's integration and capacity testing infrastructure, allowing us to isolate the applications through well defined gRPC contracts. 
