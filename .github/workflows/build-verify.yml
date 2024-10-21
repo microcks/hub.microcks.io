@@ -12,14 +12,14 @@ on:
       - '.gitignore'
       - 'LICENSE'
       - '*.md'
-
+permissions: read-all
 jobs:
   build-verify-package:
     runs-on: ubuntu-latest
     environment: Build
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set environment for branch
         run: |
@@ -40,23 +40,24 @@ jobs:
 
       - name: Set up Docker Buildx
         if: github.repository_owner == 'microcks' && env.PACKAGE_IMAGE == 'true'
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
-      - name: Login to Quay Container Registry
+      - name: Login to Quay.io Registry and setup multi-arch builder
         if: github.repository_owner == 'microcks' && env.PACKAGE_IMAGE == 'true'
-        uses: docker/login-action@v2
-        with:
-          registry: quay.io
-          username: ${{ secrets.QUAY_USERNAME }}
-          password: ${{ secrets.QUAY_PASSWORD }}
+        run: |
+          echo ${{ secrets.QUAY_PASSWORD }} | docker login -u ${{ secrets.QUAY_USERNAME }} --password-stdin quay.io
+          BUILDER=buildx-multi-arch
+          docker buildx inspect $BUILDER || docker buildx create --name=$BUILDER --driver=docker-container --driver-opt=network=host
       
-      - name: Build and push
+      - name: Build and push container image
         if: github.repository_owner == 'microcks' && env.PACKAGE_IMAGE == 'true'
         uses: docker/build-push-action@v4
-        with:
-          context: .
-          platforms: linux/amd64 #,linux/arm64
-          push: true
-          tags: |
-            quay.io/microcks/microcks-hub:${{ env.IMAGE_TAG }}
+        run: |
+          docker buildx build --push \
+            --platform=linux/amd64,linux/arm64 \
+            --builder=buildx-multi-arch \
+            --provenance=false \
+            --build-arg TAG=$IMAGE_TAG \
+            --file Dockerfile \
+            --tag=quay.io/microcks/microcks-hub:$IMAGE_TAG .
             
