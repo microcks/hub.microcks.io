@@ -20,6 +20,7 @@ RUN microdnf install ca-certificates git -y \
 # frontend
 COPY frontend/ ${APP_ROOT}/frontend
 RUN cd ${APP_ROOT}/frontend; npm install \
+    && export NODE_OPTIONS=--openssl-legacy-provider \
     && npm run-script build-prod \
     && rm -rdf ${APP_ROOT}/frontend/node_modules ${APP_ROOT}/frontend/.cache-loader /opt/app-root/src/.npm /tmp/v8-compile-cache-0
 
