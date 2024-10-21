@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/nodejs-14-minimal:1-11
+FROM registry.access.redhat.com/ubi9/nodejs-18-minimal:1-129.1726695172
 
 MAINTAINER Laurent Broudoux <laurent.broudoux@gmail.com>
 
@@ -13,8 +13,8 @@ WORKDIR ${APP_ROOT}
 USER root
 
 # install git lib
-RUN microdnf install curl ca-certificates git \
-    && microdnf update \
+RUN microdnf install ca-certificates git -y \
+    && microdnf update -y \
     && microdnf clean all
 
 # frontend
