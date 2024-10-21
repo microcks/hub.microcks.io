@@ -1,6 +1,13 @@
 FROM registry.access.redhat.com/ubi9/nodejs-18-minimal:1-129.1726695172
 
-MAINTAINER Laurent Broudoux <laurent.broudoux@gmail.com>
+# Some version information
+LABEL maintainer="Laurent Broudoux <laurent@microcks.io>" \
+      org.opencontainers.image.authors="Laurent Broudoux <laurent@microcks.io>" \
+      org.opencontainers.image.title="Microcks Hub" \
+      org.opencontainers.image.description="Microcks is Open Source cloud-native native tool for API Mocking and Testing" \
+      org.opencontainers.image.licenses="Apache-2.0" \
+      org.opencontainers.image.documentation="https://github.com/microcks/hub.microcks.io" \
+      io.artifacthub.package.readme-url="https://raw.githubusercontent.com/microcks/hub.microcks.io/master/README.md"
 
 ARG MOCKS_REPO=https://github.com/microcks/community-mocks
 ARG MOCKS_BRANCH=master
@@ -40,7 +47,8 @@ RUN cd ${APP_ROOT}/server \
 ### Setup user for build execution and application runtime
 ENV HOME=${APP_ROOT}
 RUN chmod -R u+x ${APP_ROOT}/server/bin && \
-    chgrp -R 0 ${APP_ROOT} && \
+    chgrp -R 0 ${APP_ROOT} && \:q
+
     chmod -R g=u ${APP_ROOT} /etc/passwd
 
 ### Containers should NOT run as root as a good practice
