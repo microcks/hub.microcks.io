@@ -47,8 +47,7 @@ RUN cd ${APP_ROOT}/server \
 ### Setup user for build execution and application runtime
 ENV HOME=${APP_ROOT}
 RUN chmod -R u+x ${APP_ROOT}/server/bin && \
-    chgrp -R 0 ${APP_ROOT} && \:q
-
+    chgrp -R 0 ${APP_ROOT} && \
     chmod -R g=u ${APP_ROOT} /etc/passwd
 
 ### Containers should NOT run as root as a good practice
