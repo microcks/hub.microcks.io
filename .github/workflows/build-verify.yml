@@ -51,7 +51,6 @@ jobs:
       
       - name: Build and push container image
         if: github.repository_owner == 'microcks' && env.PACKAGE_IMAGE == 'true'
-        uses: docker/build-push-action@v4
         run: |
           docker buildx build --push \
             --platform=linux/amd64,linux/arm64 \
