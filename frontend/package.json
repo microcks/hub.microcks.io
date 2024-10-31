@@ -10,7 +10,9 @@
     "build-prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "playwright test",
+    "e2e:report": "playwright show-report",
+    "e2e:ui-mode": "playwright test --ui"
   },
   "private": true,
   "dependencies": {
@@ -40,9 +42,10 @@
     "@angular/cli": "~8.3.29",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
-    "@types/node": "~8.9.5",
+    "@playwright/test": "^1.48.2",
     "@types/jasmine": "~3.10.18",
     "@types/jasminewd2": "~2.0.13",
+    "@types/node": "~8.9.5",
     "codelyzer": "^5.2.2",
     "jasmine-core": "~3.99.1",
     "jasmine-spec-reporter": "~4.2.1",
