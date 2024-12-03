@@ -31,3 +31,51 @@ Current development version is `0.2.0`.
 * Join us on [Discord](https://microcks.io/discord-invite/), on [GitHub Discussions](https://github.com/orgs/microcks/discussions) or [CNCF Slack #microcks channel](https://cloud-native.slack.com/archives/C05BYHW1TNJ)
 
 To get involved with our community, please make sure you are familiar with the project's [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+## SBOM (Software Bill Of Materials)
+
+We produce a SBOM for our container images that are attached as a metadata layer.
+
+To retrieve this SBOM layer digest, issue this command replacing the `nightly` tag with the one or the digest of your choice:
+
+```sh
+$ docker manifest inspect --verbose quay.io/microcks/microcks-hub:nightly | jq '.[2].OCIManifest.layers | map(select(.annotations."in-toto.io/predicate-type" == "https://spdx.dev/Document") | .digest)[0]'
+```
+
+Then use a tool such as [ORAS](https://oras.land/) to fetch the blob content of this layer:
+
+```sh
+$ oras blob fetch --output - quay.io/microcks/microcks-postman-runtime:nightly@$SBOM_DIGEST | jq .
+=== OUTPUT ===
+{
+  "_type": "https://in-toto.io/Statement/v0.1",
+  "predicateType": "https://spdx.dev/Document",
+  "subject": [
+    {
+      "name": "pkg:docker/quay.io/microcks/microcks-postman-runtime@nightly?platform=linux%2Famd64",
+      "digest": {
+        "sha256": "11c951599ed1bf649abbc2b23ae2730a4e1ef6ad9537a7f10df39b6546bf8429"
+      }
+    }
+  ],
+  "predicate": {
+    "spdxVersion": "SPDX-2.3",
+    "dataLicense": "CC0-1.0",
+    "SPDXID": "SPDXRef-DOCUMENT",
+    "name": "sbom",
+    "documentNamespace": "https://anchore.com/syft/dir/sbom-250326c0-1ac9-45df-b956-7034af7e03f0",
+    "creationInfo": {
+      "licenseListVersion": "3.23",
+      "creators": [
+        "Organization: Anchore, Inc",
+        "Tool: syft-v0.105.0",
+        "Tool: buildkit-v0.17.2"
+      ],
+      "created": "2024-12-03T13:19:29Z"
+    },
+    "packages": [
+      //[...]
+    ]
+  }
+}
+```
