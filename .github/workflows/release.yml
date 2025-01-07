@@ -1,0 +1,93 @@
+name: release
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to release'
+        required: true
+      version:
+        description: 'Release version'
+        required: true
+      nextVersion:
+        description: 'Next version after release (-SNAPSHOT will be added automatically)'
+        required: true
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: write
+      deployments: write
+      id-token: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.RELEASE_DEPLOY_KEY }}
+          fetch-depth: 0
+          ref: ${{ github.event.inputs.branch }}
+
+      - name: Set Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Set release version
+        run: |
+          cd ${{github.workspace}}/frontend
+          npm install
+          npm version ${{ github.event.inputs.version }} --git-tag-version=false
+          cd ${{github.workspace}}/server
+          npm install
+          npm version ${{ github.event.inputs.version }} --git-tag-version=false
+
+      - name: Commit, push and tag changes
+        run: |
+          git config user.name "microcks-bot"
+          git config user.email "info@microcks.io"
+          git commit -m "Releasing version ${{ github.event.inputs.version }}" .
+          git tag ${{ github.event.inputs.version }}
+          git push origin ${{ github.event.inputs.version }}
+
+      - name: Publish package with NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd ${{github.workspace}}/frontend
+          npm sbom --sbom-format spdx > microcks-hub-frontend-${{ github.event.inputs.version }}.spdx-sbom.json 
+          cd ${{github.workspace}}/server
+          npm sbom --sbom-format spdx > microcks-hub-server-${{ github.event.inputs.version }}.spdx-sbom.json 
+
+      - name: Publish release with JReleaser
+        uses: jreleaser/release-action@v2
+        env:
+          JRELEASER_PROJECT_VERSION: ${{ github.event.inputs.version }}
+          JRELEASER_GPG_PASSPHRASE: ${{ secrets.JRELEASER_GPG_PASSPHRASE }}
+          JRELEASER_GPG_SECRET_KEY: ${{ secrets.JRELEASER_GPG_SECRET_KEY }}
+          JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.JRELEASER_GPG_PUBLIC_KEY }}
+          JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Persist logs
+      - name: JReleaser release output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jreleaser-release
+          path: |
+            target/jreleaser/trace.log
+            target/jreleaser/output.properties
+
+      - name: Set next iteration version
+        run: |
+          cd ${{github.workspace}}/frontend
+          npm version ${{ github.event.inputs.nextVersion }}-SNAPSHOT --git-tag-version=false
+          cd ${{github.workspace}}/server
+          npm version ${{ github.event.inputs.nextVersion }}-SNAPSHOT --git-tag-version=false
+
+      - name: Commit, push and tag changes
+        run: |
+          git commit -m "Setting SNAPSHOT version ${{ github.event.inputs.nextVersion }}-SNAPSHOT" .
+          git push origin ${{ github.event.inputs.branch }}

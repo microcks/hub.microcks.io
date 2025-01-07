@@ -1,0 +1,26 @@
+project:
+  name: Microcks Hub
+  description: Microcks Hub application
+  longDescription: Microcks Hub application
+  copyright: The Microcks Authors
+
+signing:
+  active: ALWAYS
+  armored: true
+
+files:
+  active: ALWAYS
+  artifacts:
+    - path: 'frontend/microcks-hub-frontend-{{projectVersion}}.spdx-sbom.json'
+    - path: 'server/microcks-hub-server-{{projectVersion}}.spdx-sbom.json'
+
+release:
+  github:
+    overwrite: true
+    releaseName: '{{tagName}}'
+    tagName: '{{projectVersion}}'
+    changelog:
+      formatted: ALWAYS
+      preset: conventional-commits
+      contributors:
+        format: '- {{contributorName}}{{#contributorUsernameAsLink}} ({{.}}){{/contributorUsernameAsLink}}'
