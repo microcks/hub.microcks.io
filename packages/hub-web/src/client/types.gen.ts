@@ -33,6 +33,10 @@ export type ApiPackage = {
      */
     thumbUrl: string;
     /**
+     * The provider of this package
+     */
+    provider: string;
+    /**
      * The API versions bundled within this package
      */
     apis: Array<ApiVersions>;
