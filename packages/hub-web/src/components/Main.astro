@@ -1,0 +1,55 @@
+---
+import { Button } from "@components/components/ui/button";
+---
+
+<main class="container mx-auto p-8">
+    <section class="mb-8 text-center">
+        <h1 class="text-3xl font-bold mb-4">Welcome to Hub Microcks.io</h1>
+        <p class="text-lg text-gray-700">
+            hub.microcks.io allows API owners to easily distribute their public
+            open API specifications in the form of ready to use mocks and test
+            suites for Microcks.
+        </p>
+    </section>
+
+    <section class="grid grid-cols-3 gap-8">
+        <div>
+            <h2 class="text-xl font-bold mb-4 uppercase">Categories</h2>
+            <ul class="space-y-2">
+                <li>Banking</li>
+                <li>Cloud Provider</li>
+            </ul>
+        </div>
+
+        <div>
+            <h2 class="text-xl font-bold mb-4 uppercase">1 packages, 1 apis</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-md shadow-sm p-4">
+                    <h3 class="font-bold">Terraform APIs</h3>
+                    <p>Terraform APIs provided by HashiCorp</p>
+                    <p class="text-sm text-gray-600">
+                        Infrastructure as code for provisioning, compliance, and
+                        management of any cloud
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="text-xl font-bold mb-4 uppercase">provider</h2>
+            <ul class="space-y-2">
+                <li>
+                    <input type="checkbox" id="hashicorp" />
+                    <label for="hashicorp">HashiCorp (1)</label>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="text-center mt-16">
+        <p class="text-lg text-gray-700 mb-6">
+            List your API mocks on Hub.microcks.io
+        </p>
+        <Button>Submit your mocks</Button>
+    </section>
+</main>

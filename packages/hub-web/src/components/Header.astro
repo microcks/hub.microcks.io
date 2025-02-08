@@ -1,0 +1,24 @@
+---
+import { Button } from "@components/components/ui/button";
+import logo from "@assets/hub-microcks.svg";
+---
+
+<header class="bg-white p-4 shadow-md flex justify-between items-center">
+	<div>
+		<img src={logo.src} alt="Microcks Logo" class="h-8" />
+	</div>
+	<div class="flex items-center space-x-4">
+		<input
+			type="text"
+			placeholder="Search Microcks Hub"
+			class="border border-gray-300 rounded-md px-3 py-2"
+		/>
+		<Button>Contribute</Button>
+	</div>
+</header>
+
+<style>
+	header {
+		background-image: linear-gradient(to right, #1a2932, #83d0f0);
+	}
+</style>
