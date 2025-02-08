@@ -98,6 +98,7 @@ components:
       - description
       - categories
       - createdAt
+      - provider
       - updatedAt
       - thumbUrl
       - apis
@@ -127,6 +128,9 @@ components:
           type: string
         thumbUrl:
           description: A base64 encoded square image representation
+          type: string
+        provider:
+          description: The provider of this package
           type: string
         apis:
           description: The API versions bundled within this package
