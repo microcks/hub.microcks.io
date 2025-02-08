@@ -6,10 +6,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate:client": "openapi-ts"
   },
   "dependencies": {
     "@astrojs/react": "^4.2.0",
+    "@hey-api/client-fetch": "^0.8.1",
     "@radix-ui/react-slot": "^1.1.2",
     "@tailwindcss/vite": "^4.0.4",
     "@types/react": "^19.0.8",
@@ -23,5 +25,8 @@
     "tailwind-merge": "^3.0.1",
     "tailwindcss": "^4.0.4",
     "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.64.1"
   }
 }
