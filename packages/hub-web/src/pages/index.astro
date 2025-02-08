@@ -6,17 +6,9 @@ import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout>
-	<div class="container">
+	<div class="flex justify-between flex-col h-screen">
 		<Header />
 		<Main />
 		<Footer />
 	</div>
 </Layout>
-
-<style>
-	.container {
-		display: grid;
-		grid-template-rows: auto 1fr auto;
-		min-height: 100vh;
-	}
-</style>

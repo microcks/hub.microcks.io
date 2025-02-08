@@ -49,11 +49,20 @@ const PackagesContainer = () => {
     }, []);
 
     return (
-        <section className="grid grid-cols-3 gap-8">
+        <section className="flex gap-8">
         <div>
             <h2 className="text-xl font-bold mb-4 uppercase">Categories</h2>
-            <ul className="space-y-2">
+            <ul className="space-y-2 mb-4">
                 {categories.map((category) => <li key={category}>{category}</li>)}
+            </ul>
+            
+            <h2 className="text-xl font-bold mb-4 uppercase">provider</h2>
+            <ul className="space-y-2 mb-4">
+                {
+                    [...apiByProvider.keys()].map((provider) => <li key={provider}>
+                        <label>{provider}({apiByProvider.get(provider)?.length})</label>
+                    </li>)
+                }
             </ul>
         </div>
 
@@ -61,7 +70,7 @@ const PackagesContainer = () => {
             <h2 className="text-xl font-bold mb-4 uppercase">
                 {categories.length} packages, {apis.length} apis
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
                 {data.map((item) => (
                     <div key={item.name} className="bg-white rounded-md shadow-sm p-4">
                         <h3 className="font-bold">{item.displayName}</h3>
@@ -72,17 +81,6 @@ const PackagesContainer = () => {
                     </div>
                 ))}
             </div>
-        </div>
-
-        <div>
-            <h2 className="text-xl font-bold mb-4 uppercase">provider</h2>
-            <ul className="space-y-2">
-                {
-                    [...apiByProvider.keys()].map((provider) => <li key={provider}>
-                        <label>{provider}({apiByProvider.get(provider)?.length})</label>
-                    </li>)
-                }
-            </ul>
         </div>
     </section>
     );
