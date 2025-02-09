@@ -104,7 +104,7 @@ const PackagesContainer = () => {
                     )}
                 </div>
 
-                <h2 className="text-xl font-bold mb-4 uppercase">provider</h2>
+                <h2 className="text-xl font-bold mb-4 uppercase">providers</h2>
                 <ul className="space-y-2 mb-4">
                     <span className="whitespace-nowrap">{
                         [...apiByProvider.keys()].map((provider) => {
