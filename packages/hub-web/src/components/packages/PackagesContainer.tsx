@@ -2,6 +2,7 @@ import { getPackages } from '@client/sdk.gen'
 import type { ApiPackage } from '@client/types.gen';
 import { Toggle } from '@components/components/ui/toggle';
 import { useCallback, useEffect, useState } from 'react';
+import { PackageCard } from './PackageCard';
 
 function containsAny<T extends Array<any>>(arr1: T, arr2: T) {
     return arr1.some(item => arr2.includes(item));
@@ -9,8 +10,10 @@ function containsAny<T extends Array<any>>(arr1: T, arr2: T) {
 
 const PackagesContainer = () => {
     const [data, setData] = useState<ApiPackage[]>([]);
+    const [filteredData, setFilteredData] = useState<ApiPackage[]>([]);
     const [categories, setCategories] = useState<ApiPackage['categories']>([]);
     const [apis, setApis] = useState<ApiPackage['apis']>([]);
+    const [filteredApis, setFilteredApis] = useState<ApiPackage['apis']>([]);
     const [apiByProvider, setApiByProvider] = useState<Map<string, ApiPackage['apis']>>(new Map());
     const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
 
@@ -65,18 +68,41 @@ const PackagesContainer = () => {
             return new Set(activeSet);
         }
         );
-    }, []);
+    }, [data]);
+
+    useEffect(() => {
+        let filteredPackages = data;
+        let categories = [...selectedCategories];
+
+        if (selectedCategories.size) {
+            filteredPackages = filteredPackages.filter((item) => {
+                return containsAny(item.categories, categories);
+            });
+        }
+
+        setFilteredData(filteredPackages);
+    }, [data, selectedCategories]);
+
+    useEffect(() => {
+        let filteredApis = [];
+
+        filteredApis = filteredData.reduce((acc, item) => {
+            return [...acc, ...item.apis];
+        }, [] as ApiPackage['apis']);
+
+        setFilteredApis(filteredApis);
+    }, [filteredData, apis]);
 
     return (
         <section className="flex gap-8">
             <div>
                 <h2 className="text-xl font-bold mb-4 uppercase">Categories</h2>
-                <ul className="space-y-2 mb-4">
-                    {categories.map((category) => <li>
+                <div className="space-y-2 mb-4 max-w-xs flex flex-wrap gap-2">
+                    {categories.map((category) =>
                         <Toggle className="Toggle" key={category} onPressedChange={() => handleCategoryClick(category)}>{category}</Toggle>
-                    </li>
+
                     )}
-                </ul>
+                </div>
 
                 <h2 className="text-xl font-bold mb-4 uppercase">provider</h2>
                 <ul className="space-y-2 mb-4">
@@ -92,26 +118,10 @@ const PackagesContainer = () => {
 
             <div>
                 <h2 className="text-xl font-bold mb-4 uppercase">
-                    {categories.length} packages, {apis.length} apis
+                    {selectedCategories.size ? `${selectedCategories.size} of ` : ''}{categories.length} packages, {selectedCategories.size ? `${filteredApis.length} of ` : ''}{apis.length} apis
                 </h2>
                 <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
-                    {data.map((item) => {
-
-                        if (selectedCategories.size && !containsAny(item.categories, [...selectedCategories])) {
-                            return null;
-                        }
-
-                        return (
-                            <div key={item.name} className="bg-white rounded-md shadow-sm p-4">
-                                <h3 className="font-bold">{item.displayName}</h3>
-                                <p>provided by {item.provider}</p>
-                                <p className="text-sm text-gray-600">
-                                    {item.description}
-                                </p>
-                            </div>
-                        )
-                    }
-                    )}
+                    {filteredData.map((item) => <PackageCard key={item.name} apiPackage={item} />)}
                 </div>
             </div>
         </section>
