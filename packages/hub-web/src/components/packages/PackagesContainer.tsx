@@ -1,9 +1,10 @@
 import { getPackages } from '@client/sdk.gen'
 import type { ApiPackage } from '@client/types.gen';
 import { Toggle } from '@components/components/ui/toggle';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { PackageCard } from './PackageCard';
 import { Checkbox } from '@components/components/ui/checkbox';
+import { Input } from '@components/components/ui/input';
 
 function containsAny<T extends Array<any>>(arr1: T, arr2: T) {
     return arr1.some(item => arr2.includes(item));
@@ -18,6 +19,7 @@ const PackagesContainer = () => {
     const [apiByProvider, setApiByProvider] = useState<Map<string, ApiPackage['apis']>>(new Map());
     const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
     const [selectedProviders, setSelectedProviders] = useState<Set<string>>(new Set());
+    const [searchValue, setSearchValue] = useState('');
 
     const onGetPackages = async () => {
         const response = await getPackages();
@@ -86,18 +88,24 @@ const PackagesContainer = () => {
         });
     }, [data]);
 
+    const handleSearchChange = useCallback((event: React.FormEvent<HTMLInputElement>) => {
+        setSearchValue(event.currentTarget.value);
+    }, []);
+
     useEffect(() => {
         let filteredPackages = data;
         let categories = [...selectedCategories];
+        let search = searchValue.toLocaleLowerCase();
 
         filteredPackages = filteredPackages.filter((item) => {
             const matchesProvider = selectedProviders.size ? selectedProviders.has(item.provider) : true;
             const matchesCategory = selectedCategories.size ? containsAny(item.categories, categories) : true;
-            return matchesProvider && matchesCategory;
+            const matchesSearch = searchValue ? item.displayName.toLowerCase().includes(search) : true;
+            return matchesProvider && matchesCategory && matchesSearch;
         });
 
         setFilteredData(filteredPackages);
-    }, [data, selectedCategories, selectedProviders]);
+    }, [data, selectedCategories, selectedProviders, searchValue]);
 
     useEffect(() => {
         let filteredApis = [];
@@ -112,6 +120,9 @@ const PackagesContainer = () => {
     return (
         <section className="flex gap-8">
             <div>
+                <div className="grid w-full mb-4">
+                    <Input type="search" placeholder="Search by name" onChange={handleSearchChange} />
+                </div>
                 <h2 className="text-xl font-bold mb-4 uppercase">Categories</h2>
                 <div className="space-y-2 mb-4 w-48 max-w-sm flex flex-wrap gap-x-2">
                     {categories.map((category) =>
