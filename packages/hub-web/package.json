@@ -10,6 +10,7 @@
     "generate:client": "openapi-ts"
   },
   "dependencies": {
+    "@astrojs/node": "^9.0.2",
     "@astrojs/react": "^4.2.0",
     "@hey-api/client-fetch": "^0.8.1",
     "@radix-ui/react-avatar": "^1.1.3",
