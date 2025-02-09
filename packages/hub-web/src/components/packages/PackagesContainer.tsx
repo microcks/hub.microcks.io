@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { PackageCard } from './PackageCard';
 import { Checkbox } from '@components/components/ui/checkbox';
 import { Input } from '@components/components/ui/input';
+import { PackagePlus } from "lucide-react"
 
 function containsAny<T extends Array<any>>(arr1: T, arr2: T) {
     return arr1.some(item => arr2.includes(item));
@@ -166,6 +167,14 @@ const PackagesContainer = ({ apiPackages }: PackagesContainerProps) => {
                     {selectedCategories.size || selectedProviders.size ? `${filteredData.length} of ` : ''}{categories.length} packages, {selectedCategories.size || selectedProviders.size ? `${filteredApis.length} of ` : ''}{apis.length} apis
                 </h2>
                 <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4">
+                    <a href="../docs/how-to-contribute" className="grid min-h-[200px]">
+                        <div className="bg-white rounded-md shadow-sm p-4 flex flex-col justify-center text-center items-center">
+                            <PackagePlus size={48} />
+                            <p className="mt-6 font-bold">
+                                List your API mocks on hub.microcks.io
+                            </p>
+                        </div>
+                    </a>
                     {filteredData.map((item) => <PackageCard key={item.name} apiPackage={item} />)}
                 </div>
             </div>

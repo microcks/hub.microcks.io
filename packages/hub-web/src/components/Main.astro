@@ -1,17 +1,10 @@
 ---
-import { Button } from "@components/components/ui/button";
 import { PackagesContainer } from "@components/packages/PackagesContainer";
 import { getPackages } from "@client/sdk.gen";
 
 const apiPackages = await getPackages();
 ---
 
-<main class="container mx-auto p-8 flex-1">
+<main class="min-w-full mx-auto p-8 flex-1">
     <PackagesContainer client:load apiPackages={apiPackages.data || []} />
-    <section class="text-center mt-16">
-        <p class="text-lg text-gray-700 mb-6">
-            List your API mocks on Hub.microcks.io
-        </p>
-        <Button>Submit your mocks</Button>
-    </section>
 </main>

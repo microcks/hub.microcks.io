@@ -25,7 +25,7 @@ export const prerender = false;
 
 <Layout>
     <Header />
-    <main class="container p-8 min-w-full">
+    <main class="p-8 min-w-full">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
             <PackageContainer client:idle apiPackage={post.data}>
                 <div set:html={descriptionHTML} />
