@@ -1,21 +1,20 @@
 ---
 import { Button } from "@components/components/ui/button";
-import logo from "@assets/hub-microcks.svg";
+import logo from "@assets/microcks.svg";
+import Navigation from "@components/Navigation.astro";
 ---
 
 <header
-	class="bg-white p-4 shadow-md flex justify-between items-center z-10 sticky top-0"
+	class="border-grid sticky top-0 z-50 w-full px-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
 >
-	<div>
-		<img src={logo.src} alt="Microcks Logo" class="h-5" />
-	</div>
-	<div class="flex items-center space-x-4">
-		<Button>Contribute</Button>
+	<div class="flex h-14 item-center">
+		<a href="/" class="flex items-center mr-4">
+			<img src={logo.src} alt="Microcks Logo" class="h-6 w-6 lg:mr-6" />
+			<span class="hidden font-bold lg:inline-block"> Microcks Hub </span>
+		</a>
+		<Navigation client:idle />
+		<div class="flex flex-1 items-center gap-2 justify-end">
+			<Button>Contribute</Button>
+		</div>
 	</div>
 </header>
-
-<style>
-	header {
-		background-image: linear-gradient(to right, #1a2932, #83d0f0);
-	}
-</style>

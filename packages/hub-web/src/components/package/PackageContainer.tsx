@@ -9,8 +9,8 @@ type PackageHeroProps = {
 const PackageContainer = ({ apiPackage, children }: React.PropsWithChildren<PackageHeroProps>) => {
     return <div>
         <div className="p-2 flex gap-4 mb-4 items-center">
-            <Avatar className="w-32 h-32 p-4 border-2 bg-white rounded-full flex items-center justify-center">
-                <AvatarImage src={apiPackage.thumbUrl} className="object-scale-down" />
+            <Avatar className="w-32 h-32 p-4 rounded-full flex items-center justify-center">
+                <AvatarImage src={apiPackage.thumbUrl} className="object-scale-down filter" />
             </Avatar>
 
             <div className="flex-1">

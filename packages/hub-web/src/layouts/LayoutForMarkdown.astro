@@ -1,0 +1,52 @@
+---
+import Layout from "./Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+
+const Pages = [
+	{
+		name: "About",
+		href: "./about",
+	},
+	{
+		name: "Creat API Mocks",
+		href: "./create-api-mocks",
+	},
+	{
+		name: "Contribute API package",
+		href: "./how-to-contribute",
+	},
+	{
+		name: "Describe API package",
+		href: "./package-api-mocks",
+	},
+	{
+		name: "Submit API Package",
+		href: "./submit-your-api-package",
+	},
+];
+---
+
+<Layout>
+	<Header />
+	<div class="flex h-screen">
+		<div
+			class="grid grid-flow-row min-w-min auto-rows-max gap-0.5 text-sm border-r overflow-y-auto py-6 pr-4"
+		>
+			{
+				Pages.map((page) => (
+					<a
+						href={page.href}
+						class="group flex h-8 w-full whitespace-nowrap items-center rounded-lg px-2 font-normal text-foreground underline-offset-2 hover:bg-accent hover:text-accent-foregroun"
+					>
+						{page.name}
+					</a>
+				))
+			}
+		</div>
+		<div class="markdown container p-8 overflow-y-auto">
+			<slot />
+		</div>
+	</div>
+	<Footer />
+</Layout>
