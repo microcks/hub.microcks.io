@@ -10,8 +10,12 @@ function containsAny<T extends Array<any>>(arr1: T, arr2: T) {
     return arr1.some(item => arr2.includes(item));
 }
 
-const PackagesContainer = () => {
-    const [data, setData] = useState<ApiPackage[]>([]);
+type PackagesContainerProps = {
+    apiPackages: ApiPackage[];
+}
+
+const PackagesContainer = ({ apiPackages }: PackagesContainerProps) => {
+    const [data, setData] = useState<ApiPackage[]>(apiPackages);
     const [filteredData, setFilteredData] = useState<ApiPackage[]>([]);
     const [categories, setCategories] = useState<ApiPackage['categories']>([]);
     const [apis, setApis] = useState<ApiPackage['apis']>([]);
@@ -21,23 +25,12 @@ const PackagesContainer = () => {
     const [selectedProviders, setSelectedProviders] = useState<Set<string>>(new Set());
     const [searchValue, setSearchValue] = useState('');
 
-    const onGetPackages = async () => {
-        const response = await getPackages();
-
-        if (response.error) {
-            console.error(response.error);
-            return;
-        }
-
-        if (!response.data) {
-            return;
-        }
-
+    const initLocalState = (data: ApiPackage[] = apiPackages) => {
         let allApis = [] as ApiPackage['apis'];
         let allCaterogies = [] as ApiPackage['categories'];
         const providersApis = new Map<string, ApiPackage['apis']>();
 
-        response.data.forEach((catalogPackage) => {
+        data.forEach((catalogPackage) => {
             if (catalogPackage.apis) {
                 allApis = [...allApis, ...(catalogPackage.apis || [])];
                 providersApis.set(catalogPackage.provider,
@@ -53,10 +46,26 @@ const PackagesContainer = () => {
         setApiByProvider(providersApis);
         setCategories([...new Set(allCaterogies)].sort());
         setApis(allApis);
-        setData(response.data || []);
+        setData(data);
+    }
+
+    const onGetPackages = async () => {
+        const response = await getPackages();
+
+        if (response.error) {
+            console.error(response.error);
+            return;
+        }
+
+        if (!response.data) {
+            return;
+        }
+
+        initLocalState(response.data);
     }
 
     useEffect(() => {
+        initLocalState();
         onGetPackages();
     }, []);
 
