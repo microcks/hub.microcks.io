@@ -1,0 +1,112 @@
+---
+import { getApiVersion } from "@client/sdk.gen";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import { ApiVersionContainer } from "@components/package/ApiVersionContainer";
+import Layout from "@layouts/Layout.astro";
+import { marked } from "marked";
+import CapabilityLevel from "@components/packages/CapabilityLevel.astro";
+
+const apiMockId = Astro.params.id as string;
+const apiPackage = Astro.params.package as string;
+
+const { data: apiVersion } = await getApiVersion({
+    path: {
+        apiVersion: apiMockId,
+        package: apiPackage,
+    },
+});
+
+if (!apiVersion) {
+    return Astro.redirect("404");
+}
+
+const desriptionHTML = marked.parse(apiVersion.description);
+
+export const prerender = false;
+---
+
+<Layout>
+    <Header />
+    <main class="min-w-full min-h-[calc(100vh-3.5rem)] grid">
+        <div class="grid gap-4 grid-cols-1 md:grid-cols-[285px_1fr]">
+            <div class="border-r p-8">
+                <div class="mt-6 text-sm text-gray-500">
+                    <div class="mb-4">
+                        <div class="font-bold">Version:</div>
+                        <div>{apiVersion.version}</div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="font-bold">Capability Level:</div>
+                        <div>
+                            <CapabilityLevel
+                                level={apiVersion.capabilityLevel}
+                            />
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="font-bold">Provider:</div>
+                        <div>{apiVersion.provider || "TBD"}</div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="font-bold">Links:</div>
+                        <ul>
+                            {
+                                apiVersion.links?.map((link) => (
+                                    <li>
+                                        <a
+                                            href={link.url}
+                                            class="text-blue-500 mr-2"
+                                        >
+                                            {link.name}
+                                        </a>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                    <div class="mb-4">
+                        <div class="font-bold">Contracts:</div>
+                        <div>
+                            {
+                                apiVersion.contracts
+                                    .map((contract, index) => contract.type)
+                                    .join(", ")
+                            }
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="font-bold">Published at:</div>
+                        <div>{apiVersion.createdAt}</div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="font-bold">Maintainers:</div>
+                        <ul>
+                            {
+                                apiVersion.maintainers.map((maintainer) => (
+                                    <li class="mb-2 text-blue-500">
+                                        <a href={`mailto:${maintainer.email}`}>
+                                            <span>
+                                                {`${maintainer.name} - ${maintainer.email}`}
+                                            </span>
+                                        </a>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                    <div class="mb-4">
+                        <div class="font-bold">Tags:</div>
+                        <div>{apiVersion.keywords.join(", ")}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-8">
+                <ApiVersionContainer client:idle apiVersion={apiVersion}>
+                    <div set:html={desriptionHTML} class="markdown" />
+                </ApiVersionContainer>
+            </div>
+        </div>
+        <Footer />
+    </main>
+</Layout>

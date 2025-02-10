@@ -101,19 +101,19 @@
 
   .markdown {
     h1 {
-      @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+      @apply text-4xl lg:text-5xl font-extrabold tracking-tight [&:not(:first-child)]:mt-1;
     }
 
     h2 {
-      @apply scroll-m-20 mt-12 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+      @apply border-b pb-2 text-3xl font-semibold tracking-tight [&:not(:first-child)]:mt-1;
     }
 
     h3 {
-      @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+      @apply text-2xl font-semibold tracking-tight [&:not(:first-child)]:mt-8;
     }
 
     h4 {
-      @apply scroll-m-20 text-xl font-semibold tracking-tight;
+      @apply text-xl font-semibold tracking-tight [&:not(:first-child)]:mt-4;
     }
 
     p {
@@ -130,6 +130,10 @@
 
     code {
       @apply relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+    }
+
+    a {
+      @apply text-primary underline;
     }
   }
 }

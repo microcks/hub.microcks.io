@@ -1,5 +1,4 @@
 ---
-import { Button } from "@components/components/ui/button";
 import logo from "@assets/microcks.svg";
 import Navigation from "@components/Navigation.astro";
 ---
@@ -12,7 +11,7 @@ import Navigation from "@components/Navigation.astro";
 			<img src={logo.src} alt="Microcks Logo" class="h-6 w-6 lg:mr-6" />
 			<span class="hidden font-bold lg:inline-block"> Microcks Hub </span>
 		</a>
-		<Navigation client:idle />
+		<Navigation />
 		<div class="flex flex-1 items-center gap-2 justify-end"></div>
 	</div>
 </header>

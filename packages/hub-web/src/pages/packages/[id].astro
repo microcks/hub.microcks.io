@@ -5,6 +5,7 @@ import { PackageContainer } from "@components/package/PackageContainer";
 import Layout from "@layouts/Layout.astro";
 import { marked } from "marked";
 import PackageAPIs from "./PackageAPIs.astro";
+import Footer from "@components/Footer.astro";
 
 const apiPackage = Astro.params.id as string;
 
@@ -25,14 +26,17 @@ export const prerender = false;
 
 <Layout>
     <Header />
-    <main class="p-8 min-w-full">
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <PackageContainer client:idle apiPackage={post.data}>
-                <div set:html={descriptionHTML} />
-            </PackageContainer>
-            <div>
+    <main class="min-w-full min-h-[calc(100vh-3.5rem)] grid">
+        <div class="grid gap-4 grid-cols-1 md:grid-cols-[285px_1fr]">
+            <div class="border-r p-8">
                 <PackageAPIs api={apiPackage} />
+            </div>
+            <div class="p-8">
+                <PackageContainer client:idle apiPackage={post.data}>
+                    <div set:html={descriptionHTML} />
+                </PackageContainer>
             </div>
         </div>
     </main>
+    <Footer />
 </Layout>

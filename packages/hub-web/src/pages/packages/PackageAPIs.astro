@@ -21,7 +21,7 @@ const mocks = await getMocksByPackageApis({
             mocks.data?.map((api) => (
                 <a href={`/packages/${apiPackage}/api/${api.name}`}>
                     <div class="relative bg-white rounded-md shadow-sm p-4">
-                        <div class="flex gap-2">
+                        <div class="flex items-center gap-2">
                             <div class="relative">
                                 <img
                                     class="w-full h-8 object-scale-down"
@@ -29,11 +29,11 @@ const mocks = await getMocksByPackageApis({
                                     alt={api.displayName}
                                 />
                             </div>
-                            <h3 class="relative scroll-m-20 text-2xl font-semibold tracking-tight">
+                            <h3 class="font-semibold tracking-tight">
                                 {api.displayName}
                             </h3>
                         </div>
-                        <p class="relative truncate">{api.description}</p>
+                        <p class="relative line-clamp-2">{api.description}</p>
                     </div>
                 </a>
             ))
