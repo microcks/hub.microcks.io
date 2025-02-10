@@ -1,1 +1,85 @@
-<footer class="bg-gray-800 p-4 text-center text-white">Footer</footer>
+---
+import { buttonVariants } from "@components/components/ui/button";
+import logo from "@assets/microcks-full.svg";
+---
+
+<footer class="p-4 bg-gray-800 text-white py-8">
+    <div class="container mx-auto px-4">
+        <div
+            class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-start"
+        >
+            <div class="mb-8 md:mb-0 flex flex-col gap-4 items-start">
+                <img class="h-12 mb-4" src={logo.src} alt="Microcks" />
+                <div class="text-sm">
+                    Microcks is an open source Kubernetes native platform for
+                    mocking APIs and microservices, allowing contract testing in
+                    an automated and scalable way.
+                </div>
+                <a
+                    class={buttonVariants({ variant: "outline" }) +
+                        " text-black"}
+                    href="https://microcks.io/documentation/getting-started/"
+                    >Jump-start with Microcks</a
+                >
+            </div>
+            <div class="flex flex-col md:flex-row">
+                <div class="mb-8 md:mb-0 md:mr-8">
+                    <h5 class="text-lg font-bold mb-4 uppercase">About</h5>
+                    <a
+                        class="block mb-2 text-sm"
+                        href="https://microcks.io/"
+                        target="_blank">What is Microcks?</a
+                    >
+                    <a
+                        class="block mb-2 text-sm"
+                        href="https://microcks.io/blog/microcks-hub-announcement/"
+                        target="_blank">About Hub.microcks.io</a
+                    >
+                    <a
+                        class="block mb-2 text-sm"
+                        href="https://microcks.io/documentation/getting-started/"
+                        target="_blank">Documentation</a
+                    >
+                    <a
+                        class="block mb-2 text-sm"
+                        href="https://microcks.io/about/privacy-policy"
+                        target="_blank">Privacy Policy</a
+                    >
+                </div>
+                <div>
+                    <h5 class="text-lg font-bold mb-4 uppercase">Network</h5>
+                    <a
+                        class="block mb-2 text-sm"
+                        href="https://twitter.com/microcksio"
+                        target="_blank">Twitter</a
+                    >
+                    <a
+                        class="block mb-2 text-sm"
+                        href="https://www.linkedin.com/company/microcks/"
+                        target="_blank">LinkedIn</a
+                    >
+                    <a
+                        class="block mb-2 text-sm"
+                        href="https://www.youtube.com/c/Microcks"
+                        target="_blank">YouTube</a
+                    >
+                    <a
+                        class="block mb-2 text-sm"
+                        href="https://github.com/microcks"
+                        target="_blank">GitHub</a
+                    >
+                    <a
+                        class="block mb-2 text-sm"
+                        href="https://github.com/microcks/community-mocks/issues"
+                        target="_blank">File an issue on GitHub</a
+                    >
+                    <a
+                        class="block mb-2 text-sm"
+                        href="https://microcksio.zulipchat.com"
+                        target="_blank">Join us on Zulip</a
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
