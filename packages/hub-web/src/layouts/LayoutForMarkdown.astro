@@ -29,9 +29,9 @@ const Pages = [
 
 <Layout>
 	<Header />
-	<div class="flex justify-center h-[calc(100vh-3.5rem)] pl-8">
+	<div class="flex justify-center pl-8">
 		<div
-			class="grid grid-flow-row min-w-min auto-rows-max gap-0.5 text-sm border-r overflow-y-auto py-6 pr-4"
+			class="sticky top-[3.5rem] h-[calc(100vh-3.5rem)] overflow-y-auto grid grid-flow-row min-w-min auto-rows-max gap-0.5 text-sm border-r py-6 pr-4"
 		>
 			{
 				Pages.map((page) => (
@@ -44,7 +44,7 @@ const Pages = [
 				))
 			}
 		</div>
-		<div class="markdown p-8 overflow-y-auto">
+		<div class="markdown p-8">
 			<slot />
 		</div>
 	</div>
