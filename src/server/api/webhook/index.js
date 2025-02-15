@@ -18,11 +18,11 @@
  */
 'use strict';
 
-var express = require('express');
-var controller = require('./webhook.controller');
+import express from 'express';
+import controller from './webhook.controller';
 
 var router = express.Router();
 
 router.post('/:secret', controller.updateLocalMocks);
 
-module.exports = router;
+export default router;

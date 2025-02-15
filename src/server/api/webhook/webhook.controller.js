@@ -18,7 +18,7 @@
  */
 'use strict';
 
-const updateService = require('../../services/updateService');
+import updateService from '../../services/updateService';
 
 exports.updateLocalMocks = function (req, res) {
   console.debug("-- Invoking the updateLocalMocks API using secret '" + req.params.secret + "'");

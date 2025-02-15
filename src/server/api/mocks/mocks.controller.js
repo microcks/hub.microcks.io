@@ -18,7 +18,7 @@
  */
 'use strict';
 
-const persistentStore = require('../../store/persistentStore');
+import persistentStore from '../../store/persistentStore';
 
 exports.listPackages = function (req, res) {
   console.debug("-- Invoking the listPackages API");

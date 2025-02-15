@@ -18,8 +18,8 @@
  */
 'use strict';
 
-const _ = require('lodash');
-const sharp = require('sharp');
+import _ from 'lodash';
+import sharp from 'sharp';
 
 const validCapabilityStrings = ['Incomplete Mocks', 'Full Mocks', 'Mocks + Assertions'];
 
@@ -251,4 +251,4 @@ const mockUtils = {
   normalizeAPIPackages
 };
 
-module.exports = mockUtils;
+export default mockUtils;

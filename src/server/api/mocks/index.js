@@ -18,8 +18,8 @@
  */
 'use strict';
 
-var express = require('express');
-var controller = require('./mocks.controller');
+import express from 'express';
+import controller from './mocks.controller';
 
 var router = express.Router();
 
@@ -28,4 +28,4 @@ router.get('/:apiPackage', controller.getAPIPackage)
 router.get('/:apiPackage/apis', controller.listAPIVersions)
 router.get('/:apiPackage/apis/:apiVersion', controller.getAPIVersion)
 
-module.exports = router;
+export default router;

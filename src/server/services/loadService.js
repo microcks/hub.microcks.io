@@ -18,11 +18,11 @@
  */
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const yaml = require('js-yaml');
-const persistentStore = require('../store/persistentStore');
-const { normalizeAPIVersions, normalizeAPIPackages } = require('../utils/mockUtils');
+import fs from 'fs';
+import path from 'path';
+import yaml from 'js-yaml';
+import persistentStore from '../store/persistentStore';
+import { normalizeAPIVersions, normalizeAPIPackages } from '../utils/mockUtils';
 
 const mocksDirectory = './data/community-mocks/artifacts';
 
@@ -229,4 +229,5 @@ const loadAPIVersions = callback => {
 const loadService = {
   loadAPIVersions
 };
-module.exports = loadService;
+
+export default loadService;

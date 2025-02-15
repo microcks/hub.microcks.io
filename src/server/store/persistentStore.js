@@ -18,8 +18,10 @@
  */
 'use strict';
 
-const _ = require('lodash');
-const sqlite3 = require('sqlite3').verbose();
+import _ from 'lodash';
+import sql from 'sqlite3';
+
+const sqlite3 = sql.verbose()
 
 let db;
 

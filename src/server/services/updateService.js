@@ -18,9 +18,9 @@
  */
 'use strict';
 
-const loadService = require('./loadService');
+import loadService from './loadService';
 
-const { exec } = require('child_process');
+import { exec } from 'child_process';
 
 const updateLocalMocks = (response, callback) => {
   exec('./scripts/update-mocks.sh', (err, stdout, stderr) => {
@@ -52,4 +52,4 @@ const updateService = {
   updateLocalMocks
 };
 
-module.exports = updateService;
+export default updateService;

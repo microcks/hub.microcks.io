@@ -18,8 +18,10 @@
  */
 'use strict';
 
-const express = require('express');
-var errors = require('./components/errors');
+import express from 'express';
+import errors from './components/errors';
+import mocks from './api/mocks';
+import webhooks from './api/webhooks';
 
 const getReleaseDate = (request, response) => {
   const releaseInfo = {
@@ -29,10 +31,10 @@ const getReleaseDate = (request, response) => {
   response.send({ releaseInfo });
 };
 
-module.exports = function (app) {
+export default function (app) {
   // Insert routes below
-  app.use('/api/mocks', require('./api/mocks'));
-  app.use('/api/webhook', require('./api/webhook'));
+  app.use('/api/mocks', mocks);
+  app.use('/api/webhook', webhook);
 
   app.get('/api/releasedate', getReleaseDate);
   app.get('/healthz', (request, response) => {response.sendStatus(200)});
