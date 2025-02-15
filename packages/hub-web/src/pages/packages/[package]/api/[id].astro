@@ -6,6 +6,7 @@ import { ApiVersionContainer } from "@components/package/ApiVersionContainer";
 import Layout from "@layouts/Layout.astro";
 import { marked } from "marked";
 import CapabilityLevel from "@components/packages/CapabilityLevel.astro";
+import { InstallMicrocksDialog } from "@components/package/InstallMicrocksDialog";
 
 const apiMockId = Astro.params.id as string;
 const apiPackage = Astro.params.package as string;
@@ -31,7 +32,15 @@ export const prerender = false;
     <main class="min-w-full min-h-[calc(100vh-3.5rem)] grid">
         <div class="grid gap-4 grid-cols-1 md:grid-cols-[285px_1fr]">
             <div class="border-r p-8">
-                <div class="mt-6 text-sm text-gray-500">
+                <div class="text-sm text-gray-500">
+                    <div class="mb-4">
+                        <InstallMicrocksDialog
+                            client:idle
+                            packageName={apiPackage}
+                            packageAPIVersionName={apiMockId}
+                            contracts={apiVersion.contracts}
+                        />
+                    </div>
                     <div class="mb-4">
                         <div class="font-bold">Version:</div>
                         <div>{apiVersion.version}</div>
