@@ -18,9 +18,9 @@
  */
 'use strict';
 
-import persistentStore from '../../store/persistentStore';
+import persistentStore from '../../store/persistentStore.js';
 
-exports.listPackages = function (req, res) {
+const listPackages = function (req, res) {
   console.debug("-- Invoking the listPackages API");
   persistentStore.getPackages((packages, err) => {
     if (err) {
@@ -32,7 +32,7 @@ exports.listPackages = function (req, res) {
   });
 };
 
-exports.getAPIPackage = function (req, res) {
+const getAPIPackage = function (req, res) {
   console.debug("-- Invoking the getPackage API");
   const apiPackage = req.params.apiPackage;
 
@@ -46,10 +46,10 @@ exports.getAPIPackage = function (req, res) {
   });
 };
 
-exports.listAPIVersions = function (req, res) {
+const listAPIVersions = function (req, res) {
   console.debug("-- Invoking the listAPIVersions API");
   const apiPackage = req.params.apiPackage;
-  
+
   persistentStore.getLatestAPIVersionsByPackage(apiPackage, (apiVersions, err) => {
     if (err) {
       res.status(500).send(err);
@@ -60,7 +60,7 @@ exports.listAPIVersions = function (req, res) {
   });
 };
 
-exports.getAPIVersion = function (req, res) {
+const getAPIVersion = function (req, res) {
   console.debug("-- Invoking the getAPIVersion API");
   const apiPackage = req.params.apiPackage;
   const apiVersion = req.params.apiVersion;
@@ -73,3 +73,10 @@ exports.getAPIVersion = function (req, res) {
     return res.status(200).json(apiVersion);
   });
 };
+
+export default {
+  listAPIVersions,
+  listPackages,
+  getAPIPackage,
+  getAPIVersion,
+}

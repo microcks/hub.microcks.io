@@ -7,6 +7,9 @@ import Layout from "@layouts/Layout.astro";
 import { marked } from "marked";
 import CapabilityLevel from "@components/packages/CapabilityLevel.astro";
 import { InstallMicrocksDialog } from "@components/package/InstallMicrocksDialog";
+import { configureApiClient } from "@utils/apiClient";
+
+configureApiClient(import.meta.env.PUBLIC_API_BASE_URL);
 
 const apiMockId = Astro.params.id as string;
 const apiPackage = Astro.params.package as string;

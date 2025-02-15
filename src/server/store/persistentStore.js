@@ -81,8 +81,8 @@ const PACKAGE_LONG_DESCRIPTION_FIELD = 'longDescription TEXT';
 const PACKAGE_APIS_FIELD = 'apis BLOB';
 
 const packageFields = [
-  'name', 
-  'displayName', 
+  'name',
+  'displayName',
   'categories',
   'createdAt',
   'updatedAt',
@@ -99,7 +99,7 @@ const packageFields = [
 const packageFieldsList = packageFields.join(', ');
 const packageFieldsRefs = _.map(packageFields, () => '?').join(', ');
 
-exports.initialize = callback => {
+const initialize = callback => {
   db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, err => {
     if (err) {
       console.error(err.message);
@@ -153,7 +153,7 @@ exports.initialize = callback => {
   });
 };
 
-exports.close = () => {
+const close = () => {
   db.close();
 };
 
@@ -171,7 +171,7 @@ const normalizeAPIVersionRow = row => {
  * @param {string} apiVersionName
  * @param {Function} callback
  */
-exports.getAPIVersionByName = (apiVersionName, callback) => {
+const getAPIVersionByName = (apiVersionName, callback) => {
   db.all(`SELECT * FROM ${VERSIONS_TABLE} where name = '${apiVersionName}'`, (err, rows) => {
     if (err) {
       console.error(err.message);
@@ -193,7 +193,7 @@ exports.getAPIVersionByName = (apiVersionName, callback) => {
  * @param {string} apiVersionName
  * @param {Function} callback
  */
-exports.getAPIVersionWithPackage = (packageName, apiVersionName, callback) => {
+const getAPIVersionWithPackage = (packageName, apiVersionName, callback) => {
   db.all(
     `SELECT * FROM ${VERSIONS_TABLE} WHERE packageName = '${packageName}' AND name = '${apiVersionName}'`,
     (err, rows) => {
@@ -217,7 +217,7 @@ exports.getAPIVersionWithPackage = (packageName, apiVersionName, callback) => {
  * @param {string} apiVersionId
  * @param {Function} callback
  */
-exports.getAPIVersionsById = (apiVersionId, callback) => {
+const getAPIVersionsById = (apiVersionId, callback) => {
   db.all(`SELECT * FROM ${VERSIONS_TABLE} where id = '${apiVersionId}'`, (err, rows) => {
     if (err) {
       console.error(err.message);
@@ -237,7 +237,7 @@ exports.getAPIVersionsById = (apiVersionId, callback) => {
  * @param {string} packageName
  * @param {Function} callback
  */
-exports.getLatestAPIVersionsByPackage = (packageName, callback) => {
+const getLatestAPIVersionsByPackage = (packageName, callback) => {
   db.all(`SELECT * FROM (select name, max(versionForCompare) from ${VERSIONS_TABLE} 
       where packageName = '${packageName}' group by id) as x 
         inner join ${VERSIONS_TABLE} as v on v.name = x.name`, (err, rows) => {
@@ -258,7 +258,7 @@ exports.getLatestAPIVersionsByPackage = (packageName, callback) => {
  * Get all APIVersions
  * @param {Function} callback
  */
-exports.getAPIVersions = callback => {
+const getAPIVersions = callback => {
   db.all(`SELECT * FROM ${VERSIONS_TABLE}`, (err, rows) => {
     if (err) {
       console.error(err.message);
@@ -270,14 +270,15 @@ exports.getAPIVersions = callback => {
   });
 };
 
-exports.clearAPIVersions = callback => {
+const clearAPIVersions = callback => {
   db.run(`DELETE FROM ${VERSIONS_TABLE}`, callback);
 };
 
-exports.setAPIVersions = (apiVersions, callback) => {
+const setAPIVersions = (apiVersions, callback) => {
   const sql = `INSERT OR IGNORE INTO ${VERSIONS_TABLE} (${apiVersionFieldsList}) VALUES (${apiVersionFieldsRefs})`;
   console.log(`=> Loading ${_.size(apiVersions)} APIVersions in database`);
-  exports.clearAPIVersions(clearErr => {
+
+  clearAPIVersions(clearErr => {
     if (clearErr) {
       console.error(clearErr.message);
     }
@@ -316,7 +317,7 @@ const normalizePackageRow = row => {
   return row;
 };
 
-exports.getPackage = (packageName, callback) => {
+const getPackage = (packageName, callback) => {
   db.all(`SELECT * FROM ${PACKAGES_TABLE} where name = '${packageName}'`, (err, rows) => {
     if (err) {
       console.error(err.message);
@@ -332,7 +333,7 @@ exports.getPackage = (packageName, callback) => {
   });
 };
 
-exports.getPackages = callback => {
+const getPackages = callback => {
   //db.all(`SELECT * FROM ${PACKAGES_TABLE}`, (err, rows) => {
   db.all(`SELECT name, displayName, categories, createdAt, updatedAt, description, thumbUrl, provider, source, maturity, apis FROM ${PACKAGES_TABLE}`, (err, rows) => {
     if (err) {
@@ -345,14 +346,14 @@ exports.getPackages = callback => {
   });
 };
 
-exports.clearPackages = callback => {
+const clearPackages = callback => {
   db.run(`DELETE FROM ${PACKAGES_TABLE}`, callback);
 };
 
-exports.setPackages = (packages, callback) => {
+const setPackages = (packages, callback) => {
   const sql = `INSERT OR IGNORE INTO ${PACKAGES_TABLE} (${packageFieldsList}) VALUES (${packageFieldsRefs})`;
   console.log(`=> Loading ${_.size(packages)} APIPackages in database`);
-  exports.clearPackages(() =>
+  clearPackages(() =>
     db.serialize(() => {
       db.run('BEGIN TRANSACTION');
       packages.forEach(apiPackage => {
@@ -376,3 +377,20 @@ exports.setPackages = (packages, callback) => {
     })
   );
 };
+
+
+export default {
+  initialize,
+  close,
+  getAPIVersionByName,
+  getAPIVersionWithPackage,
+  getAPIVersionsById,
+  getLatestAPIVersionsByPackage,
+  getAPIVersions,
+  clearAPIVersions,
+  setAPIVersions,
+  getPackage,
+  getPackages,
+  clearPackages,
+  setPackages,
+}

@@ -18,9 +18,9 @@
  */
 'use strict';
 
-import updateService from '../../services/updateService';
+import updateService from '../../services/updateService.js';
 
-exports.updateLocalMocks = function (req, res) {
+const updateLocalMocks = function (req, res) {
   console.debug("-- Invoking the updateLocalMocks API using secret '" + req.params.secret + "'");
 
   // Update only if provided secret matches app configured one.
@@ -38,3 +38,5 @@ exports.updateLocalMocks = function (req, res) {
     return res.status(403).send('Bad authorization secret');
   }
 };
+
+export default { updateLocalMocks };

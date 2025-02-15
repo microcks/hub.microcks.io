@@ -1,14 +1,25 @@
 ---
-import Header from "@components/Header.astro";
-import Main from "@components/Main.astro";
+import { getPackages } from "@client/sdk.gen";
 import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import { PackagesContainer } from "@components/packages/PackagesContainer";
 import Layout from "@layouts/Layout.astro";
+import { configureApiClient } from "@utils/apiClient";
+
+configureApiClient(import.meta.env.PUBLIC_API_BASE_URL);
+
+const apiPackages = await getPackages();
 ---
 
 <Layout>
     <Header />
     <div class="flex justify-between flex-col min-h-screen">
-        <Main />
+        <main class="min-w-full mx-auto p-8 flex-1 min-h-[calc(100vh-3.5rem)]">
+            <PackagesContainer
+                client:idle
+                apiPackages={apiPackages.data || []}
+            />
+        </main>
         <Footer />
     </div>
 </Layout>

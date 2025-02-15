@@ -21,9 +21,10 @@
 import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
-import persistentStore from '../store/persistentStore';
-import { normalizeAPIVersions, normalizeAPIPackages } from '../utils/mockUtils';
+import persistentStore from '../store/persistentStore.js';
+import mockUtils from '../utils/mockUtils.js';
 
+const { normalizeAPIVersions, normalizeAPIPackages } = mockUtils;
 const mocksDirectory = './data/community-mocks/artifacts';
 
 /**
@@ -128,7 +129,7 @@ const extractMockData = (packageDirPath, packageDirFileName) => {
       }
     });
   } else {
-  
+
     // packageDirFileName is not a directory but a file.
     try {
       console.log(`    Reading APIPackage file ${apiDirPath}`); // openbanking.org.uk.package.yml
@@ -226,8 +227,6 @@ const loadAPIVersions = callback => {
   return;
 };
 
-const loadService = {
+export {
   loadAPIVersions
 };
-
-export default loadService;

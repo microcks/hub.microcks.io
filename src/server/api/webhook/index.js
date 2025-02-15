@@ -19,7 +19,7 @@
 'use strict';
 
 import express from 'express';
-import controller from './webhook.controller';
+import controller from './webhook.controller.js';
 
 var router = express.Router();
 

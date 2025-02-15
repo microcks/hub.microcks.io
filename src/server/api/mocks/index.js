@@ -19,7 +19,7 @@
 'use strict';
 
 import express from 'express';
-import controller from './mocks.controller';
+import controller from './mocks.controller.js';
 
 var router = express.Router();
 

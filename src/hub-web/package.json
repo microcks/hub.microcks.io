@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:dev": "astro build --mode development",
     "preview": "astro preview",
     "astro": "astro",
     "generate:client": "openapi-ts"

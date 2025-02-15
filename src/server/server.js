@@ -18,17 +18,16 @@
  */
 'use strict';
 
-import { handler as ssrHandler } from '../hub-web/dist/server/entry.mjs';
 import express from 'express';
 import cors from 'cors';
 
-import loadService from './services/loadService';
-import persistentStore from './store/persistentStore';
-import initRotutes from './routes';
+import { loadAPIVersions } from './services/loadService.js';
+import persistentStore from './store/persistentStore.js';
+import initRotutes from './routes.js';
 
 // Retrieve config
 const port = process.env.PORT || 4000;
-const webhookSecret = process.env.WEBHOOK_SECRET || 'secret101';
+const webhookSecret = process.env.WEBHOOK_SECRET || 'secret101';
 
 // Setup server with config
 const app = express();
@@ -37,18 +36,27 @@ app.use(cors());
 
 const base = '/';
 app.use(base, express.static('../hub-web/dist/client/'));
-app.use(ssrHandler);
+if (process.env.API_ONLY === false) {
+  import('../hub-web/dist/server/entry.mjs').then(({ handler: ssrHandler }) => {
+    app.use(ssrHandler);
+    startServer();
+  });
+} else {
+  startServer();
+}
 
 // Then configure other API routes
 initRotutes(app);
 
-// Start server
-const server = app.listen(port, '0.0.0.0', function(){
-  console.log('Express server listening on port ' + port);
-});
+function startServer() {
+  // Start server
+  const server = app.listen(port, '0.0.0.0', function () {
+    console.log('Express server listening on port ' + port);
+  });
 
-const loadedAPIVersions = () => {
-  loadService.loadAPIVersions();
-};
+  const loadedAPIVersions = () => {
+    loadAPIVersions();
+  };
 
-persistentStore.initialize(loadedAPIVersions)
+  persistentStore.initialize(loadedAPIVersions);
+}

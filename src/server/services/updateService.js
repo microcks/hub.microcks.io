@@ -18,7 +18,7 @@
  */
 'use strict';
 
-import loadService from './loadService';
+import { loadAPIVersions } from './loadService.js';
 
 import { exec } from 'child_process';
 
@@ -36,7 +36,7 @@ const updateLocalMocks = (response, callback) => {
     console.log(`stderr: ${stderr}`);
     response.send(stdout);
 
-    loadService.loadAPIVersions(loadError => {
+    loadAPIVersions(loadError => {
       if (loadError) {
         console.dir(loadError);
         callback(null, err.message);

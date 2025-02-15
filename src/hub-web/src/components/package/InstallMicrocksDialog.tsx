@@ -1,7 +1,6 @@
 import type { Contract } from "@client/types.gen";
 import { Button } from "@components/components/ui/button"
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose, DialogHeader, DialogFooter } from "@components/components/ui/dialog"
-import { Copy } from "lucide-react"
 import { CopyCode } from "./CopyCode";
 
 type InstallMicrocksDialogProps = {
@@ -37,7 +36,7 @@ export const InstallMicrocksDialog = ({
                                 return
                             }
 
-                            return <CopyCode code={contract.url} />
+                            return <CopyCode code={contract.url} key={contract.url} />
                         })
                     }
                 </div>
