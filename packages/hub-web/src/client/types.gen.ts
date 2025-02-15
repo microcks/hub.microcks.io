@@ -185,6 +185,7 @@ export type Maturity = 'alpha' | 'beta' | 'stable';
  * Contraxct is an artifact that can be imported into a Microcks instance
  */
 export type Contract = {
+    url?: string;
     /**
      * This artifact type
      */

@@ -298,6 +298,8 @@ components:
       - type
       type: object
       properties:
+        url:
+          type: string
         type:
           description: This artifact type
           enum:
