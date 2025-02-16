@@ -23,7 +23,7 @@ Check out more details on example-driven on [Why Microcks?](https://microcks.io/
 
 Once you have selected your API artifacts that will represent your contribution basis, ensure they are embedding useful examples for your API operations. You do not need to cover all the cases from the start! It can be an iterative process: start with most common cases examples and then add edge and exception cases later.
 
-Microcks provides documentation on the different supported formats. Here are the main documentation pointers for [OpenAPI](https://microcks.io/documentation/using/openapi/), [AsyncAPI](https://microcks.io/documentation/using/asyncapi/), [Postman collections](https://microcks.io/documentation/using/postman/), [SoapUI projects](https://microcks.io/documentation/using/soapui/) or [gRPC](https://microcks.io/documentation/tutorials/first-grpc-mock/).
+Microcks provides documentation on the different supported formats. Here are the main documentation pointers for [OpenAPI](https://microcks.io/documentation/using/openapi/), [AsyncAPI](https://microcks.io/documentation/using/asyncapi/), [Postman collections](https://microcks.io/documentation/using/postman/), [SoapUI projects](https://microcks.io/documentation/using/soapui/) or [gRPC](https://microcks.io/documentation/using/grpc/).
 
 At that time, you may want to validate these examples on a local Microcks instance. You can easily install Microcks using Docker-Compose on a laptop. Please check out more details on the [Docker-Compose installation](https://microcks.io/documentation/installing/docker-compose/).
 
