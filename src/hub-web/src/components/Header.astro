@@ -1,0 +1,17 @@
+---
+import logo from "@assets/microcks.svg";
+import Navigation from "@components/Navigation.astro";
+---
+
+<header
+	class="border-grid sticky top-0 z-50 w-full px-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+>
+	<div class="flex h-14 item-center">
+		<a href="/" class="flex items-center mr-4">
+			<img src={logo.src} alt="Microcks Logo" class="h-6 w-6 lg:mr-6" />
+			<span class="hidden font-bold lg:inline-block"> Microcks Hub </span>
+		</a>
+		<Navigation />
+		<div class="flex flex-1 items-center gap-2 justify-end"></div>
+	</div>
+</header>

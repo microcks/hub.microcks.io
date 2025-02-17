@@ -1,0 +1,45 @@
+---
+import { getPackage } from "@client/sdk.gen";
+import Header from "@components/Header.astro";
+import { PackageContainer } from "@components/package/PackageContainer";
+import Layout from "@layouts/Layout.astro";
+import { marked } from "marked";
+import PackageAPIs from "./PackageAPIs.astro";
+import Footer from "@components/Footer.astro";
+import { configureApiClient } from "@utils/apiClient";
+
+configureApiClient(import.meta.env.PUBLIC_API_BASE_URL);
+
+const apiPackage = Astro.params.id as string;
+
+const post = await getPackage({
+    path: {
+        package: apiPackage,
+    },
+});
+
+if (!post.data) {
+    return Astro.redirect("404");
+}
+
+const descriptionHTML = marked.parse(post.data.longDescription);
+
+export const prerender = false;
+---
+
+<Layout>
+    <Header />
+    <main class="min-w-full min-h-[calc(100vh-3.5rem)] grid">
+        <div class="grid gap-4 grid-cols-1 md:grid-cols-[285px_1fr]">
+            <div class="border-r p-8">
+                <PackageAPIs api={apiPackage} />
+            </div>
+            <div class="p-8">
+                <PackageContainer client:idle apiPackage={post.data}>
+                    <div set:html={descriptionHTML} />
+                </PackageContainer>
+            </div>
+        </div>
+    </main>
+    <Footer />
+</Layout>
