@@ -25,7 +25,7 @@ Once you have selected your API artifacts that will represent your contribution 
 
 Microcks provides documentation on the different supported formats. Here are the main documentation pointers for [OpenAPI](https://microcks.io/documentation/references/artifacts/openapi-conventions/), [AsyncAPI](https://microcks.io/documentation/references/artifacts/asyncapi-conventions/), [Postman collections](https://microcks.io/documentation/references/artifacts/postman-conventions/), [SoapUI projects](https://microcks.io/documentation/references/artifacts/soapui-conventions/) or [gRPC](https://microcks.io/documentation/references/artifacts/grpc-conventions/).
 
-At that time, you may want to validate these examples on a local Microcks instance. You can easily install Microcks using Docker-Compose on a laptop. Please check out more details on the [Docker-Compose installation](https://microcks.io/documentation/installing/docker-compose/).
+At that time, you may want to validate these examples on a local Microcks instance. You can easily install Microcks using Docker-Compose on a laptop. Please check out more details on the [Docker-Compose installation](https://microcks.io/documentation/guides/installation/docker-compose/).
 
 
 ## Add more artifacts
