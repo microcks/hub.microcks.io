@@ -26,7 +26,7 @@ Once your artifacts are available, you need to give additional information to en
 * The `API Package` is the top-level concept that allows you to wrap together a set of related APIs. The package can be related to an open source project, a commercial product or an industrial standard and it must belongs to a specific business category,
 * The `API Versions` are simply the versioned APIs that are members of the package. The Hub will keep history of different versions you’ll release through your package. An API Version links to your API artifacts through the `contracts` property as illustrated in below schema.
 
-![Git repos organization](/assets/images/git-repos-organization.png "Git repos organization")
+![Git repos organization](/assets/images/microhub.png "Git repos organization")
 
 Check out more details on how to [describe API packages and versions](/doc/package-api-mocks).
 
