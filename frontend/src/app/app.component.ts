@@ -27,13 +27,12 @@ declare let gtag: Function;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'hub-microcks-io-frontend';
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.setUpAnalytics();
@@ -41,17 +40,16 @@ export class AppComponent {
 
   setUpAnalytics() {
     if (environment.production && environment.ga_tracking_id != null) {
-      let ga_id = environment.ga_tracking_id // google analytics id
+      let ga_id = environment.ga_tracking_id; // google analytics id
       //console.log("Setup GA with " + ga_id);
 
-      this.router.events.pipe(filter(event => event instanceof NavigationEnd))
+      this.router.events
+        .pipe(filter((event) => event instanceof NavigationEnd))
         .subscribe((event: NavigationEnd) => {
           //console.log("Navigation end detected, calling gtag with " + event.urlAfterRedirects);
-          gtag('config', ga_id,
-            {
-              page_path: event.urlAfterRedirects
-            }
-          );
+          gtag('config', ga_id, {
+            page_path: event.urlAfterRedirects,
+          });
         });
     }
   }

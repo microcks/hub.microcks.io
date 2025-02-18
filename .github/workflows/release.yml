@@ -57,7 +57,7 @@ jobs:
           cd ${{github.workspace}}/frontend
           npm sbom --sbom-format spdx > microcks-hub-frontend-${{ github.event.inputs.version }}.spdx-sbom.json 
           cd ${{github.workspace}}/server
-          npm sbom --sbom-format spdx > microcks-hub-server-${{ github.event.inputs.version }}.spdx-sbom.json 
+          npm sbom --sbom-format spdx > microcks-hub-server-${{ github.event.inputs.version }}.spdx-sbom.json
 
       - name: Publish release with JReleaser
         uses: jreleaser/release-action@v2

@@ -3,7 +3,11 @@ body {
   color: #363636;
   font-size: 14px;
 }
-input, button, select, optgroup, textearea {
+input,
+button,
+select,
+optgroup,
+textearea {
   font-size: 14px;
 }
 h1 {
@@ -34,7 +38,7 @@ pre code {
   color: #df691a;
   display: block;
   padding: 1em;
-  font-size: .8rem;
+  font-size: 0.8rem;
   line-height: 1.8;
   overflow-x: auto;
 }
@@ -52,7 +56,7 @@ a:hover {
   padding-top: 60px;
   /*background-image: url(./assets/images/header-bg.png), linear-gradient(to right, #4e5d6c, #2c95b5);*/
   /*background-repeat: repeat-x repeat-y;*/
-  background-image: linear-gradient(to right, #1a2932,#83d0f0);
+  background-image: linear-gradient(to right, #1a2932, #83d0f0);
   /*color: #ffffff;
   align-items: center;
   overflow-x: hidden;*/
@@ -67,7 +71,8 @@ a:hover {
   padding: 0 15px;
   /*max-width: 100%;*/
 }
-.mh-page-header, .mh-page-header_inner {
+.mh-page-header,
+.mh-page-header_inner {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -109,13 +114,13 @@ ol.breadcrumbs {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
-ol.breadcrumbs>li {
+ol.breadcrumbs > li {
   display: inline;
   text-align: -webkit-match-parent;
 }
-ol.breadcrumbs>li+li:before {
+ol.breadcrumbs > li + li:before {
   color: #9c9c9c;
-  content: "";
+  content: '';
   font-family: FontAwesome;
   font-size: 13px;
   padding: 0 9px 0 7px;

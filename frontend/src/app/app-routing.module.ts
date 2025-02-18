@@ -24,29 +24,28 @@ import { PackagePageComponent } from './pages/package/package.page';
 import { APIVersionPageComponent } from './pages/package/apiVersion/apiVersion.page';
 import { DocumentationPageComponent } from './pages/doc/doc.page';
 
-
 const routes: Routes = [
   {
     path: '',
-    component: HomePageComponent
+    component: HomePageComponent,
   },
   {
-    path: "package/:packageId",
-    component: PackagePageComponent
+    path: 'package/:packageId',
+    component: PackagePageComponent,
   },
   {
-    path: "package/:packageId/api/:apiVersionId",
-    component: APIVersionPageComponent
+    path: 'package/:packageId/api/:apiVersionId',
+    component: APIVersionPageComponent,
   },
   {
-    path: "doc/:page",
-    component: DocumentationPageComponent
-  }
+    path: 'doc/:page',
+    component: DocumentationPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  declarations: []
+  declarations: [],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -17,7 +17,7 @@
  * under the License.
  */
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from "@angular/router";
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -25,7 +25,11 @@ import { switchMap } from 'rxjs/operators';
 import copy from 'copy-to-clipboard';
 
 import { PackagesService } from 'src/app/services/packages.service';
-import { APIPackage, APIVersion, APISummary } from 'src/app/models/package.model';
+import {
+  APIPackage,
+  APIVersion,
+  APISummary,
+} from 'src/app/models/package.model';
 
 import { markdownConverter } from 'src/app/components/markdown';
 
@@ -36,45 +40,55 @@ declare let $: any;
 @Component({
   selector: 'apiVersion-page',
   templateUrl: './apiVersion.page.html',
-  styleUrls: ['./apiVersion.page.css']
+  styleUrls: ['./apiVersion.page.css'],
 })
 export class APIVersionPageComponent implements OnInit {
-
   package: Observable<APIPackage>;
   packageAPIVersion: Observable<APIVersion>;
   resolvedPackage: APIPackage;
   resolvedPackageAPI: APISummary;
   resolvedAPIVersion: APIVersion;
 
-  guiCommandStatus: string = "Copy to Clipboard";
-  cliCommandStatus: string = "Copy to Clipboard";
+  guiCommandStatus: string = 'Copy to Clipboard';
+  cliCommandStatus: string = 'Copy to Clipboard';
 
-  constructor(private packagesSvc: PackagesService, private route: ActivatedRoute) { }
+  constructor(
+    private packagesSvc: PackagesService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.package = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => 
-        this.packagesSvc.getPackage(params.get('packageId')))
+      switchMap((params: ParamMap) =>
+        this.packagesSvc.getPackage(params.get('packageId'))
+      )
     );
     this.packageAPIVersion = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => 
-        this.packagesSvc.getAPIVersion(params.get('packageId'), params.get('apiVersionId')))
+      switchMap((params: ParamMap) =>
+        this.packagesSvc.getAPIVersion(
+          params.get('packageId'),
+          params.get('apiVersionId')
+        )
+      )
     );
 
-    this.package.subscribe( result => {
+    this.package.subscribe((result) => {
       this.resolvedPackage = result;
-      this.packageAPIVersion.subscribe( apiVersion => {
-        console.log("this.resolvedPackage.apis: " + JSON.stringify(this.resolvedPackage.apis));
-        this.resolvedPackage.apis.forEach(api => {
-          console.log("api.name: " + api.name);
-          console.log("apiVersion.id: " + apiVersion.id);
+      this.packageAPIVersion.subscribe((apiVersion) => {
+        console.log(
+          'this.resolvedPackage.apis: ' +
+            JSON.stringify(this.resolvedPackage.apis)
+        );
+        this.resolvedPackage.apis.forEach((api) => {
+          console.log('api.name: ' + api.name);
+          console.log('apiVersion.id: ' + apiVersion.id);
           if (api.name === apiVersion.id) {
             this.resolvedPackageAPI = api;
           }
         });
       });
     });
-    this.packageAPIVersion.subscribe (result => {
+    this.packageAPIVersion.subscribe((result) => {
       this.resolvedAPIVersion = result;
     });
   }
@@ -88,12 +102,14 @@ export class APIVersionPageComponent implements OnInit {
   }
 
   renderCapabilityLevel(): string {
-    if ("Full Mocks" === this.resolvedAPIVersion.capabilityLevel) {
-      return "/assets/images/mocks-level-2.svg"
-    } else if ("Mocks + Assertions" === this.resolvedAPIVersion.capabilityLevel) {
-      return "/assets/images/mocks-level-2.svg"
+    if ('Full Mocks' === this.resolvedAPIVersion.capabilityLevel) {
+      return '/assets/images/mocks-level-2.svg';
+    } else if (
+      'Mocks + Assertions' === this.resolvedAPIVersion.capabilityLevel
+    ) {
+      return '/assets/images/mocks-level-2.svg';
     }
-    return "/assets/images/mocks-level-1.svg"
+    return '/assets/images/mocks-level-1.svg';
   }
 
   onModalEnter(): void {
@@ -107,10 +123,14 @@ export class APIVersionPageComponent implements OnInit {
   copyToClipboard(command: string, event: Event): void {
     event.preventDefault();
     copy(command);
-    (<any>$(event.currentTarget)).attr('data-original-title', 'Copied').tooltip('show');
-  };
+    (<any>$(event.currentTarget))
+      .attr('data-original-title', 'Copied')
+      .tooltip('show');
+  }
 
   onCopyEnter(event: Event): void {
-    (<any>$(event.currentTarget)).attr('data-original-title', 'Copy to Clipboard').tooltip('show');
+    (<any>$(event.currentTarget))
+      .attr('data-original-title', 'Copy to Clipboard')
+      .tooltip('show');
   }
 }

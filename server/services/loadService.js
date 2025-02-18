@@ -22,7 +22,10 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 const persistentStore = require('../store/persistentStore');
-const { normalizeAPIVersions, normalizeAPIPackages } = require('../utils/mockUtils');
+const {
+  normalizeAPIVersions,
+  normalizeAPIPackages,
+} = require('../utils/mockUtils');
 
 const mocksDirectory = './data/community-mocks/artifacts';
 
@@ -31,9 +34,12 @@ const mocksDirectory = './data/community-mocks/artifacts';
  * @param {*} content
  * @returns {'API'|'PKG'|'Unknown'}
  */
-const getFileType = content => {
+const getFileType = (content) => {
   if (content.kind && content.apiVersion) {
-    const apiName = content.apiVersion.substring(0, content.apiVersion.indexOf('/'));
+    const apiName = content.apiVersion.substring(
+      0,
+      content.apiVersion.indexOf('/')
+    );
 
     if (apiName === 'mocks.microcks.io') {
       if (content.kind === 'APIVersion') {
@@ -72,7 +78,9 @@ const extractAPIVersionData = (versionDirPath, fileName) => {
   if (fileType === 'API') {
     apiVersionFile = content;
   } else if (fileType === 'Unknown') {
-    console.warn(`Cannot identify file ${fileName} in folder ${versionDirPath}. Ignoring file`);
+    console.warn(
+      `Cannot identify file ${fileName} in folder ${versionDirPath}. Ignoring file`
+    );
   }
 
   return apiVersionFile;
@@ -102,14 +110,14 @@ const extractMockData = (packageDirPath, packageDirFileName) => {
     const apiFolder = apiDirPath; // data/community-mocks/artifacts/openbanking.org.uk/account-and-transaction
     const apiFileNames = fs.readdirSync(apiFolder);
 
-    apiFileNames.forEach(apiFile => {
+    apiFileNames.forEach((apiFile) => {
       const apiPath = path.join(apiDirPath, apiFile);
 
       if (fs.statSync(apiPath).isDirectory()) {
         console.log(`    Reading APIVersion dir ${apiFile}`); // 3.1.0
         const apiVersionFileNames = fs.readdirSync(apiPath);
 
-        apiVersionFileNames.forEach(apiVersionFileName => {
+        apiVersionFileNames.forEach((apiVersionFileName) => {
           console.log(`      Reading APIVersion file ${apiVersionFileName}`); // account-and-transaction.3.1.0.api.yml
           const apiVersion = extractAPIVersionData(apiPath, apiVersionFileName);
 
@@ -118,17 +126,19 @@ const extractMockData = (packageDirPath, packageDirFileName) => {
         });
 
         if (apiVersionsFiles.length == 0) {
-          console.warn(`API dir ${apiDirPath} contains no APIVersion! Ignoring it.`, apiVersionsFiles);
+          console.warn(
+            `API dir ${apiDirPath} contains no APIVersion! Ignoring it.`,
+            apiVersionsFiles
+          );
         }
 
         return {
           packageFile: null,
-          apiVersionsFiles
+          apiVersionsFiles,
         };
       }
     });
   } else {
-  
     // packageDirFileName is not a directory but a file.
     try {
       console.log(`    Reading APIPackage file ${apiDirPath}`); // openbanking.org.uk.package.yml
@@ -136,11 +146,13 @@ const extractMockData = (packageDirPath, packageDirFileName) => {
       content = yaml.load(fs.readFileSync(apiDirPath));
       fileType = getFileType(content);
     } catch (e) {
-      console.error(`ERROR: Unable to parse ${packageDirFileName} as an APIPackage`);
+      console.error(
+        `ERROR: Unable to parse ${packageDirFileName} as an APIPackage`
+      );
       console.error(e.message);
       return {
         packageFile: null,
-        apiVersionsFiles
+        apiVersionsFiles,
       };
     }
 
@@ -149,27 +161,29 @@ const extractMockData = (packageDirPath, packageDirFileName) => {
     } else if (fileType === 'API') {
       apiVersionFiles.push(content);
     } else if (fileType === 'Unknown') {
-      console.warn(`Cannot identify file ${packageDirFileName} at folder ${packageDirPath}. Ignoring file`);
+      console.warn(
+        `Cannot identify file ${packageDirFileName} at folder ${packageDirPath}. Ignoring file`
+      );
     }
   }
 
   return {
     packageFile,
-    apiVersionsFiles
+    apiVersionsFiles,
   };
-}
+};
 
 /**
  * Loads all APIVersions with packages and normalize them
  * @param {*} callback
  */
-const loadAPIVersions = callback => {
+const loadAPIVersions = (callback) => {
   const packages = [];
   const apiVersions = [];
   if (fs.existsSync(mocksDirectory)) {
     const mocksDirNames = fs.readdirSync(mocksDirectory);
 
-    mocksDirNames.forEach(packageDirName => {
+    mocksDirNames.forEach((packageDirName) => {
       const packageDirPath = path.join(mocksDirectory, packageDirName);
       // packageDirPath: data/community-mocks/artifats/openbanking.org.uk
 
@@ -180,11 +194,18 @@ const loadAPIVersions = callback => {
         let mockPackage = null;
         let mockAPIVersions = [];
 
-        packageDirFileNames.forEach(packageDirFileName => {
-          const { packageFile, apiVersionsFiles } = extractMockData(packageDirPath, packageDirFileName);
+        packageDirFileNames.forEach((packageDirFileName) => {
+          const { packageFile, apiVersionsFiles } = extractMockData(
+            packageDirPath,
+            packageDirFileName
+          );
 
           if (mockPackage && packageFile) {
-            console.error(`APIPackage ${packageDirName} contains multiple package files!. Skipping it.`, mockPackage, packageFile);
+            console.error(
+              `APIPackage ${packageDirName} contains multiple package files!. Skipping it.`,
+              mockPackage,
+              packageFile
+            );
           } else if (packageFile) {
             mockPackage = packageFile;
           }
@@ -193,7 +214,7 @@ const loadAPIVersions = callback => {
 
         if (mockPackage) {
           // add package data to apiVersion
-          mockAPIVersions.forEach(apiVersion => {
+          mockAPIVersions.forEach((apiVersion) => {
             apiVersion.packageInfo = mockPackage;
 
             // add to apiVersion list
@@ -203,30 +224,39 @@ const loadAPIVersions = callback => {
           if (mockAPIVersions.length > 0) {
             packages.push(mockPackage);
           } else {
-            console.warn(`No valid APIVersion found for mock ${packageDirName}. Skipping this package.`);
+            console.warn(
+              `No valid APIVersion found for mock ${packageDirName}. Skipping this package.`
+            );
           }
         } else {
-          console.warn(`No mock package file found in mock ${packageDirName}. Ignoring it.`);
+          console.warn(
+            `No mock package file found in mock ${packageDirName}. Ignoring it.`
+          );
         }
       }
     });
 
-    normalizeAPIVersions(apiVersions).then(normalizedAPIVersions => {
+    normalizeAPIVersions(apiVersions).then((normalizedAPIVersions) => {
       //const normalizedPackages = normalizeAPIPackages(packages, normalizedAPIVersions);
-      normalizeAPIPackages(packages, normalizedAPIVersions).then(normalizedPackages => {
-        persistentStore.setPackages(normalizedPackages, packagesErr => {
-          if (packagesErr) {
-            console.error('Error when setting packages in persistentStore: ' + packagesErr.message);
-          }
-          persistentStore.setAPIVersions(normalizedAPIVersions, callback);
-        });
-      })
+      normalizeAPIPackages(packages, normalizedAPIVersions).then(
+        (normalizedPackages) => {
+          persistentStore.setPackages(normalizedPackages, (packagesErr) => {
+            if (packagesErr) {
+              console.error(
+                'Error when setting packages in persistentStore: ' +
+                  packagesErr.message
+              );
+            }
+            persistentStore.setAPIVersions(normalizedAPIVersions, callback);
+          });
+        }
+      );
     });
   }
   return;
 };
 
 const loadService = {
-  loadAPIVersions
+  loadAPIVersions,
 };
 module.exports = loadService;

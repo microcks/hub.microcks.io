@@ -5,6 +5,6 @@ services:
     image: quay.io/microcks/microcks-hub:latest
     container_name: hub
     ports:
-      - "4000:4000"
+      - '4000:4000'
     environment:
       - WEBHOOK_SECRET=secret102

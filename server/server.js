@@ -27,7 +27,7 @@ const persistentStore = require('./store/persistentStore');
 
 // Retrieve config
 const port = process.env.PORT || 4000;
-const webhookSecret = process.env.WEBHOOK_SECRET || 'secret101';
+const webhookSecret = process.env.WEBHOOK_SECRET || 'secret101';
 
 // Setup server with config
 const app = express();
@@ -35,7 +35,7 @@ app.set('webhookSecret', webhookSecret);
 app.use(cors());
 
 // Configure paths for static resources in production mode
-var root = path.normalize(__dirname + '/../frontend')
+var root = path.normalize(__dirname + '/../frontend');
 app.use(express.static(path.join(root, 'dist')));
 app.set('appPath', path.join(root, 'dist'));
 
@@ -43,7 +43,7 @@ app.set('appPath', path.join(root, 'dist'));
 require('./routes')(app);
 
 // Start server
-const server = app.listen(port, '0.0.0.0', function(){
+const server = app.listen(port, '0.0.0.0', function () {
   console.log('Express server listening on port ' + port);
 });
 
@@ -51,4 +51,4 @@ const loadedAPIVersions = () => {
   loadService.loadAPIVersions();
 };
 
-persistentStore.initialize(loadedAPIVersions)
+persistentStore.initialize(loadedAPIVersions);

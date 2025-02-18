@@ -10,6 +10,7 @@ This document defines governance policies for the Microcks project.
 - [Credits](#credits)
 
 ## Principles
+
 The Microcks project community adheres to the following principles:
 
 - **Open**: The Microcks community strives to be open, accessible and welcoming to everyone. Anyone may contribute, and contributions are available to all users according to open source values and licenses.
@@ -19,22 +20,27 @@ The Microcks project community adheres to the following principles:
 Join us 👉 https://microcks.io/community/
 
 ## Code of Conduct
+
 Microcks follow the [Code of Conduct](CODE_OF_CONDUCT.md), which is aligned with the [CNCF Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md).
 
 ## Conflict Resolutions
+
 Typically, it is assumed that disputes will be resolved amicably by those involved. However, if the situation becomes more serious, conflicts will be resolved through a voting process. A supermajority of votes from project maintainers is required to make a decision, and the project lead has the final say in the ruling.
 
 ## Meetings
+
 🚧 We **will** hold monthly Open Community Meetings for each region, so we will have bi-weekly meetings to try to be worldwide friendly. Stay tuned, coming soon 🚧.
 
 The maintainers will also have closed meetings to discuss security reports or Code of Conduct violations. Any maintainer in charge should schedule such meetings upon receiving a security issue or CoC report. All current Maintainers must be invited to such closed meetings, except for any maintainer accused of a CoC violation.
 
 ## Changes
+
 This Project Governance is a living document. All key project changes, including changes in project governance, can be proposed by a GitHub PR and then reviewed and voted on by project maintainers.
 
 As the Microcks community and project **grow**, we are **committed** to _progressing_ by _describing_ and _sharing_ our **governance model** along the way, **the open way**.
 
 ## Credits
+
 Thanks to [Dawn Foster](https://github.com/geekygirldawn) for the inspiring talk and valuable insights at KubeCon Europe 2022: "Good Governance Practices for CNCF Projects":
 [Info](https://contribute.cncf.io/resources/videos/2022/good-governance-practices/), [Recording](https://youtu.be/x0tgEpIER1M?si=0EMgdfA1j5kxpXlW) and [slide deck](https://static.sched.com/hosted_files/kccnceu2022/7c/Good_Governance_CNCF_Projects.pdf) 👀
 

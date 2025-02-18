@@ -1,12 +1,12 @@
-const DEFAULT_TARGET = "http://127.0.0.1:4000";
+const DEFAULT_TARGET = 'http://127.0.0.1:4000';
 const target = process.env.API_URL || DEFAULT_TARGET;
 
 module.exports = {
-  "/api": {
+  '/api': {
     target,
     secure: false,
   },
-  "/documentation": {
+  '/documentation': {
     target,
     secure: false,
   },

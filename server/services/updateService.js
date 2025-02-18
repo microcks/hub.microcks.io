@@ -36,7 +36,7 @@ const updateLocalMocks = (response, callback) => {
     console.log(`stderr: ${stderr}`);
     response.send(stdout);
 
-    loadService.loadAPIVersions(loadError => {
+    loadService.loadAPIVersions((loadError) => {
       if (loadError) {
         console.dir(loadError);
         callback(null, err.message);
@@ -49,7 +49,7 @@ const updateLocalMocks = (response, callback) => {
 };
 
 const updateService = {
-  updateLocalMocks
+  updateLocalMocks,
 };
 
 module.exports = updateService;

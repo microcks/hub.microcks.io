@@ -27,9 +27,16 @@ import { APIPackage } from 'src/app/models/package.model';
 declare let $: any;
 
 const OTHER_CATEGORY = 'Other';
-const IGNORED_PROVIDER_TAILS = [', Inc.', ', Inc', ' Inc.', ' Inc', ', LLC', ' LLC'];
+const IGNORED_PROVIDER_TAILS = [
+  ', Inc.',
+  ', Inc',
+  ' Inc.',
+  ' Inc',
+  ', LLC',
+  ' LLC',
+];
 
-const sanitizeProviderValue = value => {
+const sanitizeProviderValue = (value) => {
   if (!value) {
     return value;
   }
@@ -48,10 +55,9 @@ const sanitizeProviderValue = value => {
 @Component({
   selector: 'home-page',
   templateUrl: './home.page.html',
-  styleUrls: ['./home.page.css']
+  styleUrls: ['./home.page.css'],
 })
 export class HomePageComponent implements OnInit {
-
   categories: any = [];
   providers: any = [];
   packages: APIPackage[];
@@ -63,34 +69,54 @@ export class HomePageComponent implements OnInit {
   filteredPackages: APIPackage[];
   sortType: string;
 
-  constructor(private packagesSvc: PackagesService, private renderer: Renderer2, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private packagesSvc: PackagesService,
+    private renderer: Renderer2,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getPackages();
   }
 
   ngAfterViewInit() {
-    this.renderer.listen(parent.document.getElementById('search-input'), 'keyup', (event) => {
-      this.filterString = $('#search-input').val().toLowerCase();
-      this.applyFilters();
-      // Update browser URL.
-      const queryParams: Params = { search: this.filterString };
-      this.router.navigate([], {relativeTo: this.route, queryParams: queryParams, queryParamsHandling: 'merge'});
-    });
-    this.renderer.listen(parent.document.getElementById('search-clear'), 'click', (event) => {
-      this.filterString = null;
-      this.applyFilters();
-      // Update browser URL.
-      const queryParams: Params = { search: null };
-      this.router.navigate([], {relativeTo: this.route, queryParams: queryParams});
-    });
+    this.renderer.listen(
+      parent.document.getElementById('search-input'),
+      'keyup',
+      (event) => {
+        this.filterString = $('#search-input').val().toLowerCase();
+        this.applyFilters();
+        // Update browser URL.
+        const queryParams: Params = { search: this.filterString };
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: queryParams,
+          queryParamsHandling: 'merge',
+        });
+      }
+    );
+    this.renderer.listen(
+      parent.document.getElementById('search-clear'),
+      'click',
+      (event) => {
+        this.filterString = null;
+        this.applyFilters();
+        // Update browser URL.
+        const queryParams: Params = { search: null };
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: queryParams,
+        });
+      }
+    );
   }
 
   getPackages(): void {
-    this.packagesSvc.getPackages().subscribe(results => {
+    this.packagesSvc.getPackages().subscribe((results) => {
       this.packages = results;
       this.filteredPackages = results;
-      this.route.queryParams.subscribe(queryParams => {
+      this.route.queryParams.subscribe((queryParams) => {
         if (queryParams['search']) {
           this.filterString = queryParams['search'];
           this.applyFilters();
@@ -111,7 +137,10 @@ export class HomePageComponent implements OnInit {
   }
   toggleProvider(provider: string): void {
     if (this.selectedProviders.indexOf(provider) != -1) {
-      this.selectedProviders.splice(this.selectedProviders.indexOf(provider), 1);
+      this.selectedProviders.splice(
+        this.selectedProviders.indexOf(provider),
+        1
+      );
     } else {
       this.selectedProviders.push(provider);
     }
@@ -120,14 +149,19 @@ export class HomePageComponent implements OnInit {
 
   applyFilters(): void {
     this.filteredPackages = this.packages.filter((item, index, array) => {
-      return this.challengeFilterString(item) && this.challengeSelectedCategory(item) 
-          && this.challengeSelectedProviders(item);
+      return (
+        this.challengeFilterString(item) &&
+        this.challengeSelectedCategory(item) &&
+        this.challengeSelectedProviders(item)
+      );
     });
   }
   challengeFilterString(item: APIPackage): boolean {
     if (this.filterString && this.filterString != null) {
-      if (item.name.toLowerCase().indexOf(this.filterString) != - 1 ||
-          item.displayName.toLowerCase().indexOf(this.filterString) != -1) {
+      if (
+        item.name.toLowerCase().indexOf(this.filterString) != -1 ||
+        item.displayName.toLowerCase().indexOf(this.filterString) != -1
+      ) {
         return true;
       }
       return false;
@@ -145,14 +179,20 @@ export class HomePageComponent implements OnInit {
   }
   challengeSelectedProviders(item: APIPackage): boolean {
     if (this.selectedProviders && this.selectedProviders.length > 0) {
-      return this.selectedProviders.indexOf(sanitizeProviderValue(item.provider)) != -1;
+      return (
+        this.selectedProviders.indexOf(sanitizeProviderValue(item.provider)) !=
+        -1
+      );
     }
     return true;
   }
 
   countFilteredPackagesForProvider(provider: string): number {
     return this.packages.filter((item, index, array) => {
-      if (this.selectedCategory && item.categories.indexOf(this.selectedCategory) != -1) {
+      if (
+        this.selectedCategory &&
+        item.categories.indexOf(this.selectedCategory) != -1
+      ) {
         return false;
       } else if (sanitizeProviderValue(item.provider) === provider) {
         return true;
@@ -161,7 +201,9 @@ export class HomePageComponent implements OnInit {
     }).length;
   }
   countFilteredAPIs(): number {
-    return this.filteredPackages.reduce((total, item) => {return total + item.apis.length}, 0);
+    return this.filteredPackages.reduce((total, item) => {
+      return total + item.apis.length;
+    }, 0);
   }
 
   showAllProviders(): void {

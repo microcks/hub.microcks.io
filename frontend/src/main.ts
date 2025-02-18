@@ -6,12 +6,14 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   if (environment.ga_tracking_id != null) {
-    let ga_id = environment.ga_tracking_id // google analytics id
-      
+    let ga_id = environment.ga_tracking_id; // google analytics id
+
     // document.write('<script async src="https://www.googletagmanager.com/gtag/js?id=${ga_id}"></script>');
     const gtagScript = document.createElement('script');
     gtagScript.async = true;
-    gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + environment.ga_tracking_id; 
+    gtagScript.src =
+      'https://www.googletagmanager.com/gtag/js?id=' +
+      environment.ga_tracking_id;
     document.head.prepend(gtagScript);
 
     const script = document.createElement('script');
@@ -35,5 +37,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch((err) => console.error(err));

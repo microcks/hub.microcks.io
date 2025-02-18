@@ -25,7 +25,7 @@ jobs:
         id: date
         #run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
         run: echo "date=$(date +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
-        
+
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -82,11 +82,10 @@ jobs:
         env:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
           TAGS: quay.io/microcks/microcks-hub:${{env.IMAGE_TAG}} docker.io/microcks/microcks-hub:${{env.IMAGE_TAG}}
-          COSIGN_EXPERIMENTAL: "true"
+          COSIGN_EXPERIMENTAL: 'true'
         run: |
           images=""
           for tag in ${TAGS}; do
             images+="${tag}@${DIGEST} "
           done
           cosign sign --yes ${images}
-            

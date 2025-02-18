@@ -34,17 +34,16 @@ import { DocumentationPageComponent } from './pages/doc/doc.page';
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderBarComponent, FooterBarComponent, 
-    HomePageComponent, PackagePageComponent, APIVersionPageComponent,
-    DocumentationPageComponent
+    AppComponent,
+    HeaderBarComponent,
+    FooterBarComponent,
+    HomePageComponent,
+    PackagePageComponent,
+    APIVersionPageComponent,
+    DocumentationPageComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
