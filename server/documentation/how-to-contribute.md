@@ -4,16 +4,15 @@ Hub.Microcks.io is the front-end for the [Community Mocks Repository](https://gi
 
 Hub.Microcks.io allows developers, standardisation organisations, regulatory committees and product managers to easily distribute their API specifications, mocks and test suites. Microcks users can directly access Hub.Microcks.io to retrieve these API artifacts and make them actionable through a number of use-cases:
 
-* Discover and play with API,
-* Create a local sandbox for their developers,
-* Evaluate the impacts of an API version upgrade,
-* Assess their implementation using an API Test and Certification Kit,
-* Animate and grow an API consumers community, ...
+- Discover and play with API,
+- Create a local sandbox for their developers,
+- Evaluate the impacts of an API version upgrade,
+- Assess their implementation using an API Test and Certification Kit,
+- Animate and grow an API consumers community, ...
 
 Microcks leverages standard specifications and formats you probably already use to describe your API. So adding them to the Hub is just a matter of packaging and metadata addition so that users can easily discover them. To contribute your API package, metadata should be described using some `manifests` that you pushed then to the [Community Mocks Repository](https://github.com/microcks/community-mocks).
 
 Have a look at some contributions in [https://github.com/microcks/community-mocks/tree/master/artifacts](https://github.com/microcks/community-mocks/tree/master/artifacts) and read the next sections to get all the information you need to share your package as well!
-
 
 ## Build your API package
 
@@ -23,13 +22,12 @@ Check out more details on how to [create API mocks using supported formats](/doc
 
 Once your artifacts are available, you need to give additional information to ensure they can be correctly registered within Hub.Microcks.io. You register your API using 2 concepts:
 
-* The `API Package` is the top-level concept that allows you to wrap together a set of related APIs. The package can be related to an open source project, a commercial product or an industrial standard and it must belongs to a specific business category,
-* The `API Versions` are simply the versioned APIs that are members of the package. The Hub will keep history of different versions you’ll release through your package. An API Version links to your API artifacts through the `contracts` property as illustrated in below schema.
+- The `API Package` is the top-level concept that allows you to wrap together a set of related APIs. The package can be related to an open source project, a commercial product or an industrial standard and it must belongs to a specific business category,
+- The `API Versions` are simply the versioned APIs that are members of the package. The Hub will keep history of different versions you’ll release through your package. An API Version links to your API artifacts through the `contracts` property as illustrated in below schema.
 
-![Git repos organization](/assets/images/git-repos-organization.png "Git repos organization")
+![Git repos organization](/assets/images/git-repos-organization.png 'Git repos organization')
 
 Check out more details on how to [describe API packages and versions](/doc/package-api-mocks).
-
 
 ## Submit your API package
 
@@ -38,7 +36,6 @@ When your API package and versions descriptions are complete and valid, create a
 Check out more details on how to [submit your API package contribution](/doc/submit-your-api-package).
 
 > Note: Submitting does not mean that you are transferring maintenance responsibility !!
-
 
 ## When will my API package show up?
 

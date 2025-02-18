@@ -8,16 +8,13 @@ If you are actually discovering what Microcks is then we urge you to have a look
 
 How is Microcks doing that? You may have guessed that the starting point here are the contracts and specifications of your API; also called API artifacts. You probably already use some industrial or de-facto standards to express them within your API development process. At time of writing, Microcks is supporting the standards illustrated below and we recommend having a look at [the reference documentation](https://microcks.io/documentation/using/importers/#supported-formats).
 
+![Supported artifacts formats](https://microcks.io/images/artifacts-formats.png 'Microcks artifacts formats')
 
-![Supported artifacts formats](https://microcks.io/images/artifacts-formats.png "Microcks artifacts formats")
-
-
-So having these artifacts at hand is enough? Almost. 
+So having these artifacts at hand is enough? Almost.
 
 In order to be useful, these artifacts should also contain examples. Examples are a very important part of the documentation: what’s better than real-life examples to understand how things are expected to work? Microcks applies example-driven design and executable specification concepts. The examples from these artifacts will be used to produce both the mocks and the tests suite.
 
 Check out more details on example-driven on [Why Microcks?](https://microcks.io/blog/why-microcks/#1-business-requirements-without-translation).
-
 
 ## Define examples
 
@@ -27,16 +24,14 @@ Microcks provides documentation on the different supported formats. Here are the
 
 At that time, you may want to validate these examples on a local Microcks instance. You can easily install Microcks using Docker-Compose on a laptop. Please check out more details on the [Docker-Compose installation](https://microcks.io/documentation/installing/docker-compose/).
 
-
 ## Add more artifacts
 
 Although one artifact is enough for providing examples and a test suite, it may be interesting sometimes to supply different kinds of complementary artifacts for advanced purposes. A typical case is to provide:
 
-* an OpenAPI specification for defining the syntactical contract of your API and examples,
-* an additional Postman collection for holding business related test assertions on your API - things that are typically impossible to represent using OpenAPI.
+- an OpenAPI specification for defining the syntactical contract of your API and examples,
+- an additional Postman collection for holding business related test assertions on your API - things that are typically impossible to represent using OpenAPI.
 
 It is definitely possible to reference multiple API artifacts in your contributed API package. Check out more detail on [Multi-artifacts support](https://microcks.io/documentation/using/importers/#multi-artifacts-support) documentation.
-
 
 ## Share them!
 

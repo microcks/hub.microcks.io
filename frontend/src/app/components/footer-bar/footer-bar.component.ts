@@ -22,10 +22,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   selector: 'footer-bar',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './footer-bar.component.html',
-  styleUrls: ['./footer-bar.component.css']
+  styleUrls: ['./footer-bar.component.css'],
 })
 export class FooterBarComponent implements OnInit {
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

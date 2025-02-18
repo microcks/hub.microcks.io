@@ -8,7 +8,7 @@
 .mh-api-header_image-container {
   background: #fff;
   border-radius: 50px;
-  box-shadow: 0 2px 4px rgba(0,0,0,.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   height: 100px;
   width: 100px;
   display: flex;
@@ -30,7 +30,7 @@
   font-size: 36px;
   font-weight: 500;
   letter-spacing: 2px;
-  text-shadow: 0 2px 4px rgba(0,0,0,.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   margin-top: 15px;
   margin-bottom: 15px;
 }
@@ -45,7 +45,7 @@
 }
 @media (min-width: 768px) {
   .col-md-pull-3 {
-    right: 25%; 
+    right: 25%;
   }
 }
 
@@ -84,7 +84,9 @@
 .properties-side-panel-pf-property {
   margin-top: 20px;
 }
-.mh-api-page_side-panel .properties-side-panel-pf .properties-side-panel-pf-property-label {
+.mh-api-page_side-panel
+  .properties-side-panel-pf
+  .properties-side-panel-pf-property-label {
   color: #b6b6b6;
   font-size: 10px;
   font-weight: 700;
@@ -102,13 +104,17 @@
   display: inline-block;
   vertical-align: middle;
 }
-.btn-group>.btn:first-child {
+.btn-group > .btn:first-child {
   margin-left: 0;
 }
 .btn {
   padding: 2px 6px;
 }
-.btn-default.active, .btn-default .open .dropdown-toggle.btn-default, .btn-default:active, .btn-default:focus, .btn-default:hover {
+.btn-default.active,
+.btn-default .open .dropdown-toggle.btn-default,
+.btn-default:active,
+.btn-default:focus,
+.btn-default:hover {
   background-color: #f1f1f1;
 }
 
@@ -120,19 +126,19 @@
   font-size: inherit;
   font-weight: inherit;
 }
-.mh-api-page_side-panel .dropdown-menu, .mh-api-page_side-panel_version-dropdown {
+.mh-api-page_side-panel .dropdown-menu,
+.mh-api-page_side-panel_version-dropdown {
   font-size: inherit;
   font-weight: inherit;
-  
 }
 .mh-api-page_side-panel .dropdown-menu {
   background-color: #fafbfd;
   border-radius: 4px;
   border: 1px solid #eaeaea;
-  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
-.mh-api-page_side-panel .dropdown-menu>li>a {
+.mh-api-page_side-panel .dropdown-menu > li > a {
   border-color: transparent;
   border-style: solid;
   border-width: 1px 0;
@@ -144,7 +150,8 @@
   color: #363636;
   white-space: nowrap;
 }
-.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover {
   color: #4d5258;
   text-decoration: none;
   background-color: #f5f5f5;
@@ -220,17 +227,17 @@
   margin-top: 10px;
   margin-bottom: 0;
   font-size: 15px;
-  letter-spacing: .83px;
+  letter-spacing: 0.83px;
 }
 
 .mh-api-install-modal_list {
   padding-left: 20px;
 }
-.mh-api-install-modal_list>li:not(:last-child) {
+.mh-api-install-modal_list > li:not(:last-child) {
   margin-top: 15px;
   margin-bottom: 20px;
 }
-.mh-api-install-modal_list>li {
+.mh-api-install-modal_list > li {
   display: list-item;
   text-align: -webkit-match-parent;
 }
@@ -252,7 +259,9 @@
   word-break: break-all;
 }
 .mh-code {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
 }
 
 .mh-capability-level-popover {

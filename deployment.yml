@@ -29,8 +29,8 @@ metadata:
     group: microcks
 spec:
   replicas: 1
-  selector: 
-    matchLabels:  
+  selector:
+    matchLabels:
       app: microcks-hub
       deployment: microcks-hub
       container: microcks-hub
@@ -44,39 +44,39 @@ spec:
         group: microcks
     spec:
       containers:
-      - name: microcks-hub
-        image: lbroudoux/microcks-hub:latest
-        ports:
-        - containerPort: 4000
-          protocol: TCP
-        env:
-        - name: LOG_LEVEL
-          value: info
-        resources:
-          limits:
-            memory: 256Mi
-        livenessProbe:
-          httpGet:
-            path: "/healthz"
-            port: 4000
-            scheme: HTTP
-          initialDelaySeconds: 4
-          timeoutSeconds: 3
-          periodSeconds: 20
-          successThreshold: 1
-          failureThreshold: 3
-        readinessProbe:
-          httpGet:
-            path: "/healthz"
-            port: 4000
-            scheme: HTTP
-          initialDelaySeconds: 5
-          timeoutSeconds: 3
-          periodSeconds: 20
-          successThreshold: 1
-          failureThreshold: 3
-        terminationMessagePath: "/dev/termination-log"
-        imagePullPolicy: IfNotPresent
+        - name: microcks-hub
+          image: lbroudoux/microcks-hub:latest
+          ports:
+            - containerPort: 4000
+              protocol: TCP
+          env:
+            - name: LOG_LEVEL
+              value: info
+          resources:
+            limits:
+              memory: 256Mi
+          livenessProbe:
+            httpGet:
+              path: '/healthz'
+              port: 4000
+              scheme: HTTP
+            initialDelaySeconds: 4
+            timeoutSeconds: 3
+            periodSeconds: 20
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: '/healthz'
+              port: 4000
+              scheme: HTTP
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            periodSeconds: 20
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: '/dev/termination-log'
+          imagePullPolicy: IfNotPresent
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst

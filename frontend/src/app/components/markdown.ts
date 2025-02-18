@@ -20,12 +20,12 @@ import sanitizeHtml from 'sanitize-html';
 import { Converter } from 'showdown';
 
 export const markdownConverter = {
-  makeHtml: markdown => {
+  makeHtml: (markdown) => {
     const unsafeHtml = new Converter({
       tables: true,
       openLinksInNewWindow: true,
       strikethrough: true,
-      emoji: true
+      emoji: true,
     }).makeHtml(markdown);
 
     return sanitizeHtml(unsafeHtml, {
@@ -54,17 +54,21 @@ export const markdownConverter = {
         'tr',
         'th',
         'td',
-        'img'
+        'img',
       ],
       allowedAttributes: {
         a: ['href', 'target', 'rel'],
         code: ['class'],
-        img: ['src', 'alt', 'title']
+        img: ['src', 'alt', 'title'],
       },
       allowedSchemes: ['http', 'https', 'mailto'],
       transformTags: {
-        a: sanitizeHtml.simpleTransform('a', { rel: 'noopener noreferrer' }, true)
-      }
+        a: sanitizeHtml.simpleTransform(
+          'a',
+          { rel: 'noopener noreferrer' },
+          true
+        ),
+      },
     });
-  }
+  },
 };

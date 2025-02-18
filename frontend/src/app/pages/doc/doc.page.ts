@@ -18,7 +18,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ActivatedRoute, Router, ParamMap } from "@angular/router";
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -28,25 +28,29 @@ import { markdownConverter } from 'src/app/components/markdown';
 @Component({
   selector: 'doc-page',
   templateUrl: './doc.page.html',
-  styleUrls: ['./doc.page.css']
+  styleUrls: ['./doc.page.css'],
 })
 export class DocumentationPageComponent implements OnInit {
-
   title: string;
   doc: Observable<string>;
   resolvedDoc: string;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.doc = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
         this.title = params.get('page');
-        return this.http.get('/documentation/' + params.get('page') + '.md', {responseType: 'text'})
+        return this.http.get('/documentation/' + params.get('page') + '.md', {
+          responseType: 'text',
+        });
       })
     );
 
-    this.doc.subscribe(result => {
+    this.doc.subscribe((result) => {
       this.resolvedDoc = result;
     });
   }
@@ -58,9 +62,9 @@ export class DocumentationPageComponent implements OnInit {
 
   renderDoc(): string {
     let html = markdownConverter.makeHtml(this.resolvedDoc);
-    
+
     //html = html.replace(/<code class="hljs language-hljs">((.*|\n)*)<\/code>/gm, '<code [highlight]="$1"></code>');
-  
-    return html
+
+    return html;
   }
 }

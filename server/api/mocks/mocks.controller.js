@@ -21,7 +21,7 @@
 const persistentStore = require('../../store/persistentStore');
 
 exports.listPackages = function (req, res) {
-  console.debug("-- Invoking the listPackages API");
+  console.debug('-- Invoking the listPackages API');
   persistentStore.getPackages((packages, err) => {
     if (err) {
       res.status(500).send(err);
@@ -33,7 +33,7 @@ exports.listPackages = function (req, res) {
 };
 
 exports.getAPIPackage = function (req, res) {
-  console.debug("-- Invoking the getPackage API");
+  console.debug('-- Invoking the getPackage API');
   const apiPackage = req.params.apiPackage;
 
   persistentStore.getPackage(apiPackage, (apiPackage, err) => {
@@ -47,29 +47,36 @@ exports.getAPIPackage = function (req, res) {
 };
 
 exports.listAPIVersions = function (req, res) {
-  console.debug("-- Invoking the listAPIVersions API");
+  console.debug('-- Invoking the listAPIVersions API');
   const apiPackage = req.params.apiPackage;
-  
-  persistentStore.getLatestAPIVersionsByPackage(apiPackage, (apiVersions, err) => {
-    if (err) {
-      res.status(500).send(err);
-      return;
-    }
 
-    return res.status(200).json(apiVersions);
-  });
+  persistentStore.getLatestAPIVersionsByPackage(
+    apiPackage,
+    (apiVersions, err) => {
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
+
+      return res.status(200).json(apiVersions);
+    }
+  );
 };
 
 exports.getAPIVersion = function (req, res) {
-  console.debug("-- Invoking the getAPIVersion API");
+  console.debug('-- Invoking the getAPIVersion API');
   const apiPackage = req.params.apiPackage;
   const apiVersion = req.params.apiVersion;
-  persistentStore.getAPIVersionWithPackage(apiPackage, apiVersion, (apiVersion, err) => {
-    if (err) {
-      res.status(500).send(err);
-      return;
-    }
+  persistentStore.getAPIVersionWithPackage(
+    apiPackage,
+    apiVersion,
+    (apiVersion, err) => {
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
 
-    return res.status(200).json(apiVersion);
-  });
+      return res.status(200).json(apiVersion);
+    }
+  );
 };

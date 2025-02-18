@@ -24,10 +24,9 @@ import { APIPackage, APIVersion } from '../models/package.model';
 
 @Injectable({ providedIn: 'root' })
 export class PackagesService {
-
   private rootUrl: string = '/api';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   public getPackages(): Observable<APIPackage[]> {
     return this.http.get<APIPackage[]>(this.rootUrl + '/mocks');
@@ -38,10 +37,17 @@ export class PackagesService {
   }
 
   public getLatestAPIVersions(packageName: string): Observable<APIVersion[]> {
-    return this.http.get<APIVersion[]>(this.rootUrl + '/mocks/' + packageName + "/apis");
+    return this.http.get<APIVersion[]>(
+      this.rootUrl + '/mocks/' + packageName + '/apis'
+    );
   }
 
-  public getAPIVersion(packageName: string, apiVersionName: string): Observable<APIVersion> {
-    return this.http.get<APIVersion>(this.rootUrl + '/mocks/' + packageName + "/apis/" + apiVersionName);
+  public getAPIVersion(
+    packageName: string,
+    apiVersionName: string
+  ): Observable<APIVersion> {
+    return this.http.get<APIVersion>(
+      this.rootUrl + '/mocks/' + packageName + '/apis/' + apiVersionName
+    );
   }
 }

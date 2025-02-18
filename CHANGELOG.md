@@ -6,7 +6,7 @@ This file provides a high-level summary of the changes and updates made to the M
 
 ## Releases
 
-For a comprehensive list of changes, please visit the [official release page](https://github.com/microcks/microcks/releases) 
+For a comprehensive list of changes, please visit the [official release page](https://github.com/microcks/microcks/releases)
 
 ## For More Information
 

@@ -23,9 +23,9 @@ var controller = require('./mocks.controller');
 
 var router = express.Router();
 
-router.get('/', controller.listPackages)
-router.get('/:apiPackage', controller.getAPIPackage)
-router.get('/:apiPackage/apis', controller.listAPIVersions)
-router.get('/:apiPackage/apis/:apiVersion', controller.getAPIVersion)
+router.get('/', controller.listPackages);
+router.get('/:apiPackage', controller.getAPIPackage);
+router.get('/:apiPackage/apis', controller.listAPIVersions);
+router.get('/:apiPackage/apis/:apiVersion', controller.getAPIVersion);
 
 module.exports = router;

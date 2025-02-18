@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  ga_tracking_id: null
+  ga_tracking_id: null,
 };
 
 /*

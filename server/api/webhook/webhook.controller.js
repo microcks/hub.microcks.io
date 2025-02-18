@@ -21,7 +21,11 @@
 const updateService = require('../../services/updateService');
 
 exports.updateLocalMocks = function (req, res) {
-  console.debug("-- Invoking the updateLocalMocks API using secret '" + req.params.secret + "'");
+  console.debug(
+    "-- Invoking the updateLocalMocks API using secret '" +
+      req.params.secret +
+      "'"
+  );
 
   // Update only if provided secret matches app configured one.
   var webhookSecret = req.app.get('webhookSecret');

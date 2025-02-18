@@ -24,6 +24,7 @@ To ensure a productive, positive experience for all community members, we ask ev
 Instances of unacceptable behavior—including harassment, abusive language, or any other forms of misconduct—should be reported to the Microcks project team at **info@microcks.io**.
 
 The project team will:
+
 - Review and investigate all reports confidentially.
 - Take action deemed appropriate for the situation, including potential temporary or permanent bans from the community.
 - Keep the identity of the reporter confidential, ensuring a safe and respectful process for all involved.

@@ -17,7 +17,7 @@
  * under the License.
  */
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from "@angular/router";
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -30,36 +30,40 @@ import { markdownConverter } from 'src/app/components/markdown';
 @Component({
   selector: 'package-page',
   templateUrl: './package.page.html',
-  styleUrls: ['./package.page.css']
+  styleUrls: ['./package.page.css'],
 })
 export class PackagePageComponent implements OnInit {
-
   package: Observable<APIPackage>;
   packageAPIVersions: Observable<APIVersion[]>;
   resolvedPackage: APIPackage;
   resolvedAPIVersions: APIVersion[];
-  
-  constructor(private packagesSvc: PackagesService, private route: ActivatedRoute) { }
+
+  constructor(
+    private packagesSvc: PackagesService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.package = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => 
-        this.packagesSvc.getPackage(params.get('packageId')))
+      switchMap((params: ParamMap) =>
+        this.packagesSvc.getPackage(params.get('packageId'))
+      )
     );
     this.packageAPIVersions = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => 
-        this.packagesSvc.getLatestAPIVersions(params.get('packageId')))
+      switchMap((params: ParamMap) =>
+        this.packagesSvc.getLatestAPIVersions(params.get('packageId'))
+      )
     );
 
-    this.package.subscribe( result => {
+    this.package.subscribe((result) => {
       this.resolvedPackage = result;
     });
-    this.packageAPIVersions.subscribe (result => {
+    this.packageAPIVersions.subscribe((result) => {
       this.resolvedAPIVersions = result;
     });
   }
 
-  renderLongDescription() : string {
+  renderLongDescription(): string {
     return markdownConverter.makeHtml(this.resolvedPackage.longDescription);
   }
 }

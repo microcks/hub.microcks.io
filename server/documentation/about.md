@@ -2,17 +2,17 @@
 
 ## Why Hub.microcks.io?
 
-Hub.Microcks.io allows **developers**, **standardisation organisations**, **regulatory committees** and **product managers** to **easily distribute their API specifications, mocks and test suites**. 
+Hub.Microcks.io allows **developers**, **standardisation organisations**, **regulatory committees** and **product managers** to **easily distribute their API specifications, mocks and test suites**.
 
 ## Who can benefit from Hub.microcks.io?
 
 [Microcks](https://microcks.io) users can directly access Hub.Microcks.io to retrieve these API artifacts and make them actionable through a number of use-cases:
 
-* Discover and play with API,
-* Create a local sandbox for their developers,
-* Evaluate the impacts of an API version upgrade,
-* Assess their implementation using an API Test and Certification Kit,
-* Animate and grow an API consumers community, ...
+- Discover and play with API,
+- Create a local sandbox for their developers,
+- Evaluate the impacts of an API version upgrade,
+- Assess their implementation using an API Test and Certification Kit,
+- Animate and grow an API consumers community, ...
 
 As an API provider, distributing your API Mocks and tests through Hub.microcks.io allows you to quickly distribute simulation and evaluation material without having to maintain expensive sandbox environments.
 
