@@ -59,7 +59,7 @@ export const markdownConverter = {
       allowedAttributes: {
         a: ['href', 'target', 'rel'],
         code: ['class'],
-        img: ['src', 'alt', 'title']
+        img: ['src', 'alt', 'title', 'width']
       },
       allowedSchemes: ['http', 'https', 'mailto'],
       transformTags: {
