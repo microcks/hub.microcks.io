@@ -64,10 +64,10 @@ export class APIVersionPageComponent implements OnInit {
     this.package.subscribe( result => {
       this.resolvedPackage = result;
       this.packageAPIVersion.subscribe( apiVersion => {
-        console.log("this.resolvedPackage.apis: " + JSON.stringify(this.resolvedPackage.apis));
+        // console.log("this.resolvedPackage.apis: " + JSON.stringify(this.resolvedPackage.apis));
         this.resolvedPackage.apis.forEach(api => {
-          console.log("api.name: " + api.name);
-          console.log("apiVersion.id: " + apiVersion.id);
+          // console.log("api.name: " + api.name);
+          // console.log("apiVersion.id: " + apiVersion.id);
           if (api.name === apiVersion.id) {
             this.resolvedPackageAPI = api;
           }
