@@ -17,7 +17,7 @@ Have a look at some contributions in [https://github.com/microcks/community-mock
 
 ## Build your API package
 
-Basically, your API package is made of one or multiple API artifacts that live in their own repository. We encourage using a Git repository but the only requirement is to be a publicly available HTTP repository. By API artifacts, we mean any contract standard that is supported by Microcks - and [the list is now extensive](https://microcks.io/documentation/using/importers/#supported-formats) ; you probably already got them at hand!
+Basically, your API package is made of one or multiple API artifacts that live in their own repository. We encourage using a Git repository but the only requirement is to be a publicly available HTTP repository. By API artifacts, we mean any contract standard that is supported by Microcks - and [the list is now extensive](https://microcks.io/documentation/references/artifacts/) ; you probably already got them at hand!
 
 Check out more details on how to [create API mocks using supported formats](/doc/create-api-mocks).
 
