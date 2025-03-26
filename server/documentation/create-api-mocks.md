@@ -6,7 +6,7 @@ If you are actually discovering what Microcks is then we urge you to have a look
 
 > 2. It then uses your API specifications for **continuously testing the conformance** of your development.
 
-How is Microcks doing that? You may have guessed that the starting point here are the contracts and specifications of your API; also called API artifacts. You probably already use some industrial or de-facto standards to express them within your API development process. At time of writing, Microcks is supporting the standards illustrated below and we recommend having a look at [the reference documentation](https://microcks.io/documentation/using/importers/#supported-formats).
+How is Microcks doing that? You may have guessed that the starting point here are the contracts and specifications of your API; also called API artifacts. You probably already use some industrial or de-facto standards to express them within your API development process. At time of writing, Microcks is supporting the standards illustrated below and we recommend having a look at [the reference documentation](https://microcks.io/documentation/references/artifacts/).
 
 
 ![Supported artifacts formats](https://microcks.io/images/documentation/artifacts-formats.png "Microcks artifacts formats")
