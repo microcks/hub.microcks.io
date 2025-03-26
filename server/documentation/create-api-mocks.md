@@ -6,7 +6,7 @@ If you are actually discovering what Microcks is then we urge you to have a look
 
 > 2. It then uses your API specifications for **continuously testing the conformance** of your development.
 
-How is Microcks doing that? You may have guessed that the starting point here are the contracts and specifications of your API; also called API artifacts. You probably already use some industrial or de-facto standards to express them within your API development process. At time of writing, Microcks is supporting the standards illustrated below and we recommend having a look at [the reference documentation](https://microcks.io/documentation/using/importers/#supported-formats).
+How is Microcks doing that? You may have guessed that the starting point here are the contracts and specifications of your API; also called API artifacts. You probably already use some industrial or de-facto standards to express them within your API development process. At time of writing, Microcks is supporting the standards illustrated below and we recommend having a look at [the reference documentation](https://microcks.io/documentation/references/artifacts/).
 
 
 ![Supported artifacts formats](https://microcks.io/images/documentation/artifacts-formats.png "Microcks artifacts formats")
@@ -35,7 +35,7 @@ Although one artifact is enough for providing examples and a test suite, it may 
 * an OpenAPI specification for defining the syntactical contract of your API and examples,
 * an additional Postman collection for holding business related test assertions on your API - things that are typically impossible to represent using OpenAPI.
 
-It is definitely possible to reference multiple API artifacts in your contributed API package. Check out more detail on [Multi-artifacts support](https://microcks.io/documentation/using/importers/#multi-artifacts-support) documentation.
+It is definitely possible to reference multiple API artifacts in your contributed API package. Check out more detail on [Multi-artifacts support](https://microcks.io/documentation/explanations/multi-artifacts/) documentation.
 
 
 ## Share them!
