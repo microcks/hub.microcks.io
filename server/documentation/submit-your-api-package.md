@@ -58,4 +58,4 @@ Your changes and Pull Requests should only deal with one package at a time. If a
 
 Once your PR is approved it will first go through an automated verification process and then an human review. Your manifest will be checked for syntax, completeness and functional links to your own repository. Any enhancements or modification requests will be discussed in the PR. Upon success we will merge it and your contribution is complete.
 
-Congratulations! You’ve gone through the whole process of contributing an API package to the Hub.Microcks.io. Please tell us about your experience through an issue of the [Community Mocks Repository](https://github.com/microcks/community-mocks/issues). We would be happy to discuss how to enhance it!
+Congratulations! You’ve gone through the whole process of contributing an API package to the Hub.Microcks.io. Please tell us about your experience on the [Microcks Discord Chat] (https://discord.com/invite/JA4rbcGzk7) or through an issue of the [Community Mocks Repository](https://github.com/microcks/community-mocks/issues). We would be happy to discuss how to enhance it!
