@@ -1,6 +1,6 @@
 # How to describe API package and versions
 
-An API package is made of one or multiple API artifacts that live in their own repository. By API artifacts, we mean any contract standard that is supported by Microcks - and [the list is now extensive](https://microcks.io/documentation/using/importers/#supported-formats) ; you probably already got them at hand!
+An API package is made of one or multiple API artifacts that live in their own repository. By API artifacts, we mean any contract standard that is supported by Microcks - and [the list is now extensive](https://microcks.io/documentation/references/artifacts/) ; you probably already got them at hand!
 
 Check out more details on how to [create API mocks using supported formats](/doc/create-api-mocks).
 
