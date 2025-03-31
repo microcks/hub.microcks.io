@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/nodejs-18-minimal:1-129.1726695172
+FROM registry.access.redhat.com/ubi9/nodejs-18-minimal:9.5-1742941545
 
 # Some version information
 LABEL maintainer="Laurent Broudoux <laurent@microcks.io>" \
