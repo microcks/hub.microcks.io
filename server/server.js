@@ -33,6 +33,9 @@ const webhookSecret = process.env.WEBHOOK_SECRET || 'secret101';
 const app = express();
 app.set('webhookSecret', webhookSecret);
 app.use(cors());
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configure paths for static resources in production mode
 var root = path.normalize(__dirname + '/../frontend')

@@ -40,11 +40,11 @@ module.exports = function (app) {
   app.use('/documentation', express.static('documentation'));
 
   // All undefined asset or api routes should return a 404
-  app.route('/:url(api|auth|components|app|bower_components|assets)/*')
-    .get(function (req, res) {
+  ['api', 'auth', 'components', 'app', 'bower_components', 'assets'].forEach(url => {
+    app.route(`/${url}/*`).get(function (req, res) {
       res.sendStatus(404);
     });
-    //.get(errors[404]);
+  });
 
   // All other routes should redirect to the index.html
   app.route('/*')
