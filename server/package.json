@@ -1,6 +1,6 @@
 {
   "name": "hub.microcks.io",
-  "version": "0.3.0",
+  "version": "0.9.0-SNAPSHOT",
   "description": "hub.microcks.io is a catalog of community mocks and tests for public API and microservices",
   "main": "server.js",
   "scripts": {
