@@ -93,7 +93,7 @@ jobs:
           cosign sign --yes ${images}
 
       - name: Build and push container image for next version
-        id: build-and-push
+        id: build-and-push-next
         uses: docker/build-push-action@14487ce63c7a62a4a324b0bfb37086795e31c6c1 # v6.16.0
         if: github.repository_owner == 'microcks' && env.PACKAGE_IMAGE == 'true'
         with:
@@ -109,7 +109,7 @@ jobs:
             org.opencontainers.image.created=${{ steps.date.outputs.date }}
           tags: quay.io/microcks/microcks-hub:next,docker.io/microcks/microcks-hub:next
 
-      - name: Sign the image with GitHub OIDC Token
+      - name: Sign the next image with GitHub OIDC Token
         if: github.repository_owner == 'microcks' && env.PACKAGE_IMAGE == 'true'
         env:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
