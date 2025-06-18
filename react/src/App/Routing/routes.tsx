@@ -1,8 +1,8 @@
 import { Layout } from '@/App/Layout/Layout.tsx';
-import APIVersion from '@/pages/APIVersion.tsx';
-import Doc from '@/pages/Doc.tsx';
-import Home from '@/pages/Home.tsx';
-import Package from '@/pages/Package.tsx';
+import { apiVersionRoutes } from '@/pages/APIVersion/route.tsx';
+import { docRoutes } from '@/pages/Doc/route.tsx';
+import { homeRoutes } from '@/pages/Home/route.tsx';
+import { packageRoutes } from '@/pages/Package/route.tsx';
 import { Outlet, type RouteObject } from 'react-router';
 
 const rootRoutes: RouteObject = {
@@ -13,22 +13,10 @@ const rootRoutes: RouteObject = {
     </Layout>
   ),
   children: [
-    {
-      index: true,
-      element: <Home />,
-    },
-    {
-      path: '/package/:packageId',
-      element: <Package />,
-    },
-    {
-      path: '/package/:packageId/api/:apiVersionId',
-      element: <APIVersion />,
-    },
-    {
-      path: '/doc/:page',
-      element: <Doc />,
-    }
+    homeRoutes,
+    packageRoutes,
+    apiVersionRoutes,
+    docRoutes,
   ],
 };
 
