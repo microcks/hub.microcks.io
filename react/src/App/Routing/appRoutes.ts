@@ -1,14 +1,14 @@
 type Package = {
-  packageId: string
-}
+  packageId: string;
+};
 
 type ApiVersion = Package & {
-  apiVersion: string
-}
+  apiVersion: string;
+};
 
 type Doc = {
-  page: string
-}
+  page: string;
+};
 
 export const appRoutes = {
   home: () => '/',
