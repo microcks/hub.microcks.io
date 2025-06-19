@@ -10,6 +10,8 @@
     "lint": "node scripts/lint.js",
     "lint:eslint": "eslint \"src/**/*.{js,jsx,mjs,ts,tsx}\"",
     "lint:eslint:fix": "eslint \"src/**/*.{js,jsx,mjs,ts,tsx}\" --fix",
+    "lint:stylelint": "stylelint \"src/**/*.{scss,css}\"",
+    "lint:stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
     "lint:prettier": "prettier \"src/**/*.!(js|jsx|mjs|ts|tsx|scss|css)\" --check --ignore-unknown",
     "lint:prettier:fix": "prettier \"src/**/*.!(js|jsx|mjs|ts|tsx|scss|css)\" --write --ignore-unknown",
     "lint:tsc": "tsc --noEmit",
@@ -31,6 +33,7 @@
   "devDependencies": {
     "@pplancq/eslint-config": "^4.2.0",
     "@pplancq/prettier-config": "^1.2.6",
+    "@pplancq/stylelint-config": "^4.0.1",
     "@tailwindcss/vite": "^4.1.10",
     "@types/node": "^22.15.3",
     "@types/react": "^19.0.10",
@@ -43,6 +46,7 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "prettier": "^3.5.3",
     "serve": "^14.2.4",
+    "stylelint-prettier": "^5.0.3",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
   }
