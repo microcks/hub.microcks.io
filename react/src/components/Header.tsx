@@ -1,24 +1,23 @@
-import { Link } from "react-router";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  // navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+import { NavigationMenu } from '@/components/ui/NavigationMenu/NavigationMenu';
+import { NavigationMenuContent } from '@/components/ui/NavigationMenuContent/NavigationMenuContent';
+import { NavigationMenuItem } from '@/components/ui/NavigationMenuItem/NavigationMenuItem';
+import { NavigationMenuLink } from '@/components/ui/NavigationMenuLink/NavigationMenuLink';
+import { NavigationMenuList } from '@/components/ui/NavigationMenuList/NavigationMenuList';
+import { Link } from 'react-router';
+import { NavigationMenuTrigger } from '@/components/ui/NavigationMenuTrigger/NavigationMenuTrigger';
 
-function Header() {
+export const Header = () => {
   return (
     <header className="bg-slate-900 shadow-2xl text-white">
       {/* <div className="w-full max-w-3/4 mx-auto px-8 py-14 flex items-center justify-between h-20"> */}
       <div className="max-w-screen-xl mx-auto px-8 py-4 flex items-center justify-between h-20">
         <div className="flex items-center">
           <Link to="/" tabIndex={0}>
-            <img src="https://hub.microcks.io/assets/images/hub-microcks.svg"
+            <img
+              src="https://hub.microcks.io/assets/images/hub-microcks.svg"
               alt="Microcks Logo"
-              className="h-8  mr-2" />
+              className="h-8 mr-2"
+            />
             {/* <span className="font-bold text-xl">hub.microcks.io</span> */}
           </Link>
         </div>
@@ -56,23 +55,23 @@ function Header() {
             </NavigationMenuItem>
 
             {[
-              { label: "About", href: "/about" },
-              { label: "Documentation", href: "/docs" },
-              { label: "Community", href: "/community" },
+              { label: 'About', href: '/about' },
+              { label: 'Documentation', href: '/docs' },
+              { label: 'Community', href: '/community' },
             ].map(({ label, href }) => (
-              <NavigationMenuItem key={label} >
-                <Link to={href} tabIndex={0} className="text-white hover:text-slate-300 py-2 rounded transition-colors">
-                  <NavigationMenuLink asChild>
-                    <span>{label}</span>
-                  </NavigationMenuLink>
-                </Link>
+              <NavigationMenuItem key={label}>
+                <NavigationMenuLink
+                  to={href}
+                  tabIndex={0}
+                  className="text-white hover:text-slate-300 px-3 py-2 rounded transition-colors"
+                >
+                  <span>{label}</span>
+                </NavigationMenuLink>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
         </NavigationMenu>
-
       </div>
     </header>
   );
-}
-export default Header;
+};
