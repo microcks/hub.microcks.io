@@ -1,6 +1,6 @@
-import HubSection from "../components/HubSection";
+import HubSection from "@/components/HubSection";
 
-function Home() {
+export const Home = () => {
   return (
     <div>
       {/* hero banner */}
@@ -28,4 +28,3 @@ function Home() {
   );
 }
 
-export default Home;

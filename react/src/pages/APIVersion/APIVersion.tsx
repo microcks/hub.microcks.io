@@ -1,8 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
-function APIVersion() {
+export const APIVersion = () => {
   const { packageId, apiVersionId } = useParams();
   return <h1>API Version: {packageId}/{apiVersionId}</h1>;
 }
-
-export default APIVersion;
