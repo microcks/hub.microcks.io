@@ -1,3 +1,4 @@
+/*
 // Define types for the API response
 interface ApiVersion {
   name: string;
@@ -23,10 +24,11 @@ interface Package {
   maturity: string;
   apis: Api[];
 }
+*/
 
 export async function getPackages() {
   try {
-    const response = await fetch("http://localhost:4000/api/mocks");
+    const response = await fetch('http://localhost:4000/api/mocks');
     const data = await response.json();
 
     if (Array.isArray(data)) {
@@ -35,26 +37,24 @@ export async function getPackages() {
         id: pkg.name,
         name: pkg.displayName || pkg.name,
         provider: pkg.provider || pkg.name,
-        description: pkg.description || "",
-        logoUrl: pkg.thumbUrl || "/logos/default.png",
-        category: pkg.categories?.[0] || "uncategorized"
+        description: pkg.description || '',
+        logoUrl: pkg.thumbUrl || '/logos/default.png',
+        category: pkg.categories?.[0] || 'uncategorized',
       }));
 
       // categories: flatten and dedupe all categories
       const categorySet = new Set<string>();
-      data.forEach(pkg =>
-        (pkg.categories || []).forEach((cat: string) => categorySet.add(cat))
-      );
+      data.forEach(pkg => (pkg.categories || []).forEach((cat: string) => categorySet.add(cat)));
       const categories = Array.from(categorySet).map(cat => ({
         id: cat,
-        name: cat
+        name: cat,
       }));
 
       // providers: from package data
       const providers = data.map(pkg => ({
         id: pkg.name,
         name: pkg.displayName || pkg.name,
-        count: 1 // one card per package
+        count: 1, // one card per package
       }));
 
       return { apis, categories, providers };
@@ -66,7 +66,7 @@ export async function getPackages() {
 
     return { apis: [], categories: [], providers: [] };
   } catch (error) {
-    console.error("Error fetching packages:", error);
+    console.error('Error fetching packages:', error);
     return { apis: [], categories: [], providers: [] };
   }
 }

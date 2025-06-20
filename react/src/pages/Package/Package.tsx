@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams } from 'react-router';
 
 export const Package = () => {
   const { packageId } = useParams();

@@ -1,28 +1,41 @@
 {
-    "name": "hub.microcks.io",
-    "version": "0.0.1",
-    "description": "hub.microcks.io is a catalog of community mocks and tests for public API and microservices",
-    "scripts": {
-      "test": "echo \"No test specified for now\" && exit 0"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/microcks/hub.microcks.io.git"
-    },
-    "dependencies": {
-    },
-    "keywords": [
-      "api",
-      "mocks",
-      "testing",
-      "microservices",
-      "kubernetes"
-    ],
-    "author": "laurent@microcks.io",
-    "license": "Apache-2.0",
-    "bugs": {
-      "url": "https://github.com/microcks/hub.microcks.io/issues"
-    },
-    "homepage": "https://github.com/microcks/hub.microcks.io#readme"
+  "name": "hub.microcks.io",
+  "version": "0.0.1",
+  "description": "hub.microcks.io is a catalog of community mocks and tests for public API and microservices",
+  "types": "module",
+  "scripts": {
+    "package:check": "npm exec --yes package-lock-utd@1.1.3",
+    "prepare": "husky"
+  },
+  "workspaces": [
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microcks/hub.microcks.io.git"
+  },
+  "keywords": [
+    "api",
+    "mocks",
+    "testing",
+    "microservices",
+    "kubernetes"
+  ],
+  "author": "laurent@microcks.io",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/microcks/hub.microcks.io/issues"
+  },
+  "homepage": "https://github.com/microcks/hub.microcks.io#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "tsc-files": "^1.1.4"
+  },
+  "volta": {
+    "node": "22.16.0",
+    "npm": "11.4.2"
   }
-  
+}
