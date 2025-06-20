@@ -1,0 +1,5 @@
+echo '🏗️👷 Check your project files before committing'
+
+npx lint-staged
+
+echo '✅ Checks have been passed. I am committing this now.'
