@@ -45,5 +45,8 @@
     "prettier": "^3.5.3",
     "stylelint-prettier": "^5.0.3",
     "typescript": "~5.7.2"
+  },
+  "volta": {
+    "extends": "../package.json"
   }
 }

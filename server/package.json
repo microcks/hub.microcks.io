@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/microcks/hub.microcks.io/issues"
   },
-  "homepage": "https://github.com/microcks/hub.microcks.io#readme"
+  "homepage": "https://github.com/microcks/hub.microcks.io#readme",
+  "volta": {
+    "node": "18.20.8"
+  }
 }
