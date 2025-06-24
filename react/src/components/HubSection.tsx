@@ -198,11 +198,11 @@ export default function HubSection() {
                                         </p>
                                     </CardContent>
                                     <CardFooter className="p-4 pt-0 flex justify-center">
-                                        <Link to={`/package/${api.id}`}>
-                                            <Button variant="ghost" size="sm" className="text-blue-400 hover:text-blue-300 hover:bg-[#1e293b]">
+                                        <Button variant="ghost" size="sm" className="text-blue-400 hover:text-blue-300 hover:bg-[#1e293b]" asChild>
+                                            <Link to={`/package/${api.id}`} tabIndex={0}>
                                                 View Details →
-                                            </Button>
-                                        </Link>
+                                            </Link>
+                                        </Button>
                                     </CardFooter>
                                 </Card>
                             ))}
