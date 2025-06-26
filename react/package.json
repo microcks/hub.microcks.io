@@ -7,12 +7,18 @@
     "start": "rsbuild dev",
     "build": "rsbuild build",
     "preview": "rsbuild preview",
-    "lint": "eslint ."
+    "lint": "node scripts/lint.js",
+    "lint:eslint": "eslint \"src/**/*.{js,jsx,mjs,ts,tsx}\"",
+    "lint:eslint:fix": "eslint \"src/**/*.{js,jsx,mjs,ts,tsx}\" --fix",
+    "lint:stylelint": "stylelint \"src/**/*.{scss,css}\"",
+    "lint:stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
+    "lint:prettier": "prettier \"src/**/*.!(js|jsx|mjs|ts|tsx|scss|css)\" --check --ignore-unknown",
+    "lint:prettier:fix": "prettier \"src/**/*.!(js|jsx|mjs|ts|tsx|scss|css)\" --write --ignore-unknown",
+    "lint:tsc": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-navigation-menu": "^1.2.12",
     "@radix-ui/react-slot": "^1.2.0",
-    "@types/react-router-dom": "^5.3.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.503.0",
@@ -24,18 +30,23 @@
     "tw-animate-css": "^1.2.8"
   },
   "devDependencies": {
-    "@eslint/js": "^9.21.0",
+    "@pplancq/eslint-config": "^4.2.0",
+    "@pplancq/prettier-config": "^1.2.6",
+    "@pplancq/stylelint-config": "^4.0.1",
     "@rsbuild/core": "^1.3.22",
     "@rsbuild/plugin-react": "^1.3.2",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "^22.15.3",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
-    "eslint": "^9.21.0",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^15.15.0",
-    "typescript": "~5.7.2",
-    "typescript-eslint": "^8.24.1"
+    "concurrently": "^9.1.2",
+    "eslint": "^9.29.0",
+    "eslint-plugin-prettier": "^5.5.0",
+    "prettier": "^3.5.3",
+    "stylelint-prettier": "^5.0.3",
+    "typescript": "~5.7.2"
+  },
+  "volta": {
+    "extends": "../package.json"
   }
 }

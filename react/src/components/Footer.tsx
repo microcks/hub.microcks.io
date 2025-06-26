@@ -8,31 +8,31 @@
 
 const sections = [
   {
-    title: "Microcks",
+    title: 'Microcks',
     links: [
-      { name: "What is Microcks?", href: "#" },
-      { name: "About hub.microcks.io", href: "#" },
-      { name: "Documentation", href: "#" },
-      { name: "Privacy Policy", href: "#" },
+      { name: 'What is Microcks?', href: '#' },
+      { name: 'About hub.microcks.io', href: '#' },
+      { name: 'Documentation', href: '#' },
+      { name: 'Privacy Policy', href: '#' },
     ],
   },
   {
-    title: "Community",
+    title: 'Community',
     links: [
-      { name: "GitHub", href: "#" },
-      { name: "File an issue", href: "#" },
-      { name: "Join Discord", href: "#" },
-      { name: "Join Zulip", href: "#" },
+      { name: 'GitHub', href: '#' },
+      { name: 'File an issue', href: '#' },
+      { name: 'Join Discord', href: '#' },
+      { name: 'Join Zulip', href: '#' },
     ],
   },
   {
-    title: "Socials",
+    title: 'Socials',
     links: [
-      { name: "Twitter", href: "#" },
-      { name: "LinkedIn", href: "#" },
-      { name: "YouTube", href: "#" },
-      { name: "Bluesky", href: "#" },
-      { name: "Mastodon", href: "#" },
+      { name: 'Twitter', href: '#' },
+      { name: 'LinkedIn', href: '#' },
+      { name: 'YouTube', href: '#' },
+      { name: 'Bluesky', href: '#' },
+      { name: 'Mastodon', href: '#' },
     ],
   },
 ];
@@ -46,13 +46,13 @@ interface FooterMicrocksProps {
   };
 }
 
-const Footer = ({
+export const Footer = ({
   logo = {
-    url: "https://microcks.io",
+    url: 'https://microcks.io',
     // src: "https://hub.microcks.io/assets/images/hub-microcks.svg",
-    src: "/microcks.svg",
-    alt: "Microcks Logo",
-    title: "Microcks.io",
+    src: '/microcks.svg',
+    alt: 'Microcks Logo',
+    title: 'Microcks.io',
   },
 }: FooterMicrocksProps) => {
   return (
@@ -68,8 +68,7 @@ const Footer = ({
               <h2 className="text-xl font-semibold">{logo.title}</h2>
             </div>
             <p className="text-sm text-gray-300 max-w-xs">
-              Microcks is an open-source Kubernetes-native tool for mocking and
-              testing APIs and microservices.
+              Microcks is an open-source Kubernetes-native tool for mocking and testing APIs and microservices.
             </p>
             {/* <ul className="flex items-center space-x-6 text-gray-300">
               <li className="hover:text-white">
@@ -92,16 +91,15 @@ const Footer = ({
 
           {/* Right: Link Sections */}
           <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-20">
-            {sections.map((section, sectionIdx) => (
-              <div key={sectionIdx}>
+            {sections.map(section => (
+              <div key={section.title}>
                 <h3 className="mb-4 text-base font-semibold">{section.title}</h3>
                 <ul className="space-y-3 text-sm text-gray-300">
-                  {section.links.map((link, linkIdx) => (
-                    <li
-                      key={linkIdx}
-                      className="hover:text-white transition-colors"
-                    >
-                      <a href={link.href} tabIndex={0}>{link.name}</a>
+                  {section.links.map(link => (
+                    <li key={link.name} className="hover:text-white transition-colors">
+                      <a href={link.href} tabIndex={0}>
+                        {link.name}
+                      </a>
                     </li>
                   ))}
                 </ul>
@@ -115,10 +113,16 @@ const Footer = ({
           <p>© {new Date().getFullYear()} Microcks.io. All rights reserved.</p>
           <ul className="flex justify-center gap-4 lg:justify-start">
             <li className="hover:text-white">
-              <a href="#" tabIndex={0}>Terms & Conditions</a>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a href="#" tabIndex={0}>
+                Terms & Conditions
+              </a>
             </li>
             <li className="hover:text-white">
-              <a href="#" tabIndex={0}>Privacy Policy</a>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <a href="#" tabIndex={0}>
+                Privacy Policy
+              </a>
             </li>
           </ul>
         </div>
@@ -126,5 +130,3 @@ const Footer = ({
     </section>
   );
 };
-
-export default Footer;

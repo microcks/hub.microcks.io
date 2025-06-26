@@ -15,7 +15,7 @@ export class AppHTMLElement extends HTMLElement {
     this.root.render(
       <StrictMode>
         <App />
-      </StrictMode>
+      </StrictMode>,
     );
   }
 
