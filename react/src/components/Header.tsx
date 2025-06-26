@@ -15,7 +15,7 @@ function Header() {
       {/* <div className="w-full max-w-3/4 mx-auto px-8 py-14 flex items-center justify-between h-20"> */}
       <div className="max-w-screen-xl mx-auto px-8 py-4 flex items-center justify-between h-20">
         <div className="flex items-center">
-          <Link to="/">
+          <Link to="/" tabIndex={0}>
             <img src="https://hub.microcks.io/assets/images/hub-microcks.svg"
               alt="Microcks Logo"
               className="h-8  mr-2" />
@@ -60,8 +60,8 @@ function Header() {
               { label: "Documentation", href: "/docs" },
               { label: "Community", href: "/community" },
             ].map(({ label, href }) => (
-              <NavigationMenuItem key={label}>
-                <Link to={href} className="text-white hover:text-slate-300 px-3 py-2 rounded transition-colors">
+              <NavigationMenuItem key={label} >
+                <Link to={href} tabIndex={0} className="text-white hover:text-slate-300 py-2 rounded transition-colors">
                   <NavigationMenuLink asChild>
                     <span>{label}</span>
                   </NavigationMenuLink>

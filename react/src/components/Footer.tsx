@@ -50,7 +50,7 @@ const Footer = ({
   logo = {
     url: "https://microcks.io",
     // src: "https://hub.microcks.io/assets/images/hub-microcks.svg",
-    src:"/microcks.svg",
+    src: "/microcks.svg",
     alt: "Microcks Logo",
     title: "Microcks.io",
   },
@@ -62,7 +62,7 @@ const Footer = ({
           {/* Left: Logo + Description + Social Icons */}
           <div className="flex w-full flex-col items-center justify-between gap-6 lg:items-start">
             <div className="flex items-center gap-2">
-              <a href={logo.url}>
+              <a href={logo.url} tabIndex={0}>
                 <img src={logo.src} alt={logo.alt} className="h-10" />
               </a>
               <h2 className="text-xl font-semibold">{logo.title}</h2>
@@ -101,7 +101,7 @@ const Footer = ({
                       key={linkIdx}
                       className="hover:text-white transition-colors"
                     >
-                      <a href={link.href}>{link.name}</a>
+                      <a href={link.href} tabIndex={0}>{link.name}</a>
                     </li>
                   ))}
                 </ul>
@@ -115,10 +115,10 @@ const Footer = ({
           <p>© {new Date().getFullYear()} Microcks.io. All rights reserved.</p>
           <ul className="flex justify-center gap-4 lg:justify-start">
             <li className="hover:text-white">
-              <a href="#">Terms & Conditions</a>
+              <a href="#" tabIndex={0}>Terms & Conditions</a>
             </li>
             <li className="hover:text-white">
-              <a href="#">Privacy Policy</a>
+              <a href="#" tabIndex={0}>Privacy Policy</a>
             </li>
           </ul>
         </div>
