@@ -14,20 +14,8 @@
  * limitations under the License.
  */
 
-import { defineConfig } from '@pplancq/eslint-config';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { setupServer } from 'msw/node';
+import { getSvg200 } from './handlers/svgHandlers';
 
-export default defineConfig({
-  enableReact: true,
-  enablePrettier: 'on',
-  enableVitest: true,
-  unitTestFiles: ['src/**/*.{test,spec,steps}.{js,jsx,ts,tsx}'],
-  extendConfig: [
-    {
-      files: ['**/*.config.{js,cjs,mjs,ts,cts,mts}'],
-      rules: {
-        'import/no-default-export': 'off',
-        'import/no-extraneous-dependencies': 'off',
-      },
-    },
-  ],
-});
+export const server = setupServer(getSvg200);
