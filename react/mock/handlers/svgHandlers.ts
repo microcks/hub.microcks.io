@@ -14,20 +14,17 @@
  * limitations under the License.
  */
 
-import { defineConfig } from '@pplancq/eslint-config';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { delay, http, HttpResponse } from 'msw';
 
-export default defineConfig({
-  enableReact: true,
-  enablePrettier: 'on',
-  enableVitest: true,
-  unitTestFiles: ['src/**/*.{test,spec,steps}.{js,jsx,ts,tsx}'],
-  extendConfig: [
-    {
-      files: ['**/*.config.{js,cjs,mjs,ts,cts,mts}'],
-      rules: {
-        'import/no-default-export': 'off',
-        'import/no-extraneous-dependencies': 'off',
-      },
-    },
-  ],
+const CONTENT_TYPE = 'content-type';
+
+const MINE_TYPE_SVG = 'image/svg+xml';
+
+export const getSvg200 = http.get('*.svg', async () => {
+  await delay();
+
+  const svg = '<svg width="100" height="100"><circle cx="50" cy="50" r="40"/></svg>';
+
+  return HttpResponse.text(svg, { headers: [[CONTENT_TYPE, MINE_TYPE_SVG]] });
 });

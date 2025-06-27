@@ -14,20 +14,21 @@
  * limitations under the License.
  */
 
-import { defineConfig } from '@pplancq/eslint-config';
+/* eslint-disable import/no-extraneous-dependencies */
+import { cleanup } from '@testing-library/react';
+import { beforeAll, afterAll, afterEach } from 'vitest';
+import { server } from './mock/server';
+import '@testing-library/jest-dom/vitest';
 
-export default defineConfig({
-  enableReact: true,
-  enablePrettier: 'on',
-  enableVitest: true,
-  unitTestFiles: ['src/**/*.{test,spec,steps}.{js,jsx,ts,tsx}'],
-  extendConfig: [
-    {
-      files: ['**/*.config.{js,cjs,mjs,ts,cts,mts}'],
-      rules: {
-        'import/no-default-export': 'off',
-        'import/no-extraneous-dependencies': 'off',
-      },
-    },
-  ],
+beforeAll(() => {
+  server.listen({ onUnhandledRequest: 'error' });
+});
+
+afterAll(() => {
+  server.close();
+});
+
+afterEach(() => {
+  server.resetHandlers();
+  cleanup();
 });
