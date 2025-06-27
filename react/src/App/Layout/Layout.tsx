@@ -15,7 +15,7 @@
  */
 
 import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
+import { Header } from '@/components/Header/Header';
 import { type PropsWithChildren } from 'react';
 
 export const Layout = ({ children }: PropsWithChildren) => {

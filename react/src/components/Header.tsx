@@ -24,7 +24,7 @@ import { NavigationMenuTrigger } from '@/components/ui/NavigationMenuTrigger/Nav
 
 export const Header = () => {
   return (
-    <header className="bg-slate-900 shadow-2xl text-white">
+    <header className="shadow-2xl">
       {/* <div className="w-full max-w-3/4 mx-auto px-8 py-14 flex items-center justify-between h-20"> */}
       <div className="max-w-screen-xl mx-auto px-8 py-4 flex items-center justify-between h-20">
         <div className="flex items-center">
@@ -41,9 +41,7 @@ export const Header = () => {
         <NavigationMenu>
           <NavigationMenuList className="space-x-4">
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-white bg-slate-900 hover:bg-slate-800">
-                Contribute
-              </NavigationMenuTrigger>
+              <NavigationMenuTrigger className="hover:bg-slate-800">Contribute</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="p-2 space-y-1 bg-white rounded-md text-black min-w-2xs">
                   <li>
