@@ -18,6 +18,7 @@
     "add-license-header": "node scripts/addLicenseHeader.js"
   },
   "dependencies": {
+    "@pplancq/svg-react": "^2.0.2",
     "@radix-ui/react-navigation-menu": "^1.2.12",
     "@radix-ui/react-slot": "^1.2.0",
     "class-variance-authority": "^0.7.1",
