@@ -14,7 +14,8 @@
     "lint:stylelint:fix": "stylelint \"src/**/*.{scss,css}\" --fix",
     "lint:prettier": "prettier \"src/**/*.!(js|jsx|mjs|ts|tsx|scss|css)\" --check --ignore-unknown",
     "lint:prettier:fix": "prettier \"src/**/*.!(js|jsx|mjs|ts|tsx|scss|css)\" --write --ignore-unknown",
-    "lint:tsc": "tsc --noEmit"
+    "lint:tsc": "tsc --noEmit",
+    "add-license-header": "node scripts/addLicenseHeader.js"
   },
   "dependencies": {
     "@radix-ui/react-navigation-menu": "^1.2.12",
@@ -42,6 +43,7 @@
     "concurrently": "^9.1.2",
     "eslint": "^9.29.0",
     "eslint-plugin-prettier": "^5.5.0",
+    "glob": "^11.0.3",
     "prettier": "^3.5.3",
     "stylelint-prettier": "^5.0.3",
     "typescript": "~5.7.2"
