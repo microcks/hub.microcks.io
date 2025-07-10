@@ -1,0 +1,9 @@
+#!/bin/sh
+NAME=$(git config user.name)
+EMAIL=$(git config user.email)
+SIGNED_OFF_BY="Signed-off-by: $NAME <$EMAIL>"
+
+if ! grep -q "$SIGNED_OFF_BY" "$1"; then
+  echo "" >> "$1"
+  echo "$SIGNED_OFF_BY" >> "$1"
+fi
