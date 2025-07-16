@@ -2,10 +2,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["dom", "dom.iterable", "ES2022"],
-    "types": [
-      "./src/react-app-env.d.ts",
-      "@rsbuild/core/types"
-    ],
+    "types": ["./src/react-app-env.d.ts", "@rsbuild/core/types", "vitest/globals", "@testing-library/jest-dom/vitest"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -24,6 +21,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "rsbuild.config.ts"],
+  "include": ["src", "rsbuild.config.ts", "vitest.setup.ts"],
   "exclude": ["node_modules"]
 }

@@ -42,6 +42,7 @@
 }
 
 :root {
+  --base-font-size: 16;
   --radius: 0.625rem;
   --background: oklch(100% 0 0deg);
   --foreground: oklch(12.9% 0.042 264.695deg);
