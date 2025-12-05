@@ -18,7 +18,9 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@Front/*": ["src/*"],
+      "@Api/*": [".api/*"]
     }
   },
   "include": ["src", "rsbuild.config.ts", "vitest.setup.ts"],

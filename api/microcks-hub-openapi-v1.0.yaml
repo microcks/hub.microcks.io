@@ -48,6 +48,7 @@ paths:
       required: true
   /mocks/{package}/apis:
     get:
+      operationId: GetAPIVersions
       responses:
         "200":
           content:
