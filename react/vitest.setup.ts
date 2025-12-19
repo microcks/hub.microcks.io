@@ -17,7 +17,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { cleanup } from '@testing-library/react';
 import { beforeAll, afterAll, afterEach } from 'vitest';
-import { server } from './mock/server';
+import { server } from '@Mocks/server';
 import '@testing-library/jest-dom/vitest';
 
 beforeAll(() => {
