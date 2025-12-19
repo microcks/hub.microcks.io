@@ -14,28 +14,15 @@
  * limitations under the License.
  */
 
-import { defineConfig } from 'orval';
+import { HEADERS, METHODS, MIME_TYPES } from './constant';
 
-export default defineConfig({
-  microcksHub: {
-    input: '../api/microcks-hub-openapi-v1.0.yaml',
-    output: {
-      client: 'fetch',
-      workspace: './.api',
-      target: 'microcksHub/index.ts',
-      indexFiles: false,
-      prettier: true,
-      mode: 'single',
-      clean: true,
-      override: {
-        fetch: {
-          includeHttpResponseReturnType: false,
-        },
-        mutator: {
-          path: '../src/shared/helpers/fetchApi/fetchApi.ts',
-          name: 'fetchApi',
-        },
-      },
-    },
-  },
-});
+type JsonValue = JsonObject | JsonArray | string | number | boolean | null;
+type JsonArray = Array<JsonValue>;
+type JsonObject = {
+  [key: string]: JsonValue;
+};
+type Json = JsonObject | JsonArray;
+
+export type Methods = (typeof METHODS)[keyof typeof METHODS];
+export type Headers = (typeof HEADERS)[keyof typeof HEADERS];
+export type MimeTypes = (typeof MIME_TYPES)[keyof typeof MIME_TYPES];

@@ -14,28 +14,19 @@
  * limitations under the License.
  */
 
-import { defineConfig } from 'orval';
+export const METHODS = Object.freeze({
+  get: 'GET',
+  post: 'POST',
+  put: 'PUT',
+  patch: 'PATCH',
+  delete: 'DELETE',
+});
 
-export default defineConfig({
-  microcksHub: {
-    input: '../api/microcks-hub-openapi-v1.0.yaml',
-    output: {
-      client: 'fetch',
-      workspace: './.api',
-      target: 'microcksHub/index.ts',
-      indexFiles: false,
-      prettier: true,
-      mode: 'single',
-      clean: true,
-      override: {
-        fetch: {
-          includeHttpResponseReturnType: false,
-        },
-        mutator: {
-          path: '../src/shared/helpers/fetchApi/fetchApi.ts',
-          name: 'fetchApi',
-        },
-      },
-    },
-  },
+export const HEADERS = Object.freeze({
+  contentType: 'content-type',
+});
+
+export const MIME_TYPES = Object.freeze({
+  json: 'application/json',
+  text: 'plain/text',
 });
