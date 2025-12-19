@@ -42,7 +42,7 @@ export default defineConfig(({ mode }) => {
       },
       coverage: {
         enabled: env.CI === 'true',
-        reporter: ['lcov', 'json', 'html', 'text', 'cobertura'],
+        reporter: ['lcov', 'json', 'html', 'text', 'text-summary', 'cobertura'],
         provider: 'v8',
         lines: 80,
         functions: 75,
