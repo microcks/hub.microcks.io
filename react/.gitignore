@@ -24,3 +24,5 @@ junit-report.xml
 *.njsproj
 *.sln
 *.sw?
+
+.api

@@ -14,21 +14,11 @@
  * limitations under the License.
  */
 
-/* eslint-disable import/no-extraneous-dependencies */
-import { cleanup } from '@testing-library/react';
-import { beforeAll, afterAll, afterEach } from 'vitest';
-import { server } from '@Mocks/server';
-import '@testing-library/jest-dom/vitest';
+import type { APIPackage, APIPackageFull, APIVersion } from '@Api/microcksHub';
 
-beforeAll(() => {
-  server.listen({ onUnhandledRequest: 'error' });
-});
-
-afterAll(() => {
-  server.close();
-});
-
-afterEach(() => {
-  server.resetHandlers();
-  cleanup();
-});
+export interface MicrocksHubServiceInterface {
+  getPackages(): Promise<APIPackage[]>;
+  getPackageDetails(packageName: string): Promise<APIPackageFull>;
+  getAPIVersions(packageName: string): Promise<APIVersion[]>;
+  getAPIVersionDetails(packageName: string, apiVersion: string): Promise<APIVersion>;
+}
