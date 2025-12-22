@@ -21,6 +21,6 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "rsbuild.config.ts", "vitest.setup.ts"],
+  "include": ["src", "*.config.ts", "vitest.setup.ts"],
   "exclude": ["node_modules"]
 }
