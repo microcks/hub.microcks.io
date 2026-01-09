@@ -13,6 +13,7 @@ dist-ssr
 *.local
 coverage/
 junit-report.xml
+test-reports/
 
 # Editor directories and files
 .vscode/*
