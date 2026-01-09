@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-/* eslint-disable import/no-extraneous-dependencies */
-import { cleanup } from '@testing-library/react';
-import { beforeAll, afterAll, afterEach } from 'vitest';
-import { server } from '@Mocks/server';
-import '@testing-library/jest-dom/vitest';
-
-beforeAll(() => {
-  server.listen({ onUnhandledRequest: 'error' });
+export const METHODS = Object.freeze({
+  get: 'GET',
+  post: 'POST',
+  put: 'PUT',
+  patch: 'PATCH',
+  delete: 'DELETE',
 });
 
-afterAll(() => {
-  server.close();
+export const HEADERS = Object.freeze({
+  contentType: 'content-type',
 });
 
-afterEach(() => {
-  server.resetHandlers();
-  cleanup();
+export const MIME_TYPES = Object.freeze({
+  json: 'application/json',
+  text: 'plain/text',
 });

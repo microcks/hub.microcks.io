@@ -17,6 +17,7 @@
     "lint:tsc": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "orval": "orval --config orval.config.ts",
     "add-license-header": "node scripts/addLicenseHeader.js"
   },
   "dependencies": {
@@ -54,6 +55,7 @@
     "glob": "^11.0.3",
     "jsdom": "^26.1.0",
     "msw": "^2.10.2",
+    "orval": "^7.17.0",
     "prettier": "^3.5.3",
     "stylelint-prettier": "^5.0.3",
     "typescript": "~5.7.2",
