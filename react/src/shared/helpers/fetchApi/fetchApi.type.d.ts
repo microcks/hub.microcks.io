@@ -14,21 +14,15 @@
  * limitations under the License.
  */
 
-/* eslint-disable import/no-extraneous-dependencies */
-import { cleanup } from '@testing-library/react';
-import { beforeAll, afterAll, afterEach } from 'vitest';
-import { server } from '@Mocks/server';
-import '@testing-library/jest-dom/vitest';
+import { HEADERS, METHODS, MIME_TYPES } from './constant';
 
-beforeAll(() => {
-  server.listen({ onUnhandledRequest: 'error' });
-});
+type JsonValue = JsonObject | JsonArray | string | number | boolean | null;
+type JsonArray = Array<JsonValue>;
+type JsonObject = {
+  [key: string]: JsonValue;
+};
+type Json = JsonObject | JsonArray;
 
-afterAll(() => {
-  server.close();
-});
-
-afterEach(() => {
-  server.resetHandlers();
-  cleanup();
-});
+export type Methods = (typeof METHODS)[keyof typeof METHODS];
+export type Headers = (typeof HEADERS)[keyof typeof HEADERS];
+export type MimeTypes = (typeof MIME_TYPES)[keyof typeof MIME_TYPES];
