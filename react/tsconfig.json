@@ -18,9 +18,12 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@Front/*": ["src/*"],
+      "@Api/*": [".api/*"],
+      "@Mocks/*": ["mocks/*"]
     }
   },
-  "include": ["src", "rsbuild.config.ts", "vitest.setup.ts"],
+  "include": ["src", "rsbuild.config.ts", "vitest.setup.ts", "orval.config.ts", "mocks"],
   "exclude": ["node_modules"]
 }

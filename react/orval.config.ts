@@ -14,21 +14,28 @@
  * limitations under the License.
  */
 
-/* eslint-disable import/no-extraneous-dependencies */
-import { cleanup } from '@testing-library/react';
-import { beforeAll, afterAll, afterEach } from 'vitest';
-import { server } from '@Mocks/server';
-import '@testing-library/jest-dom/vitest';
+import { defineConfig } from 'orval';
 
-beforeAll(() => {
-  server.listen({ onUnhandledRequest: 'error' });
-});
-
-afterAll(() => {
-  server.close();
-});
-
-afterEach(() => {
-  server.resetHandlers();
-  cleanup();
+export default defineConfig({
+  microcksHub: {
+    input: '../api/microcks-hub-openapi-v1.0.yaml',
+    output: {
+      client: 'fetch',
+      workspace: './.api',
+      target: 'microcksHub/index.ts',
+      indexFiles: false,
+      prettier: true,
+      mode: 'single',
+      clean: true,
+      override: {
+        fetch: {
+          includeHttpResponseReturnType: false,
+        },
+        mutator: {
+          path: '../src/shared/helpers/fetchApi/fetchApi.ts',
+          name: 'fetchApi',
+        },
+      },
+    },
+  },
 });

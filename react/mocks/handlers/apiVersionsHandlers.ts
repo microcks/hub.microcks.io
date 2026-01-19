@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-/* eslint-disable import/no-extraneous-dependencies */
-import { cleanup } from '@testing-library/react';
-import { beforeAll, afterAll, afterEach } from 'vitest';
-import { server } from '@Mocks/server';
-import '@testing-library/jest-dom/vitest';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { delay, http, HttpResponse } from 'msw';
+import { apiVersion200, apiVersions200 } from '../fixtures/apiVersionsFixtures';
 
-beforeAll(() => {
-  server.listen({ onUnhandledRequest: 'error' });
+export const getAPIVersions200 = http.get('**/api/mocks/:packageName/apis', async () => {
+  await delay();
+
+  return HttpResponse.json(apiVersions200);
 });
 
-afterAll(() => {
-  server.close();
-});
+export const getAPIVersion200 = http.get('**/api/mocks/:packageName/apis/:version', async () => {
+  await delay();
 
-afterEach(() => {
-  server.resetHandlers();
-  cleanup();
+  return HttpResponse.json(apiVersion200);
 });
