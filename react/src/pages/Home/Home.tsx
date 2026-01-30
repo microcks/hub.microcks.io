@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { HubSection } from '@/components/HubSection';
+import { HubSection } from '@/shared/components/HubSection';
 
 export const Home = () => {
   return (

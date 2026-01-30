@@ -14,5 +14,8 @@
  * limitations under the License.
  */
 
-import './reset.css';
-import './theme.css';
+import './tokens/colors.css';
+
+import './base/reset.css';
+
+import './theme-tailwind.old.css';

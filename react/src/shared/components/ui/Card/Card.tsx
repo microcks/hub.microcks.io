@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-import { Footer } from '@/shared/components/Footer';
-import { type PropsWithChildren } from 'react';
-import { Header } from '@/shared/components/Header/Header';
+import { cn } from '@/shared/lib/utils';
+import type { ComponentProps } from 'react';
 
-export const Layout = ({ children }: PropsWithChildren) => {
+export const Card = ({ className, ...props }: ComponentProps<'div'>) => {
   return (
-    <>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </>
+    <div
+      data-slot="card"
+      className={cn('bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm', className)}
+      {...props}
+    />
   );
 };

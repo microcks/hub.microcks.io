@@ -14,16 +14,9 @@
  * limitations under the License.
  */
 
-import { Footer } from '@/shared/components/Footer';
-import { type PropsWithChildren } from 'react';
-import { Header } from '@/shared/components/Header/Header';
+import { cn } from '@/shared/lib/utils';
+import type { ComponentProps } from 'react';
 
-export const Layout = ({ children }: PropsWithChildren) => {
-  return (
-    <>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </>
-  );
+export const CardContent = ({ className, ...props }: ComponentProps<'div'>) => {
+  return <div data-slot="card-content" className={cn('px-6', className)} {...props} />;
 };

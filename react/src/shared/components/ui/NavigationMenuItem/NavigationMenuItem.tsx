@@ -14,16 +14,10 @@
  * limitations under the License.
  */
 
-import { Footer } from '@/shared/components/Footer';
-import { type PropsWithChildren } from 'react';
-import { Header } from '@/shared/components/Header/Header';
+import { cn } from '@/shared/lib/utils';
+import { Item } from '@radix-ui/react-navigation-menu';
+import type { ComponentProps } from 'react';
 
-export const Layout = ({ children }: PropsWithChildren) => {
-  return (
-    <>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </>
-  );
+export const NavigationMenuItem = ({ className, ...props }: ComponentProps<typeof Item>) => {
+  return <Item data-slot="navigation-menu-item" className={cn('relative', className)} {...props} />;
 };

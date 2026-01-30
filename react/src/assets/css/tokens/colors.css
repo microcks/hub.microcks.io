@@ -1,0 +1,25 @@
+/* CSS color tokens
+   Defines white and black custom properties using HSL values.
+   Hex equivalents are provided in comments.
+*/
+
+/* Register properties so they can be transitioned and validated by the browser */
+@property --color-white {
+  inherits: false;
+  initial-value: hsl(0deg 0% 100%); /* #ffffff */
+  syntax: '<color>';
+}
+
+@property --color-black {
+  inherits: false;
+  initial-value: hsl(0deg 0% 0%); /* #000000 */
+  syntax: '<color>';
+}
+
+:root {
+  /* White (hex #ffffff) */
+  --color-white: hsl(0deg 0% 100%);
+
+  /* Black (hex #000000) */
+  --color-black: hsl(0deg 0% 0%);
+}

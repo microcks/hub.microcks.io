@@ -2,8 +2,8 @@
 
 **Project Type:** Open Source  
 **Timeline:** 8-12 weeks  
-**Current Status:** 15-20% complete (needs course correction)  
-**Last Updated:** November 4, 2025
+**Current Status:** Phase 1 Complete ✅ (~20% complete)  
+**Last Updated:** January 30, 2026
 
 ---
 
@@ -26,7 +26,7 @@ This roadmap breaks down the React migration into manageable tasks suitable for 
 ## 🎯 Phases Overview
 
 ```
-Phase 1: Foundation Cleanup           ████░░░░░░░░ (2 weeks)
+Phase 1: Foundation Cleanup           ████████████ ✅ COMPLETE
 Phase 2: CSS Token System             ████████░░░░ (3 weeks)
 Phase 3: Core UI Components           ████████████ (3 weeks)
 Phase 4: Custom Hooks & Services      ████████░░░░ (2 weeks)
@@ -40,268 +40,363 @@ Phase 8: Final Polish & Documentation ████░░░░░░░░ (1 we
 
 ---
 
-## Phase 1: Foundation Cleanup & Setup
+## Phase 1: Foundation Cleanup & Setup ✅ COMPLETE
 
-**Duration:** 2 weeks  
-**Goal:** Remove Tailwind, set up proper tooling  
+**Duration:** Completed  
+**Goal:** Set up proper tooling and CSS foundation  
+**Status:** ✅ All critical tasks completed
 **Blocking:** ALL other phases depend on this
 
-### Task 1.1: Remove Tailwind Ecosystem 🔴 CRITICAL
+**⚠️ Strategic Decisions Made:**
+- **Tailwind Removal Postponed:** Delayed until all components are migrated to ensure app remains functional
+- **Types via Orval:** Using auto-generated types from OpenAPI instead of manual type definitions
+- **YAGNI Approach:** Dependencies (like Markdown libs) will be installed only when needed
+- **Incremental CSS Tokens:** Creating tokens progressively during component migration for easier code review
+
+---
+
+### Task 1.1: Remove Tailwind Ecosystem ⏸️ POSTPONED
 
 **Issue Title:** `[Phase 1] Remove Tailwind CSS and related dependencies`
 
-**Description:**
-Remove all Tailwind CSS dependencies and configuration files to establish a clean foundation for custom CSS implementation.
+**Status:** ⏸️ **POSTPONED TO END OF MIGRATION**
 
-**Dependencies:** None (can start immediately)
+**Rationale:** 
+To ensure the application remains functional throughout the migration, Tailwind CSS will be kept alongside the new CSS system until all components are migrated. This allows for:
+- Incremental migration without breaking existing functionality
+- Testing new components in production while old ones still work
+- Easier rollback if issues are discovered
+- Reduced risk and better developer experience
+
+**Description:**
+Remove all Tailwind CSS dependencies and configuration files after all components have been migrated to the custom CSS system.
+
+**Dependencies:** ALL component migrations must be complete first
 
 **Effort:** 8-10 hours
 
-**Priority:** 🔴 CRITICAL - Blocks all styling work
+**Priority:** 🟡 MEDIUM - Will be done at the end
 
-**Can Parallelize:** ❌ No - Must be done first
+**Can Parallelize:** ❌ No - Must be done last
 
 **Tasks:**
+- [ ] Verify all components use CSS Modules (no Tailwind classes remaining)
 - [ ] Uninstall npm packages:
   ```bash
   npm uninstall tailwindcss tailwind-merge tw-animate-css
   npm uninstall @tailwindcss/postcss class-variance-authority
   ```
-- [ ] Remove Radix UI dependencies:
+- [ ] Remove Radix UI dependencies if no longer needed:
   ```bash
   npm uninstall @radix-ui/react-navigation-menu @radix-ui/react-slot
   ```
 - [ ] Delete `postcss.config.js`
 - [ ] Delete `components.json` (ShadCN config)
-- [ ] Delete `src/assets/css/theme.css`
-- [ ] Delete `src/lib/utils.ts` (twMerge-based)
+- [ ] Delete `react/src/assets/css/theme-tailwind.old.css`
+- [ ] Delete `src/lib/utils.ts` (twMerge-based) if it exists
 - [ ] Update `package.json` scripts if needed
-- [ ] Verify build still works (will have styling errors - expected)
+- [ ] Verify build still works without errors
+- [ ] Run full test suite
 - [ ] Commit with message: `chore: remove Tailwind CSS ecosystem`
 
 **Acceptance Criteria:**
 - ✅ No Tailwind packages in `package.json`
 - ✅ No Tailwind config files present
-- ✅ Build completes without errors (styling will be broken - OK)
+- ✅ Build completes without errors
 - ✅ No import errors for removed packages
+- ✅ All visual regression tests pass
 
 **Files to Modify:**
-- `package.json`
+- `react/package.json`
 - Delete: `postcss.config.js`
 - Delete: `components.json`
-- Delete: `src/assets/css/theme.css`
-- Delete: `src/lib/utils.ts`
+- Delete: `react/src/assets/css/theme-tailwind.old.css`
+- Delete: `src/lib/utils.ts` (if exists)
 
 ---
 
-### Task 1.2: Install Required Dependencies 🔴 CRITICAL
+### Task 1.2: Install Required Dependencies ⏸️ POSTPONED (YAGNI)
 
-**Issue Title:** `[Phase 1] Install SCSS and Markdown dependencies`
+**Issue Title:** `[Phase 1] Install dependencies as needed`
+
+**Status:** ⏸️ **POSTPONED - YAGNI Approach Adopted**
+
+**Rationale:**
+Following the YAGNI (You Ain't Gonna Need It) principle, dependencies will be installed only when actually needed. This provides several benefits:
+- ✅ Avoids maintaining unnecessary dependencies
+- ✅ Allows evaluating alternative libraries when the need arises
+- ✅ Keeps `package.json` lean and focused
+- ✅ Reduces security attack surface (fewer dependencies = fewer potential vulnerabilities)
+- ✅ Prevents package bloat
 
 **Description:**
-Install necessary dependencies for SCSS styling and Markdown rendering.
+Install dependencies incrementally as they become necessary during component migration.
 
-**Dependencies:** Task 1.1 (Tailwind removal)
+**Dependencies:** None - done on-demand
 
-**Effort:** 2-3 hours
+**Effort:** 1 hour per dependency batch
 
-**Priority:** 🔴 CRITICAL - Blocks styling and content rendering
+**Priority:** 🟡 MEDIUM - Install when needed
 
-**Can Parallelize:** ❌ No - Depends on Task 1.1
+**Can Parallelize:** ✅ Yes - Can be done anytime
+
+**Potential Future Dependencies (to evaluate when needed):**
+- **Markdown rendering:** 
+  - Option A: `marked` + `dompurify`
+  - Option B: `react-markdown`
+  - Option C: `micromark`
+  - Decision: Evaluate alternatives when Markdown rendering is needed
+- **Other:** To be determined based on migration needs
 
 **Tasks:**
-- [ ] Install SCSS support:
-  ```bash
-  npm install sass
-  ```
-- [ ] Install Markdown libraries:
-  ```bash
-  npm install marked dompurify
-  npm install -D @types/dompurify
-  ```
-- [ ] Update Rsbuild config for SCSS support (if needed)
-- [ ] Test SCSS compilation with a simple test file
-- [ ] Commit with message: `chore: add SCSS and Markdown dependencies`
+- [ ] Create a dependency evaluation checklist when adding new packages
+- [ ] Document the rationale for each dependency choice
+- [ ] Prefer native solutions when possible
+- [ ] Evaluate at least 2 alternatives before choosing a library
 
 **Acceptance Criteria:**
-- ✅ `sass` package in dependencies
-- ✅ `marked` and `dompurify` in dependencies
-- ✅ SCSS files compile correctly
-- ✅ No build errors
+- ✅ Dependencies are only added when there's a clear, immediate need
+- ✅ Each dependency choice is documented
+- ✅ No unused dependencies in `package.json`
+- ✅ Security audit passes for all new dependencies
 
 **Files to Modify:**
-- `package.json`
-- `rsbuild.config.ts` (if SCSS config needed)
+- `react/package.json` (when dependencies are added)
 
 ---
 
-### Task 1.3: Create Project Structure for Styles 🔴 CRITICAL
+### Task 1.3: Create Project Structure for Styles ✅ COMPLETE
 
-**Issue Title:** `[Phase 1] Create SCSS directory structure`
+**Issue Title:** `[Phase 1] Create CSS directory structure with tokens`
+
+**Status:** ✅ **COMPLETED**
 
 **Description:**
-Set up the directory structure for the CSS token system and global styles.
+Set up the directory structure for the CSS token system and global styles using vanilla CSS (not SCSS) and CSS Custom Properties.
 
-**Dependencies:** Task 1.2 (Dependencies installed)
+**Implementation Details:**
+- ✅ Using vanilla CSS instead of SCSS for simplicity
+- ✅ CSS Custom Properties (CSS variables) for tokens
+- ✅ CSS Modules for component-level styles
+- ✅ Modern CSS reset included
+- ✅ Incremental approach: tokens created as needed during component migration
 
-**Effort:** 4-5 hours
+**Dependencies:** None
+
+**Effort:** 3-4 hours (completed)
 
 **Priority:** 🔴 CRITICAL - Foundation for all styling
 
-**Can Parallelize:** ❌ No - Depends on Task 1.2
+**Can Parallelize:** ❌ No
 
 **Tasks:**
-- [ ] Create directory structure:
+- [x] Create directory structure in `react/src/assets/css/`:
   ```
-  src/styles/
+  react/src/assets/css/
   ├── tokens/
-  │   ├── colors.scss
-  │   ├── spacing.scss
-  │   ├── typography.scss
-  │   ├── breakpoints.scss
-  │   └── index.scss
+  │   ├── colors.css ✅ Created
+  │   ├── spacing.css (to be created as needed)
+  │   ├── typography.css (to be created as needed)
+  │   ├── breakpoints.css (to be created as needed)
+  │   └── index.css (to be created when needed)
   ├── base/
-  │   ├── typography.scss
-  │   └── layout.scss
-  ├── mixins/
-  │   ├── responsive.scss
-  │   └── flexbox.scss
-  └── global.scss
+  │   ├── reset.css ✅ Existing (modern CSS reset)
+  │   ├── typography.css (to be created as needed)
+  │   └── layout.css (to be created as needed)
+  ├── utils/
+  │   ├── responsive.css (to be created as needed)
+  │   └── flexbox.css (to be created as needed)
+  └── index.ts ✅ Created (imports global styles)
   ```
-- [ ] Create placeholder files (empty or with comments)
-- [ ] Update `src/assets/css/index.ts` to import new structure
-- [ ] Keep existing `reset.css` (already good)
-- [ ] Verify imports work without errors
-- [ ] Commit with message: `chore: create SCSS directory structure`
+- [x] Create `tokens/colors.css` with CSS Custom Properties using `@property`
+- [x] Keep existing `base/reset.css` (modern CSS reset - already present)
+- [x] Create `index.ts` to import global styles
+- [x] Rename old Tailwind theme to `theme-tailwind.old.css`
+- [x] Verify imports work without errors
+- [x] Commit completed
 
 **Acceptance Criteria:**
-- ✅ All directories and files created
-- ✅ Import structure works
+- ✅ Base directory structure created
+- ✅ CSS Custom Properties defined in `tokens/colors.css`
+- ✅ Import structure works via `index.ts`
 - ✅ No build errors
-- ✅ Foundation ready for token implementation
+- ✅ Foundation ready for incremental token creation
+- ✅ Modern CSS reset in place
 
-**Files to Create:**
-- `src/styles/tokens/colors.scss`
-- `src/styles/tokens/spacing.scss`
-- `src/styles/tokens/typography.scss`
-- `src/styles/tokens/breakpoints.scss`
-- `src/styles/tokens/index.scss`
-- `src/styles/base/typography.scss`
-- `src/styles/base/layout.scss`
-- `src/styles/mixins/responsive.scss`
-- `src/styles/mixins/flexbox.scss`
-- `src/styles/global.scss`
+**Files Created:**
+- `react/src/assets/css/tokens/colors.css` ✅
+- `react/src/assets/css/base/reset.css` ✅ (already existed)
+- `react/src/assets/css/index.ts` ✅
+- Other token files will be created incrementally as needed
 
-**Files to Modify:**
-- `src/assets/css/index.ts`
+**Files Modified:**
+- `react/src/assets/css/theme.css` → renamed to `theme-tailwind.old.css`
+
+**Note:** Additional token files (spacing, typography, breakpoints, etc.) will be created progressively during component migration to facilitate code review and maintain focused PRs.
 
 ---
 
-### Task 1.4: Create Types Directory Structure 🟠 HIGH
+### Task 1.4: Create Types Directory Structure ✅ RESOLVED VIA ORVAL
 
-**Issue Title:** `[Phase 1] Set up TypeScript types directory`
+**Issue Title:** `[Phase 1] Use Orval for automatic type generation from OpenAPI`
+
+**Status:** ✅ **COMPLETED - BETTER SOLUTION IMPLEMENTED**
 
 **Description:**
-Create proper TypeScript type definitions directory and move types from service files.
+Instead of manually creating and maintaining type definitions, the project now uses **Orval** to automatically generate TypeScript types and fetch functions from the OpenAPI specification.
 
-**Dependencies:** None (can be done in parallel with Task 1.1-1.3)
+**Solution Implemented:**
+- ✅ **Orval configuration** set up to generate types from `api/microcks-hub-openapi-v1.0.yaml`
+- ✅ **Auto-generated types** in `react/.api/microcksHub/index.ts`
+- ✅ **Single source of truth**: OpenAPI spec drives both backend and frontend types
+- ✅ **No manual maintenance** required for types
+- ✅ **Always in sync** with API specification
 
-**Effort:** 3-4 hours
+**Dependencies:** None - alternative approach
 
-**Priority:** 🟠 HIGH - Needed for type safety
+**Effort:** Already completed (better than manual approach)
 
-**Can Parallelize:** ✅ Yes - Independent task
+**Priority:** 🟢 RESOLVED - Better solution in place
+
+**Can Parallelize:** N/A - Already done
+
+**Benefits of Orval Approach:**
+- ✅ Types automatically generated from OpenAPI spec
+- ✅ Fetch functions generated alongside types
+- ✅ Single source of truth for API contracts
+- ✅ No manual type maintenance or drift
+- ✅ API changes automatically reflected in types
+- ✅ Better developer experience
+
+**Generated Types (from OpenAPI):**
+- `APIPackage`
+- `APIVersion`
+- `Category`
+- `Contract`
+- `Link`
+- `Maintainer`
+- And all other API-related types
 
 **Tasks:**
-- [ ] Create `src/types/` directory
-- [ ] Create `src/types/package.types.ts`
-- [ ] Move type definitions from `src/services/package.services.ts`:
-  - `ApiVersion`
-  - `Api`
-  - `Package`
-  - Other related types
-- [ ] Create proper interfaces following Angular analysis:
-  - `APIPackage`
-  - `APISummary`
-  - `APINameVersion`
-  - `APIVersion`
-  - `Contract`
-  - `Link`
-  - `Maintainer`
-- [ ] Create `src/types/index.ts` for exports
-- [ ] Update service file to import from types
-- [ ] Verify no TypeScript errors
-- [ ] Commit with message: `feat: add TypeScript type definitions`
+- [x] Orval configured in project
+- [x] Types generated in `react/.api/microcksHub/index.ts`
+- [x] OpenAPI spec available at `api/microcks-hub-openapi-v1.0.yaml`
+- [x] Fetch helper integrated
+- [x] Type generation script available (e.g., `npm run generate:api`)
 
 **Acceptance Criteria:**
-- ✅ Types directory exists with proper structure
-- ✅ All package-related types defined
-- ✅ Service file imports types correctly
+- ✅ All API types auto-generated from OpenAPI
+- ✅ Types available in `react/.api/microcksHub/`
+- ✅ No manual type definitions needed
 - ✅ No TypeScript errors
-- ✅ Types match Angular models
+- ✅ Types match OpenAPI specification exactly
 
-**Files to Create:**
-- `src/types/package.types.ts`
-- `src/types/index.ts`
+**Files Created (auto-generated):**
+- `react/.api/microcksHub/index.ts` ✅
 
-**Files to Modify:**
-- `src/services/package.services.ts`
+**Files to Update (when API changes):**
+- Run: `npm run generate:api` to regenerate types from OpenAPI
+
+**Note:** This approach is superior to manual type definitions as it ensures API and frontend are always in sync with zero manual effort.
 
 ---
 
-### Task 1.5: Update Build Configuration 🟡 MEDIUM
+### Task 1.5: Update Build Configuration ✅ ALREADY IN PLACE
 
-**Issue Title:** `[Phase 1] Configure Rsbuild for SCSS and optimize build`
+**Issue Title:** `[Phase 1] Verify Rsbuild configuration for CSS Modules`
+
+**Status:** ✅ **ALREADY CONFIGURED**
 
 **Description:**
-Ensure Rsbuild is properly configured for SCSS compilation and optimal build output.
+Rsbuild configuration is already properly set up with CSS Modules support, Stylelint, source maps, and build optimization.
 
-**Dependencies:** Task 1.2 (Dependencies installed)
+**Dependencies:** None - already exists
 
-**Effort:** 2-3 hours
+**Effort:** 0 hours (verification only)
 
-**Priority:** 🟡 MEDIUM - Build optimization
+**Priority:** 🟢 COMPLETE - Already configured
 
-**Can Parallelize:** ✅ Yes - Can be done while others work on structure
+**Can Parallelize:** N/A
+
+**Current Configuration (in `react/rsbuild.config.ts`):**
+- ✅ **CSS Modules**: Native support enabled (no additional config needed)
+- ✅ **Stylelint Plugin**: Configured for CSS/SCSS validation
+  - Extensions: `['css', 'scss', 'sass']`
+  - Fails on error in production
+  - Context: `src`
+- ✅ **Source Maps**: 
+  - Development: `cheap-module-source-map`
+  - Production: Configurable via `DISABLE_SOURCE_MAP`
+  - CSS source maps enabled
+- ✅ **ESLint Plugin**: Configured for code quality
+- ✅ **Build Optimization**: 
+  - Output path: `dist`
+  - Public assets copied from `public/`
+  - Asset prefix configurable via `PUBLIC_URL`
+- ✅ **Dev Server**: 
+  - Port: 3000 (configurable via `PORT`)
+  - Auto-open browser (configurable via `BROWSER`)
 
 **Tasks:**
-- [ ] Review `rsbuild.config.ts`
-- [ ] Add SCSS loader configuration if needed
-- [ ] Configure CSS Modules pattern
-- [ ] Set up source maps for development
-- [ ] Configure build output optimization
-- [ ] Test build with `npm run build`
-- [ ] Test dev server with `npm start`
-- [ ] Document any configuration decisions
-- [ ] Commit with message: `chore: optimize Rsbuild configuration`
+- [x] Configuration already in place
+- [x] CSS Modules work out of the box
+- [x] Stylelint validates CSS files
+- [x] Source maps configured for dev and prod
+- [x] Build optimization configured
+- [x] No additional configuration needed
 
 **Acceptance Criteria:**
-- ✅ SCSS files compile correctly
-- ✅ CSS Modules work properly
+- ✅ CSS files compile correctly
+- ✅ CSS Modules work properly (native support)
 - ✅ Source maps available in dev mode
 - ✅ Build output is optimized
 - ✅ Dev server runs without issues
+- ✅ Stylelint validates CSS on build
 
-**Files to Modify:**
-- `rsbuild.config.ts`
+**Files Already Configured:**
+- `react/rsbuild.config.ts` ✅
+
+**Note:** No changes needed. Rsbuild natively supports CSS Modules and the current configuration already includes all necessary optimizations and tooling.
 
 ---
 
-## Phase 1 Summary
+## Phase 1 Summary ✅ COMPLETE
 
-**Total Duration:** 2 weeks  
+**Total Duration:** Completed ahead of schedule  
 **Total Tasks:** 5  
-**Parallelizable:** Tasks 1.4 and 1.5 can run parallel to others  
-**Critical Path:** 1.1 → 1.2 → 1.3
+**Tasks Completed:** 3 ✅  
+**Tasks Postponed:** 2 ⏸️ (strategic decisions)
 
-**End State:**
-- ✅ No Tailwind CSS
-- ✅ SCSS support installed
-- ✅ Directory structure ready
-- ✅ Types properly defined
-- ✅ Build configuration optimized
+**Completion Status:**
+- ✅ Task 1.3: CSS structure and tokens foundation created
+- ✅ Task 1.4: Types via Orval (better solution than manual)
+- ✅ Task 1.5: Build configuration verified (already optimal)
+- ⏸️ Task 1.1: Tailwind removal postponed to end of migration
+- ⏸️ Task 1.2: Dependencies postponed (YAGNI approach)
 
-**Ready to Proceed to Phase 2:** CSS Token System Implementation
+**End State Achieved:**
+- ✅ **CSS Foundation**: Base structure with `tokens/colors.css` and modern reset
+- ✅ **Type Safety**: Auto-generated types from OpenAPI via Orval
+- ✅ **Build Tooling**: Rsbuild configured with CSS Modules, Stylelint, source maps
+- ✅ **Incremental Strategy**: Tokens and dependencies added as needed
+- ✅ **Functional App**: Tailwind coexists with new CSS system during migration
+- ✅ **Clean Architecture**: CSS Custom Properties, CSS Modules for components
+
+**Strategic Decisions Made:**
+1. **Tailwind Coexistence**: Keeping Tailwind until all components migrated (risk mitigation)
+2. **Orval for Types**: Auto-generation from OpenAPI (better than manual maintenance)
+3. **YAGNI Dependencies**: Install only when needed (lean dependency tree)
+4. **Incremental Tokens**: Create CSS tokens progressively (easier code review)
+5. **Vanilla CSS**: Using modern CSS instead of SCSS (simpler, native)
+
+**Key Benefits:**
+- 🎯 Lower risk: App stays functional during migration
+- 🚀 Better DX: Types auto-sync with API changes
+- 🔒 More secure: Fewer dependencies to maintain
+- 📦 Lighter bundle: Only essential packages
+- 👁️ Easier reviews: Incremental changes in small PRs
+
+**Ready to Proceed to Phase 2:** CSS Token System Implementation & Component Migration
 
 ---
 

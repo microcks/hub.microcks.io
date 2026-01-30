@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-import { Footer } from '@/shared/components/Footer';
-import { type PropsWithChildren } from 'react';
-import { Header } from '@/shared/components/Header/Header';
+import { cn } from '@/shared/lib/utils';
+import type { ComponentProps } from 'react';
 
-export const Layout = ({ children }: PropsWithChildren) => {
+export const CardAction = ({ className, ...props }: ComponentProps<'div'>) => {
   return (
-    <>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </>
+    <div
+      data-slot="card-action"
+      className={cn('col-start-2 row-span-2 row-start-1 self-start justify-self-end', className)}
+      {...props}
+    />
   );
 };
