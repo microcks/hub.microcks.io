@@ -70,7 +70,7 @@
     "prettier": "^3.5.3",
     "stylelint-prettier": "^5.0.3",
     "stylelint-webpack-plugin": "^5.0.1",
-    "typescript": "~5.7.2",
+    "typescript": "~5.9.3",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"
   },
