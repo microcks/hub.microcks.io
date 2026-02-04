@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-import { Footer } from '@/shared/components/Footer';
-import { type PropsWithChildren } from 'react';
-import { Header } from '@/shared/components/Header/Header';
+import { cn } from '@/shared/lib/utils';
+import { List } from 'lucide-react';
+import type { ComponentProps } from 'react';
 
-export const Layout = ({ children }: PropsWithChildren) => {
+export const NavigationMenuList = ({ className, ...props }: ComponentProps<typeof List>) => {
   return (
-    <>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </>
+    <List
+      data-slot="navigation-menu-list"
+      className={cn('group flex flex-1 list-none items-center justify-center gap-1', className)}
+      {...props}
+    />
   );
 };
