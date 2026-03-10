@@ -30,19 +30,16 @@ export default defineConfig(({ mode }) => {
       clearMocks: true,
       css: false,
       include: ['src/**/*.{test,spec}.[jt]s?(x)'],
-      reporters: ['default', 'junit'],
+      reporters: ['default', 'junit', 'vitest-sonar-reporter'],
       outputFile: {
-        junit: 'junit-report.xml',
+        'vitest-sonar-reporter': 'test-reports/unit/sonar-report.xml',
+        junit: 'test-reports/unit/junit-report.xml',
       },
-      poolOptions: {
-        forks: {
-          minForks: env.CI ? 1 : undefined,
-          maxForks: env.CI ? 2 : undefined,
-        },
-      },
+      maxWorkers: env.CI ? 2 : undefined,
       coverage: {
         enabled: env.CI === 'true',
-        reporter: ['lcov', 'json', 'html', 'text', 'text-summary', 'cobertura'],
+        reporter: ['lcovonly', 'html', 'text', 'text-summary'],
+        reportsDirectory: 'test-reports/unit/coverage',
         provider: 'v8',
         lines: 80,
         functions: 75,

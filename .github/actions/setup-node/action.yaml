@@ -1,0 +1,45 @@
+name: 'setup-node'
+description: 'setup node'
+
+inputs:
+  use-mise:
+    description: 'Use mise'
+    required: false
+    default: 'false'
+  node-version:
+    description: 'Node.js version'
+    required: false
+  npm-version:
+    description: 'npm version'
+    required: false
+  disabled-cache:
+    description: 'Disable cache'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Environment with mise
+      if: ${{ inputs.use-mise == 'true' }}
+      uses: jdx/mise-action@6d1e696aa24c1aa1bcc1adea0212707c71ab78a8 # v3
+      with:
+        cache: false
+
+    - name: Setup Node.js
+      if: ${{ inputs.use-mise != 'true' && (inputs.node-version) }}
+      uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+      with:
+        node-version: ${{ inputs.node-version }}
+
+    - name: Setup npm version
+      if: ${{ inputs.use-mise != 'true' && (inputs.npm-version) }}
+      shell: bash
+      run: npm install -g npm@${{ inputs.npm-version }}
+
+    - name: Cache node modules
+      if: ${{ inputs.disabled-cache != 'true' }}
+      uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+      with:
+        path: '**/node_modules'
+        key: npm-${{ runner.os }}-${{ github.workflow }}-modules-${{ hashFiles('**/package-lock.json') }}
