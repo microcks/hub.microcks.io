@@ -35,7 +35,7 @@ export const NavigationMenu = ({
       {...props}
     >
       {children}
-      {viewport && <NavigationMenuViewport />}
+      {viewport ? <NavigationMenuViewport /> : null}
     </Root>
   );
 };
