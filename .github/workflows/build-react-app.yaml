@@ -1,0 +1,188 @@
+name: Build React App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+env:
+  HUSKY: 0
+
+jobs:
+  install:
+    name: Install package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Setup Node
+        uses: ./.github/actions/setup-node
+        with:
+          use-mise: 'true'
+
+      - name: Check package-lock.json
+        run: npm run package:check
+
+      - name: Install package
+        run: npm ci --ignore-scripts
+
+  commitlint:
+    if: github.event_name == 'pull_request' && !startsWith(github.head_ref, 'copilot/')
+    name: CommitLint
+    needs:
+      - install
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: ./.github/actions/setup-node
+        with:
+          use-mise: 'true'
+
+      # https://commitlint.js.org/guides/ci-setup.html#github-actions
+      - name: Validate PR commits with commitlint
+        run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose --color
+
+  lint:
+    name: Lint code
+    needs:
+      - install
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Setup Node
+        uses: ./.github/actions/setup-node
+        with:
+          use-mise: 'true'
+
+      - name: Setup Orval
+        run: npm run orval --workspace react
+
+      - name: Run eslint
+        if: always()
+        run: npm run lint:eslint --workspace react
+
+      - name: Run stylelint
+        if: always()
+        run: npm run lint:stylelint --workspace react
+
+      - name: Run prettier
+        if: always()
+        run: npm run lint:prettier --workspace react
+
+      - name: Run tsc
+        if: always()
+        run: npm run lint:tsc --workspace react
+
+  test:
+    name: Test
+    needs:
+      - install
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Setup Node
+        uses: ./.github/actions/setup-node
+        with:
+          use-mise: 'true'
+
+      - name: Setup Orval
+        run: npm run orval --workspace react
+
+      - name: Run unit test
+        if: always()
+        run: npm run test:unit --workspace react
+
+      - name: Run e2e test
+        if: always()
+        run: |
+          npm run playwright:install --workspace react -- --with-deps
+          npm run test:e2e --workspace react
+
+      - name: Upload playwright test results
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: playwright-test-results
+          retention-days: 10
+          path: react/test-reports/e2e/test-results
+
+      - name: Upload sonar reports
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: sonar-reports
+          retention-days: 2
+          path: |
+            react/test-reports/unit/coverage/lcov.info
+            react/test-reports/unit/sonar-report.xml
+            react/test-reports/e2e/coverage/lcov-coverage.info
+            react/test-reports/e2e/sonar-results.xml
+
+  sonarcloud:
+    name: SonarCloud Scan
+    if: always()
+    needs:
+      - test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Download test reports
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
+        with:
+          name: sonar-reports
+          path: react
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9 # v7.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  build:
+    name: Build
+    needs:
+      - install
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Setup Node
+        uses: ./.github/actions/setup-node
+        with:
+          use-mise: 'true'
+
+      - name: Setup Orval
+        run: npm run orval --workspace react
+
+      - name: Run build
+        run: npm run build --workspace react
