@@ -14,16 +14,9 @@
  * limitations under the License.
  */
 
-import { ServiceProvider } from '@/App/providers/ServiceProvider/ServiceProvider';
-import { BrowserRouter } from '@/App/Routing/BrowserRouter';
-import { serviceContainer } from '@/App/config/serviceContainer';
+import { Container } from 'inversify';
+import { serviceCollection } from '@/services/serviceCollection';
 
-import '@/assets/css';
+export const serviceContainer = new Container();
 
-export const App = () => {
-  return (
-    <ServiceProvider container={serviceContainer}>
-      <BrowserRouter />
-    </ServiceProvider>
-  );
-};
+serviceContainer.load(serviceCollection);

@@ -14,16 +14,14 @@
  * limitations under the License.
  */
 
-import { ServiceProvider } from '@/App/providers/ServiceProvider/ServiceProvider';
-import { BrowserRouter } from '@/App/Routing/BrowserRouter';
-import { serviceContainer } from '@/App/config/serviceContainer';
+import { ContainerModule } from 'inversify';
+import { MicrocksHubService } from './microcksHubService/MicrocksHubService';
+import type { MicrocksHubServiceInterface } from './microcksHubService/MicrocksHubServiceInterface';
+import { SERVICE_IDENTIFIERS } from './serviceIdentifiers';
 
-import '@/assets/css';
-
-export const App = () => {
-  return (
-    <ServiceProvider container={serviceContainer}>
-      <BrowserRouter />
-    </ServiceProvider>
-  );
-};
+export const serviceCollection = new ContainerModule(options => {
+  options
+    .bind<MicrocksHubServiceInterface>(SERVICE_IDENTIFIERS.MicrocksHubService)
+    .toDynamicValue(() => new MicrocksHubService())
+    .inSingletonScope();
+});

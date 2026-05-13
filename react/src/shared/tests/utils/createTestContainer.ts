@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-import { ServiceProvider } from '@/App/providers/ServiceProvider/ServiceProvider';
-import { BrowserRouter } from '@/App/Routing/BrowserRouter';
-import { serviceContainer } from '@/App/config/serviceContainer';
+import { Container, type ServiceIdentifier } from 'inversify';
 
-import '@/assets/css';
+type TestBinding<T = unknown> = {
+  serviceIdentifier: ServiceIdentifier<T>;
+  value: T;
+};
 
-export const App = () => {
-  return (
-    <ServiceProvider container={serviceContainer}>
-      <BrowserRouter />
-    </ServiceProvider>
-  );
+export const createTestContainer = (bindings: TestBinding[]): Container => {
+  const container = new Container();
+
+  bindings.forEach(({ serviceIdentifier, value }) => {
+    container.bind(serviceIdentifier).toConstantValue(value);
+  });
+
+  return container;
 };

@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-import { ServiceProvider } from '@/App/providers/ServiceProvider/ServiceProvider';
-import { BrowserRouter } from '@/App/Routing/BrowserRouter';
-import { serviceContainer } from '@/App/config/serviceContainer';
+import type { Container } from 'inversify';
+import { type PropsWithChildren, useRef } from 'react';
+import { ServiceContext } from './ServiceContext';
 
-import '@/assets/css';
+export type ServiceProviderProps = {
+  container: Container;
+};
 
-export const App = () => {
-  return (
-    <ServiceProvider container={serviceContainer}>
-      <BrowserRouter />
-    </ServiceProvider>
-  );
+export const ServiceProvider = ({ container, children }: PropsWithChildren<ServiceProviderProps>) => {
+  const containerRef = useRef({ container });
+
+  return <ServiceContext value={containerRef.current}>{children}</ServiceContext>;
 };

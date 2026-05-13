@@ -14,16 +14,6 @@
  * limitations under the License.
  */
 
-import { ServiceProvider } from '@/App/providers/ServiceProvider/ServiceProvider';
-import { BrowserRouter } from '@/App/Routing/BrowserRouter';
-import { serviceContainer } from '@/App/config/serviceContainer';
-
-import '@/assets/css';
-
-export const App = () => {
-  return (
-    <ServiceProvider container={serviceContainer}>
-      <BrowserRouter />
-    </ServiceProvider>
-  );
-};
+export const SERVICE_IDENTIFIERS = Object.freeze({
+  MicrocksHubService: Symbol.for('Services.MicrocksHubService'),
+} as const);

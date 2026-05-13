@@ -14,16 +14,11 @@
  * limitations under the License.
  */
 
-import { ServiceProvider } from '@/App/providers/ServiceProvider/ServiceProvider';
-import { BrowserRouter } from '@/App/Routing/BrowserRouter';
-import { serviceContainer } from '@/App/config/serviceContainer';
+import type { Container } from 'inversify';
+import { createContext } from 'react';
 
-import '@/assets/css';
-
-export const App = () => {
-  return (
-    <ServiceProvider container={serviceContainer}>
-      <BrowserRouter />
-    </ServiceProvider>
-  );
+type ServiceContextValue = {
+  container: Container;
 };
+
+export const ServiceContext = createContext<ServiceContextValue | null>(null);
