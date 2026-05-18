@@ -45,3 +45,73 @@ export const package200: APIPackageFull = {
 };
 
 export const packages200: APIPackage[] = [basePackage];
+
+export const hubSectionPackages200: APIPackage[] = [
+  {
+    name: 'stripe-payments',
+    displayName: 'Stripe Payments',
+    description: 'Card and wallet payment APIs for online commerce.',
+    categories: ['Banking'],
+    createdAt: '2024-01-02T00:00:00Z',
+    updatedAt: '2024-01-02T00:00:00Z',
+    thumbUrl: '',
+    apis: [
+      {
+        name: 'payments-api',
+        currentVersion: '1.2.0',
+        versions: [
+          {
+            name: '1.2.0',
+            version: '1.2.0',
+          },
+          {
+            name: '1.1.0',
+            version: '1.1.0',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'cloud-events',
+    displayName: 'Cloud Events',
+    description: 'Cloud-native event APIs for distributed platforms.',
+    categories: ['Cloud Provider'],
+    createdAt: '2024-01-03T00:00:00Z',
+    updatedAt: '2024-01-03T00:00:00Z',
+    thumbUrl: '',
+    apis: [
+      {
+        name: 'events-api',
+        currentVersion: '2.0.0',
+        versions: [
+          {
+            name: '2.0.0',
+            version: '2.0.0',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'banking-insights',
+    displayName: 'Banking Insights',
+    description: 'Analytics APIs for banking observability and reporting.',
+    categories: ['Banking', 'Cloud Provider'],
+    createdAt: '2024-01-04T00:00:00Z',
+    updatedAt: '2024-01-04T00:00:00Z',
+    thumbUrl: '',
+    apis: [
+      {
+        name: 'analytics-api',
+        currentVersion: '3.1.0',
+        versions: [
+          {
+            name: '3.1.0',
+            version: '3.1.0',
+          },
+        ],
+      },
+    ],
+  },
+];

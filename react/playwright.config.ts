@@ -23,8 +23,8 @@ export default defineConfig({
   outputDir: './test-reports/e2e/test-results',
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
-  retries: process.env.CI ? 2 : undefined,
-  workers: process.env.CI ? 1 : undefined,
+  retries: 2,
+  workers: 1,
   reporter: [
     ['list'],
     ['html', { open: 'never', outputFolder: 'test-reports/e2e/html-report' }],
