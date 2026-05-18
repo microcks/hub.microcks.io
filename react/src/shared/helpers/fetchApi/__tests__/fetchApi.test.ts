@@ -15,7 +15,7 @@
  */
 
 import { server } from '@Mocks/server';
-import { beforeAll, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { HEADERS, METHODS, MIME_TYPES } from '../constant';
 import { fetchApi, FetchApiError } from '../fetchApi';
 
@@ -25,6 +25,11 @@ describe('fetchApi', () => {
 
   beforeAll(() => {
     server.close();
+  });
+
+  afterEach(() => {
+    fetchMock.mockReset();
+    vi.unstubAllEnvs();
   });
 
   it('should return JSON data on success', async () => {
@@ -145,6 +150,25 @@ describe('fetchApi', () => {
     expect(result).toStrictEqual(JSON.stringify(mockResponse));
     expect(fetch).toHaveBeenCalledWith(
       '/api/missing-content-type',
+      expect.objectContaining({
+        method: METHODS.get,
+      }),
+    );
+  });
+
+  it('should use the configured FRONT_API_BASE_URL when present', async () => {
+    vi.stubEnv('FRONT_API_BASE_URL', 'http://localhost:4000');
+
+    fetchMock.mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve({ message: 'Configured base URL' }),
+      headers: new Headers({ [HEADERS.contentType]: MIME_TYPES.json }),
+    });
+
+    await fetchApi('/configured-base-url', { method: METHODS.get });
+
+    expect(fetch).toHaveBeenCalledWith(
+      'http://localhost:4000/api/configured-base-url',
       expect.objectContaining({
         method: METHODS.get,
       }),
