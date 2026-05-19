@@ -16,12 +16,24 @@
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { delay, http, HttpResponse } from 'msw';
-import { package200, packages200 } from '../fixtures/packagesFixtures';
+import { hubSectionPackages200, package200, packages200 } from '../fixtures/packagesFixtures';
 
 export const getPackages200 = http.get('**/api/mocks', async () => {
   await delay();
 
   return HttpResponse.json(packages200);
+});
+
+export const getHubSectionPackages200 = http.get('**/api/mocks', async () => {
+  await delay(0);
+
+  return HttpResponse.json(hubSectionPackages200);
+});
+
+export const getPackages500 = http.get('**/api/mocks', async () => {
+  await delay(0);
+
+  return HttpResponse.text('Unable to load packages', { status: 500 });
 });
 
 export const getPackage200 = http.get('**/api/mocks/:packageName', async () => {
