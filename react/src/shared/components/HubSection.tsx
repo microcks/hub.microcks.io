@@ -21,92 +21,18 @@ import { CardDescription } from '@/shared/components/ui/CardDescription/CardDesc
 import { CardFooter } from '@/shared/components/ui/CardFooter/CardFooter';
 import { CardHeader } from '@/shared/components/ui/CardHeader/CardHeader';
 import { CardTitle } from '@/shared/components/ui/CardTitle/CardTitle';
-import { useState, useEffect } from 'react';
+import { appRoutes } from '@/App/Routing/appRoutes';
+import { useHubSectionSelector } from '@/shared/hooks/useHubSectionSelector/useHubSectionSelector';
+import { useHubSectionStore } from '@/shared/hooks/useHubSectionStore/useHubSectionStore';
 import { Link } from 'react-router';
 import { Search } from 'lucide-react';
-import { getPackages } from '@/shared/package.services';
-
-// Types for the data coming from APIs
-interface ApiProvider {
-  id: string;
-  name: string;
-  count: number;
-}
-
-interface Category {
-  id: string;
-  name: string;
-}
-
-interface API {
-  id: string;
-  name: string;
-  provider: string;
-  description: string;
-  logoUrl: string;
-  category: string;
-}
 
 export const HubSection = () => {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedProviders, setSelectedProviders] = useState<string[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [apis, setApis] = useState<API[]>([]); // Real API data
-  const [categories, setCategories] = useState<Category[]>([]); // Real categories data
-  const [providers, setProviders] = useState<ApiProvider[]>([]); // Real providers data
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Fetch real data from the backend
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setIsLoading(true);
-        const data = await getPackages(); // Fetch real packages data
-        setApis(data.apis || []); // Ensure we have arrays even if undefined
-        setCategories(data.categories || []);
-        setProviders(data.providers || []);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        setApis([]);
-        setCategories([]);
-        setProviders([]);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchData();
-  }, []);
-
-  const toggleCategory = (categoryId: string) => {
-    setSelectedCategories(prev =>
-      prev.includes(categoryId) ? prev.filter(id => id !== categoryId) : [...prev, categoryId],
-    );
-  };
-
-  const toggleProvider = (providerId: string) => {
-    setSelectedProviders(prev =>
-      prev.includes(providerId) ? prev.filter(id => id !== providerId) : [...prev, providerId],
-    );
-  };
-
-  // Filter APIs based on selected categories, providers, and search query
-  const filteredApis = (apis || []).filter(api => {
-    const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(api.category);
-    const providerMatch =
-      selectedProviders.length === 0 || selectedProviders.includes(api.provider.toLowerCase().replace(/\./g, '-'));
-    const searchMatch =
-      searchQuery === '' ||
-      api.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      api.provider.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      api.description.toLowerCase().includes(searchQuery.toLowerCase());
-
-    return categoryMatch && providerMatch && searchMatch;
-  });
-
-  // Count total packages and APIs
-  const packagesCount = new Set((apis || []).map(api => api.provider)).size;
-  const apisCount = (apis || []).length;
+  const hubSectionStore = useHubSectionStore();
+  const { categories, providers, selectedCategories, selectedProviders } = useHubSectionSelector(store =>
+    store.getFilters(),
+  );
+  const { apisCount, error, isLoading, items, packagesCount } = useHubSectionSelector(store => store.getList());
 
   if (isLoading) {
     return (
@@ -120,20 +46,32 @@ export const HubSection = () => {
     );
   }
 
+  if (error) {
+    return (
+      <section className="py-8 px-4 md:px-6 bg-[#121C2D]">
+        <div className="container mx-auto">
+          <div className="text-center py-10">
+            <p className="text-gray-300 text-lg">{error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-8 px-4 md:px-6 bg-[#121C2D]">
       <div className="container mx-auto">
         <div className="mb-8 flex flex-col items-center">
-          {/* Search input */}
           <div className="w-full md:w-[450px] lg:w-[550px] relative">
             <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
               <Search className="h-5 w-5 text-blue-400" />
             </div>
             <input
+              id="hub-section-search"
+              aria-label="Search Packages"
               type="text"
               placeholder="Search Packages"
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
+              onChange={event => hubSectionStore.searchBy(event.target.value)}
               className="w-full pl-10 pr-4 py-2 rounded-md bg-[#1e293b] border border-[#334155] text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -147,7 +85,6 @@ export const HubSection = () => {
         </div>
 
         <div className="flex flex-col md:flex-row gap-6">
-          {/* Left sidebar with filters */}
           <div className="w-full md:w-64 flex-shrink-0">
             <div className="mb-6">
               <h3 className="text-xs uppercase tracking-wider text-gray-300 font-medium mb-2">CATEGORIES</h3>
@@ -158,7 +95,7 @@ export const HubSection = () => {
                       type="checkbox"
                       id={`category-${category.id}`}
                       checked={selectedCategories.includes(category.id)}
-                      onChange={() => toggleCategory(category.id)}
+                      onChange={() => hubSectionStore.filterBy('selectedCategories', category.id)}
                       className="rounded border-gray-600 text-blue-500 focus:ring-blue-500 bg-gray-800"
                     />
                     <label htmlFor={`category-${category.id}`} className="ml-2 text-sm text-gray-300">
@@ -178,7 +115,7 @@ export const HubSection = () => {
                       type="checkbox"
                       id={`provider-${provider.id}`}
                       checked={selectedProviders.includes(provider.id)}
-                      onChange={() => toggleProvider(provider.id)}
+                      onChange={() => hubSectionStore.filterBy('selectedProviders', provider.id)}
                       className="rounded border-gray-600 text-blue-500 focus:ring-blue-500 bg-gray-800"
                     />
                     <label htmlFor={`provider-${provider.id}`} className="ml-2 text-sm text-gray-300">
@@ -190,33 +127,31 @@ export const HubSection = () => {
             </div>
           </div>
 
-          {/* Right content with API cards */}
           <div className="flex-1">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredApis.map(api => (
+              {items.map(item => (
                 <Card
-                  key={api.id}
+                  key={item.id}
                   className="overflow-hidden hover:shadow-md transition-shadow border border-[#1e293b] bg-[#0f172a]"
                 >
                   <CardHeader className="p-4 border-b border-[#1e293b]">
                     <div className="h-12 flex items-center justify-center mb-2">
                       <img
-                        src={api.logoUrl}
-                        alt={`${api.name} logo`}
+                        src={item.logoUrl}
+                        alt={`${item.name} logo`}
                         className="h-10 max-w-full object-contain"
                         onError={e => {
-                          // Fallback for missing images
-                          (e.target as HTMLImageElement).src = 'fallback.png';
+                          (e.target as HTMLImageElement).src = '/logos/default.png';
                         }}
                       />
                     </div>
-                    <CardTitle className="text-center text-lg text-white">{api.name}</CardTitle>
+                    <CardTitle className="text-center text-lg text-white">{item.name}</CardTitle>
                     <CardDescription className="text-center text-xs text-gray-400">
-                      provided by {api.provider}
+                      provided by {item.provider}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="p-4 pt-3">
-                    <p className="text-sm text-gray-300 line-clamp-3">{api.description}</p>
+                    <p className="text-sm text-gray-300 line-clamp-3">{item.description}</p>
                   </CardContent>
                   <CardFooter className="p-4 pt-0 flex justify-center">
                     <Button
@@ -225,7 +160,7 @@ export const HubSection = () => {
                       className="text-blue-400 hover:text-blue-300 hover:bg-[#1e293b]"
                       asChild
                     >
-                      <Link to={`/package/${api.id}`} tabIndex={0}>
+                      <Link to={appRoutes.package({ packageId: item.id })} tabIndex={0}>
                         View Details →
                       </Link>
                     </Button>
@@ -234,7 +169,7 @@ export const HubSection = () => {
               ))}
             </div>
 
-            {filteredApis.length === 0 && (
+            {items.length === 0 && (
               <div className="text-center py-10">
                 <p className="text-gray-300 text-lg">No APIs found matching your criteria.</p>
               </div>
