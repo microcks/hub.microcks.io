@@ -17,6 +17,18 @@
 import { HEADERS, MIME_TYPES } from './constant';
 import type { MimeTypes } from './fetchApi.type';
 
+const API_PREFIX = '/api';
+
+const getApiBaseUrl = (): string => {
+  const configuredApiBaseUrl = import.meta.env.FRONT_API_BASE_URL?.trim();
+
+  if (!configuredApiBaseUrl) {
+    return '';
+  }
+
+  return configuredApiBaseUrl.endsWith('/') ? configuredApiBaseUrl.slice(0, -1) : configuredApiBaseUrl;
+};
+
 /**
  * Custom error class for API fetch failures.
  *
@@ -52,9 +64,9 @@ export class FetchApiError extends Error {
 /**
  * Generic API fetch utility with automatic type conversion and error handling.
  *
- * Makes HTTP requests to the `/api` endpoint and automatically parses the response
- * based on its content type (JSON or plain text). Throws a `FetchApiError` if the
- * response status is not OK (2xx).
+ * Makes HTTP requests to the backend `/api` endpoint and automatically parses the
+ * response based on its content type (JSON or plain text). Throws a `FetchApiError`
+ * if the response status is not OK (2xx).
  *
  * @template T - The expected type of the parsed response data
  *
@@ -103,7 +115,7 @@ export class FetchApiError extends Error {
  * const csvData = await fetchApi<string>('/export/users.csv', { method: 'GET' });
  */
 export const fetchApi = async <T>(url: string, options: RequestInit): Promise<T> => {
-  const response = await fetch(`/api${url}`, { ...options });
+  const response = await fetch(`${getApiBaseUrl()}${API_PREFIX}${url}`, { ...options });
 
   if (!response.ok) {
     throw new FetchApiError(

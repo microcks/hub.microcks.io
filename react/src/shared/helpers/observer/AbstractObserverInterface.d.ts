@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-export const SERVICE_IDENTIFIERS = Object.freeze({
-  MicrocksHubService: Symbol.for('Services.MicrocksHubService'),
-  HubSectionStore: Symbol.for('Stores.HubSectionStore'),
-} as const);
+export type VoidFunction = () => void;
+
+export interface AbstractObserverInterface {
+  subscribe(observer: VoidFunction): VoidFunction;
+}

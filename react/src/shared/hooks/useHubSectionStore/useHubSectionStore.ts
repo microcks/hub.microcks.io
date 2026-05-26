@@ -14,14 +14,9 @@
  * limitations under the License.
  */
 
-import { expect } from '@playwright/test';
-import { describe, it } from './fixture/playwright.fixture';
+import { SERVICE_IDENTIFIERS } from '@/services/serviceIdentifiers';
+import type { HubSectionStoreInterface } from '@/services/hubSectionStore/HubSectionStoreInterface';
+import { useService } from '@/shared/hooks/useService/useService';
 
-describe('Demo Test Suite', () => {
-  it('should load the homepage and check title', async ({ page }) => {
-    await page.goto('/');
-    const title = page.getByRole('heading', { name: 'Welcome to hub.microcks.io', level: 1 });
-
-    await expect(title).toBeVisible();
-  });
-});
+export const useHubSectionStore = (): HubSectionStoreInterface =>
+  useService<HubSectionStoreInterface>(SERVICE_IDENTIFIERS.HubSectionStore);

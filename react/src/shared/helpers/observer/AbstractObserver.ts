@@ -14,7 +14,20 @@
  * limitations under the License.
  */
 
-export const SERVICE_IDENTIFIERS = Object.freeze({
-  MicrocksHubService: Symbol.for('Services.MicrocksHubService'),
-  HubSectionStore: Symbol.for('Stores.HubSectionStore'),
-} as const);
+import type { AbstractObserverInterface, VoidFunction } from './AbstractObserverInterface';
+
+export abstract class AbstractObserver implements AbstractObserverInterface {
+  private readonly observers: Set<VoidFunction> = new Set();
+
+  subscribe(observer: VoidFunction): VoidFunction {
+    this.observers.add(observer);
+
+    return () => {
+      this.observers.delete(observer);
+    };
+  }
+
+  protected notifyObservers(): void {
+    this.observers.forEach(observer => observer());
+  }
+}

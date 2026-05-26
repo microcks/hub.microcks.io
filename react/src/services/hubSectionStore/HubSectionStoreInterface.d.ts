@@ -14,7 +14,13 @@
  * limitations under the License.
  */
 
-export const SERVICE_IDENTIFIERS = Object.freeze({
-  MicrocksHubService: Symbol.for('Services.MicrocksHubService'),
-  HubSectionStore: Symbol.for('Stores.HubSectionStore'),
-} as const);
+import type { AbstractObserverInterface } from '@/shared/helpers/observer/AbstractObserverInterface';
+import type { HubSectionFilterName, HubSectionFiltersState, HubSectionListState } from './HubSection.type';
+
+export interface HubSectionStoreInterface extends AbstractObserverInterface {
+  getFilters(): HubSectionFiltersState;
+  getList(): HubSectionListState;
+  searchBy(searchQuery: string): void;
+  filterBy(filterName: HubSectionFilterName, filterValue: string): void;
+  clearFilters(): void;
+}

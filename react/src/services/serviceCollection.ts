@@ -15,6 +15,8 @@
  */
 
 import { ContainerModule } from 'inversify';
+import { HubSectionStore } from '@/services/hubSectionStore/HubSectionStore';
+import type { HubSectionStoreInterface } from '@/services/hubSectionStore/HubSectionStoreInterface';
 import { MicrocksHubService } from './microcksHubService/MicrocksHubService';
 import type { MicrocksHubServiceInterface } from './microcksHubService/MicrocksHubServiceInterface';
 import { SERVICE_IDENTIFIERS } from './serviceIdentifiers';
@@ -23,5 +25,13 @@ export const serviceCollection = new ContainerModule(options => {
   options
     .bind<MicrocksHubServiceInterface>(SERVICE_IDENTIFIERS.MicrocksHubService)
     .toDynamicValue(() => new MicrocksHubService())
+    .inSingletonScope();
+
+  options
+    .bind<HubSectionStoreInterface>(SERVICE_IDENTIFIERS.HubSectionStore)
+    .toDynamicValue(
+      services =>
+        new HubSectionStore(services.get<MicrocksHubServiceInterface>(SERVICE_IDENTIFIERS.MicrocksHubService)),
+    )
     .inSingletonScope();
 });
