@@ -31,7 +31,7 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.2",
+    "lint-staged": "^17.0.7",
     "tsc-files": "^1.1.4"
   },
   "volta": {
