@@ -71,7 +71,7 @@ jobs:
       # Persist logs
       - name: JReleaser release output
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: jreleaser-release
           path: |
